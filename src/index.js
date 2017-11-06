@@ -1,4 +1,4 @@
-import Carousel from "./js/carousel";
+import Carousel from "./scripts/carousel";
 
 (function(){
   new Carousel();
