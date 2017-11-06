@@ -1,0 +1,16 @@
+.carousel {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel__slider {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    transition: none;
+}
+
+.carousel__slide {
+    width: 100%;
+}
