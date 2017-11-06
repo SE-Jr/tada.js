@@ -1,5 +1,5 @@
 const path = require('path');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /*
 ./src/index.js파일이 너가 일을 시작할 곳이야. 여기에서 필요하다고 하는 것들부터 찾아보렴.
 결과물은 너가 있는 디렉토리(__dirname)에 있는 'dist'라는 폴더 아래에, 'carousel.bundle.js'라는 이름으로 떨궈줘.
@@ -22,8 +22,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ExtractTextPlugin.extract({
+          use: ["css-loader", "sass-loader"]
+        })
       }
     ]
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin("carousel.bundle.css")
+  ]
 };
