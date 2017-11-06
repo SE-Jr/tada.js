@@ -1,3 +1,4 @@
+import "../styles/style.scss";
 import { VERSION } from "./config";
 
 export default class Carousel {
