@@ -1,0 +1,13 @@
+@import "reset";
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    &__slider {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__slide {
+        width: 100%;
+    }
+}
