@@ -1,5 +1,9 @@
 @import "reset";
 
-div{
-  color: rgb(52, 152, 219);
+.se-control-container div {
+  display: none;
+}
+
+div.is-on {
+  display: block;
 }

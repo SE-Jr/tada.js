@@ -1,5 +1,4 @@
+import "./styles/style.scss";
 import Carousel from "./scripts/carousel";
 
-(function(){
-  new Carousel();
-})();
+new Carousel();

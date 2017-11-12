@@ -1,21 +1,30 @@
-import "../styles/style.scss";
-import { VERSION } from "./config";
+import { CONFIG } from "./config";
 
 export default class Carousel {
-  constructor(option = {}){
-    this.width = 600; //option.width
-    this.height = 400; //option.height
+	constructor(option={}) {
+		this._init(option);
+	}
 
-    this.renderCarousel(document.body);
-  }
+	_init(option) {
+		this.option = Object.assign({}, 
+			CONFIG.DEFAULT_OPTION,
+			option
+		);
 
-  renderCarousel(targetElement){
-    let wrapper = document.createElement("div");
-    wrapper.style.width = this.width;
-    wrapper.style.height = this.height;
-    wrapper.style.border = "1px solid black";
-    wrapper.innerHTML = "CAROUSEL VERSION " + VERSION + " BEGINS (ﾉ´ヮ´)ﾉ*:･ﾟ✧";
+		const containers = document.getElementsByClassName(this.option.containerClass);
+		for (const container of containers) {
+			this._carouselize(container);
+		}
+	}
 
-    targetElement.appendChild(wrapper);
-  }
+	_carouselize(container) {
+		container.classList.add(CONFIG.CONTROL_CLASS);
+
+		const items = container.children;
+		this._show(items[0]);
+	}
+
+	_show(target) {
+		target.classList.add('is-on');
+	}
 }
