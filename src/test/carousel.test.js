@@ -1,5 +1,6 @@
 import chai from 'chai';
 import Carousel from '../scripts/carousel';
+import { CONFIG } from '../scripts/config';
 
 chai.should();
 
@@ -45,6 +46,19 @@ describe("Carousel 렌더링", () => {
 
 		container.length.should.eql(1);
 		visibleElements.length.should.eql(1);
+	});
+
+	it("캐러셀의 class를 지정할 수 있다.", () => {
+		// given
+		const givenClass = 'testingClass';
+		const controlClass = CONFIG.CONTROL_CLASS;
+
+		// when
+		new Carousel({containerClass: givenClass});
+
+		// then
+		const container = document.getElementsByClassName(controlClass)[0];
+		container.classList.contains(givenClass).should.be.true;
 	});
 
 	it("캐러셀의 크기를 지정할 수 있다.", () => {
