@@ -8,13 +8,13 @@ module.exports = {
         filename: 'carousel.min.js',
         path: path.resolve(__dirname, 'dist')
     },
+    devtool: "cheap-module-eval-source-map",
     module: {
         rules: [
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
                     use: ["css-loader", "sass-loader"]
                 })
             },

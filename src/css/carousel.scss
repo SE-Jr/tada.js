@@ -1,13 +1,22 @@
 @import "reset";
 .carousel {
-    width: 100%;
+    position: relative;
     overflow: hidden;
+    margin: 0 auto;
+
     &__slider {
-        display: flex;
-        flex-direction: row;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
     &__slide {
-        width: 100%;
+        position: relative;
+        display: block;
+        float: left;
+        margin: 0;
+        padding: 0;
+
     }
 }

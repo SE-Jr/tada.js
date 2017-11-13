@@ -1,43 +1,42 @@
 import '../css/carousel.scss'
 class Carousel {
-    constructor(parent,) {
-        if(typeof parent != 'string' || !parent) throw "invalid param";
-        this.carouselElement = document.querySelector(parent);
+    constructor(option) {
+        if(typeof option != 'object' || !option) throw "invalid param";
+        const { selector, width, height } = option;
+        if(typeof selector != 'string' || !selector) throw "invalid selector";
+        this.carouselWrapper = document.querySelector(selector);
+        this.carouselWidth = width || '500';
+        this.carouselHeight = height || '300';
+
     }
 
     load() {
-
-        this.children = this.carouselElement.children;
-
-        this.elements = Array.prototype.slice.call(this.children).filter((slide) => {
+        this.children = Array.prototype.slice.call(this.carouselWrapper.children).filter((slide) => {
             return slide.offsetParent !== null;
         })
 
-        this.elementsCnt = this.elements.length;
+        this.childrenCount = this.children.length;
+        this.totalCarouselWidth = this.childrenCount * this.carouselWidth
+        const carouselParent = document.createElement("div");
+        carouselParent.className = "carousel"
 
-        this.carouselElement.style.width = `${(this.elements.length + 4 ) /  100}%`;
+        const parentNode = this.carouselWrapper.parentNode;
+        parentNode.replaceChild(carouselParent, this.carouselWrapper);
+        carouselParent.appendChild(this.carouselWrapper)
 
+        carouselParent.style.width =  `${this.carouselWidth}px`;
+        carouselParent.style.height = `${this.carouselWidth}px`;
 
         this._render();
 
     }
     _render() {
+        this.carouselWrapper.classList.add('carouselHeight');
+        this.carouselWrapper.style.width = `${this.totalCarouselWidth}px`;
+        this.carouselWrapper.style.marginLeft = `${-1 *  this.carouselWidth}px` ;
 
-        const carouselWrapper = document.createElement("div");
-        carouselWrapper.className = "carousel";
-
-        const parentElement = this.carouselElement.parentNode;
-        parentElement.replaceChild(carouselWrapper, this.carouselElement);
-
-        carouselWrapper.appendChild(this.carouselElement);
-
-        this.carouselElement.classList.add("carousel__slider");
-
-        const basis = 100 / (this.elementsCnt);
-
-        this.elements.map((el) => {
+        this.children.map((el) => {
             el.classList.add('carousel__slide');
-            // el.style.flexBasis = `${basis}%`
         })
 
     }
