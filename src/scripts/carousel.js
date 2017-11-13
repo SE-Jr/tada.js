@@ -20,6 +20,13 @@ export default class Carousel {
 	_carouselize(container) {
 		container.classList.add(CONFIG.CONTROL_CLASS);
 
+		if (this.option.width && this.option.height) {
+			Object.assign(container.style, {
+				width: this.option.width,
+				height: this.option.height
+			});
+		}
+
 		const items = container.children;
 		this._show(items[0]);
 	}
