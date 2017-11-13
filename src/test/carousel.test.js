@@ -43,7 +43,22 @@ describe("Carousel 렌더링", () => {
 		const container = document.getElementsByClassName('se-container');
 		const visibleElements = document.querySelectorAll('.se-container > div.is-on');
 
-		container.length.should.be.eql(1);
-		visibleElements.length.should.be.eql(1);
+		container.length.should.eql(1);
+		visibleElements.length.should.eql(1);
+	});
+
+	it("캐러셀의 크기를 지정할 수 있다.", () => {
+		// given
+		const givenWidth = '400px';
+		const givenHeight = '300px';
+
+		// when
+		new Carousel({width: givenWidth, height: givenHeight});
+
+		// then
+		const container = document.getElementsByClassName('se-container')[0];
+
+		container.style.width.should.eql(givenWidth);
+		container.style.height.should.eql(givenHeight);
 	});
 });
