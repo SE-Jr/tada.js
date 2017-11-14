@@ -25,13 +25,13 @@ class Carousel {
         carouselParent.appendChild(this.carouselWrapper)
 
         carouselParent.style.width =  `${this.carouselWidth}px`;
-        carouselParent.style.height = `${this.carouselWidth}px`;
+        carouselParent.style.height = `${this.carouselHeight}px`;
 
         this._render();
 
     }
     _render() {
-        this.carouselWrapper.classList.add('carouselHeight');
+        this.carouselWrapper.classList.add('carousel__slider');
         this.carouselWrapper.style.width = `${this.totalCarouselWidth}px`;
         this.carouselWrapper.style.marginLeft = `${-1 *  this.carouselWidth}px` ;
 
