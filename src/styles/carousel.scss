@@ -1,0 +1,22 @@
+@import "reset";
+.carousel {
+    position: relative;
+    overflow: hidden;
+    margin: 10px auto 0 auto;
+
+    &__slider {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__slide {
+        position: relative;
+        display: block;
+        float: left;
+        margin: 0;
+        padding: 0;
+
+    }
+}
