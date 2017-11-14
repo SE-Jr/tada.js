@@ -1,4 +1,4 @@
-import Carousel from "./js/Carousel";
+import Carousel from "./scripts/Carousel";
 
 ( _ => {
     new Carousel({

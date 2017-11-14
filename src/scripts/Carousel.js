@@ -1,4 +1,4 @@
-import '../css/carousel.scss'
+import '../styles/carousel.scss'
 class Carousel {
     constructor(option) {
         if(typeof option != 'object' || !option) throw "invalid param";
