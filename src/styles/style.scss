@@ -1,5 +1,26 @@
 @import "reset";
 
-div{
-  color: rgb(52, 152, 219);
+body {
+  background: gray;
+}
+
+.carousel-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  transition: margin-left 1s;
+}
+.carousel-wrapper {
+  background: orange;
+}
+.carousel-container .carousel-item {
+  background: white;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  /*position: absolute;*/
+  float: left;
 }
