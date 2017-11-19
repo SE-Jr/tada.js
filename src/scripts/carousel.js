@@ -1,21 +1,68 @@
 import "../styles/style.scss";
-import { VERSION } from "./config";
+import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE } from "./config";
 
-export default class Carousel {
-  constructor(option = {}){
-    this.width = 600; //option.width
-    this.height = 400; //option.height
-
-    this.renderCarousel(document.body);
+export default class SlideProjector {
+  constructor(option){
+    this._init(option);
+    this._initProjector();
+    this._setProjectorSize();
+    this._wrapInContainer();
+    this._render();
   }
 
-  renderCarousel(targetElement){
-    let wrapper = document.createElement("div");
-    wrapper.style.width = this.width;
-    wrapper.style.height = this.height;
-    wrapper.style.border = "1px solid black";
-    wrapper.innerHTML = "CAROUSEL VERSION " + VERSION + " BEGINS (ﾉ´ヮ´)ﾉ*:･ﾟ✧";
+  _init(option){
+    if (!option || typeof option !== "object") {
+      throw new Error(ERROR_MESSAGE.OPTION_REQUIRED);
+    }
+    if (!option.selector || typeof option.selector !== "string") {
+      throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
+    }
+    this.option = Object.assign(DEFAULT_OPTIONS, option);
+  }
 
-    targetElement.appendChild(wrapper);
+  _initProjector(){
+    this.projector = document.querySelector(this.option.selector);
+    this.projector.classList.add(PROJECTOR_CLASS);
+    this.slideCount = this.projector.children.length;
+  }
+
+  _setProjectorSize(){
+    this.projectorWidth = this.option.width;
+    this.projectorHeight = this.option.height;
+  }
+
+  _wrapInContainer(){
+    const slideContainer = this._generateSlideContainer();
+    this._setSlideWidth(slideContainer);
+    this._fillProjectorWith(slideContainer);
+  }
+
+  _fillProjectorWith(slideContainer){
+    this.projector.innerHTML = "";
+    this.projector.appendChild(slideContainer);
+  }
+
+  _generateSlideContainer(){
+    const slideContainer = document.createElement("div");
+    const slideContainerWidth = (this.projectorWidth * this.slideCount);
+    slideContainer.style.width = `${slideContainerWidth}px`;
+    slideContainer.style.height = `${this.projectorHeight}px`;
+    slideContainer.classList.add(CONTAINER_CLASS);
+    slideContainer.innerHTML = this.projector.innerHTML;
+
+    return slideContainer;
+  }
+
+  _setSlideWidth(slideContainer){
+    const slides = slideContainer.querySelectorAll("div");
+    const slideWidth = `${100 / this.slideCount}%`;
+    slides.forEach((slide) => {
+      slide.style.width = slideWidth;
+    });
+  }
+
+  _render(){
+    this.projector.style.width = `${this.projectorWidth}px`;
+    this.projector.style.height = `${this.projectorHeight}px`;
   }
 }
