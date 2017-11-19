@@ -1,0 +1,10 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "document": true,
+    "window": true
+  },
+  "rules": {
+    "no-param-reassign": 0
+  }
+}
