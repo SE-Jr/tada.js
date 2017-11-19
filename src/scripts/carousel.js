@@ -16,7 +16,7 @@ export default class SlideProjector {
       throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
     }
 
-    this.option = Object.assign(DEFAULT_OPTIONS, option);
+    this.option = Object.assign({}, DEFAULT_OPTIONS, option);
 
     this.initProjector();
     this.setProjectorSize();
