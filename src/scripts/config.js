@@ -3,8 +3,8 @@ export const PROJECTOR_CLASS = 'slide-projector';
 export const CONTAINER_CLASS = 'slider-projector-container';
 
 export const DEFAULT_OPTIONS = {
-  width: 400,
-  height: 300,
+  width: '600px',
+  height: '400px'
 };
 
 export const ERROR_MESSAGE = {

@@ -13,8 +13,9 @@ import SlideProjector from './scripts/carousel';
   // using id selector
   new SlideProjector({
     selector: '#slide-projector-id',
-    width: 600,
-    height: 400,
+    width: '400px',
+    height: '300px',
+    isMobile: true,
   });
 
   // error - option required
