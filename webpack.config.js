@@ -1,15 +1,17 @@
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /*
 ./src/index.js파일이 너가 일을 시작할 곳이야. 여기에서 필요하다고 하는 것들부터 찾아보렴.
-결과물은 너가 있는 디렉토리(__dirname)에 있는 'dist'라는 폴더 아래에, 'carousel.bundle.js'라는 이름으로 떨궈줘.
+결과물은 너가 있는 디렉토리(__dirname)에 있는 'dist'라는 폴더 아래에, 'carousel.min.js'라는 이름으로 떨궈줘.
 */
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'carousel.bundle.js',
+    filename: 'carousel.min.js',
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: "cheap-module-eval-source-map",
   module: {
     rules: [
       { //각 loader에서 사용할 설정들을 세세하게 지정할 수 있어요.
@@ -29,6 +31,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("carousel.bundle.css")
+      new UglifyJSPlugin(),
+      new ExtractTextPlugin("carousel.bundle.css")
   ]
 };
