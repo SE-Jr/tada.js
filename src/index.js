@@ -13,6 +13,7 @@ import SlideProjector from './scripts/carousel';
   // using id selector
   new SlideProjector({
     selector: '#slide-projector-id',
+    indicator: true,
     width: 600,
     height: 400,
   });
