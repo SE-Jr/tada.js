@@ -1,5 +1,5 @@
 import '../styles/style.scss';
-import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE } from './config';
+import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE, INDICATOR_PREV_CLASS, INDICATOR_NEXT_CLASS } from './config';
 
 export default class SlideProjector {
   constructor(option) {
@@ -9,6 +9,30 @@ export default class SlideProjector {
     this.wrapInContainer();
     this.addIndicator();
     this.render();
+  }
+
+  get currentPage() {
+    if (typeof this._currentPage !== "number") {
+      this._currentPage = 0;
+    }
+    return this._currentPage;
+  }
+
+  set currentPage(page) {
+    if (page < 0) {
+      page = 0;
+    } else if (page >= this.slideCount) {
+      page = this.slideCount - 1;
+    }
+
+    if (this._currentPage === page) {
+      return page;
+    }
+
+    this._currentPage = page;
+    this.slideContainer.style.marginLeft = `${-1 * page * this.projectorWidth}px`;
+
+    return this._currentPage;
   }
 
   init(option) {
@@ -33,9 +57,9 @@ export default class SlideProjector {
   }
 
   wrapInContainer() {
-    const slideContainer = this.generateSlideContainer();
-    this.setSlideWidth(slideContainer);
-    this.fillProjectorWith(slideContainer);
+    this.slideContainer = this.generateSlideContainer();
+    this.setSlideWidth(this.slideContainer);
+    this.fillProjectorWith(this.slideContainer);
   }
 
   generateSlideContainer() {
@@ -66,7 +90,41 @@ export default class SlideProjector {
     if (this.option.indicator !== true) {
       return;
     }
-    alert(this.option.indicator);
+    this.indicator = this._generatePrevIndicator();
+    this._appendIndicator();
+    this._addListenerToIndicator();
+  }
+
+  _generatePrevIndicator() {
+    const prevIndicator = document.createElement('a');
+    const nextIndicator = document.createElement('a');
+    prevIndicator.classList.add(INDICATOR_PREV_CLASS);
+    nextIndicator.classList.add(INDICATOR_NEXT_CLASS);
+
+    return {
+      prev: prevIndicator,
+      next: nextIndicator
+    };
+  }
+
+  _appendIndicator() {
+    const indicator = this.indicator;
+    this.projector.appendChild(indicator.prev);
+    this.projector.appendChild(indicator.next);
+  }
+
+  _addListenerToIndicator() {
+    const indicator = this.indicator;
+    indicator.prev.addEventListener('click', this.prev.bind(this));
+    indicator.next.addEventListener('click', this.next.bind(this));
+  }
+
+  prev() {
+    this.currentPage = this.currentPage - 1;
+  }
+
+  next() {
+    this.currentPage = this.currentPage + 1;
   }
 
   render() {

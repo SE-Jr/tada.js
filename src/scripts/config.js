@@ -1,6 +1,8 @@
 export const VERSION = 1.0;
 export const PROJECTOR_CLASS = 'slide-projector';
 export const CONTAINER_CLASS = 'slider-projector-container';
+export const INDICATOR_PREV_CLASS = '__sp__indicator__prev';
+export const INDICATOR_NEXT_CLASS = '__sp__indicator__next';
 
 export const DEFAULT_OPTIONS = {
   width: 400,
