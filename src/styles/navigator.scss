@@ -1,0 +1,27 @@
+.slide-projector{
+  .sp-navigator{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    
+    &:hover{
+      color: #fff;
+    }
+    
+    &__prev{
+      left: 0;
+    }
+
+    &__next{
+      right: 0;
+    }  
+  }  
+}

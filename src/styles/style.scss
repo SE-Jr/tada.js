@@ -1,4 +1,5 @@
 @import "reset";
+@import "navigator";
 $default-color: rgb(122,201,188);
 $first-color: rgb(223,229,229);
 $second-color: rgb(236,220,191);
@@ -12,6 +13,10 @@ $fifth-color: rgb(123,168,83);
     overflow: hidden;
   }
   .slider-projector-container {
+    &{
+      position: relative;
+      transition: transform .5s;
+    }
     div {
         & {
           height: 100%;
