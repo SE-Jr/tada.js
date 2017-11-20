@@ -5,6 +5,8 @@ export const CONTAINER_CLASS = 'slider-projector-container';
 export const DEFAULT_OPTIONS = {
   width: 400,
   height: 300,
+  autoSlide: false,
+  autoSlideInterval: 5000,
 };
 
 export const ERROR_MESSAGE = {

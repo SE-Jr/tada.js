@@ -4,9 +4,6 @@ import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE } from
 export default class SlideProjector {
   constructor(option) {
     this.init(option);
-    this.initProjector();
-    this.setProjectorSize();
-    this.wrapInContainer();
     this.render();
   }
 
@@ -14,10 +11,20 @@ export default class SlideProjector {
     if (!option || typeof option !== 'object') {
       throw new Error(ERROR_MESSAGE.OPTION_REQUIRED);
     }
+
     if (!option.selector || typeof option.selector !== 'string') {
       throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
     }
-    this.option = Object.assign(DEFAULT_OPTIONS, option);
+
+    this.option = Object.assign({}, DEFAULT_OPTIONS, option);
+
+    this.initProjector();
+    this.setProjectorSize();
+    this.wrapInContainer();
+
+    if (this.option.autoSlide) {
+      this.startAutoSlide();
+    }
   }
 
   initProjector() {
@@ -59,6 +66,14 @@ export default class SlideProjector {
     slides.forEach((slide) => {
       slide.style.width = slideWidth;
     });
+  }
+
+  startAutoSlide() {
+    setInterval(SlideProjector.next, this.option.autoSlideInterval);
+  }
+
+  static next() {
+    console.log('next');
   }
 
   render() {
