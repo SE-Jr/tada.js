@@ -4,9 +4,7 @@ import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE } from
 export default class SlideProjector {
   constructor(option) {
     this.init(option);
-    this.initProjector();
-    this.setProjectorSize();
-    this.wrapInContainer();
+
     this.render();
   }
 
@@ -18,6 +16,16 @@ export default class SlideProjector {
       throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
     }
     this.option = Object.assign(DEFAULT_OPTIONS, option);
+
+    this.initProjector();
+    if (!this.option.isMobile) {
+        this.setProjectorSize();
+    } else {
+      this.projectorWidth = 100;
+      this.projectorHeight = this.option.height;
+      this.unit = '%';
+    }
+    this.wrapInContainer();
   }
 
   initProjector() {
@@ -27,8 +35,10 @@ export default class SlideProjector {
   }
 
   setProjectorSize() {
-    this.projectorWidth = this.option.width;
+    const widthWithUnit = this.option.width.match(/[a-zA-Z]+|[0-9]+/g);
+    this.projectorWidth = widthWithUnit[0];
     this.projectorHeight = this.option.height;
+    this.unit = widthWithUnit[1];
   }
 
   wrapInContainer() {
@@ -45,8 +55,8 @@ export default class SlideProjector {
   generateSlideContainer() {
     const slideContainer = document.createElement('div');
     const slideContainerWidth = (this.projectorWidth * this.slideCount);
-    slideContainer.style.width = `${slideContainerWidth}px`;
-    slideContainer.style.height = `${this.projectorHeight}px`;
+    slideContainer.style.width = `${slideContainerWidth}${this.unit}`;
+    slideContainer.style.height = `${this.projectorHeight}`;
     slideContainer.classList.add(CONTAINER_CLASS);
     slideContainer.innerHTML = this.projector.innerHTML;
 
@@ -62,7 +72,7 @@ export default class SlideProjector {
   }
 
   render() {
-    this.projector.style.width = `${this.projectorWidth}px`;
-    this.projector.style.height = `${this.projectorHeight}px`;
+    this.projector.style.width = `${this.projectorWidth}${this.unit}`;
+    this.projector.style.height = `${this.projectorHeight}`;
   }
 }
