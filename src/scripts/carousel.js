@@ -1,5 +1,6 @@
 import "../styles/style.scss";
 import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE } from "./config";
+import Navigator from "./navigator";
 
 export default class SlideProjector {
   constructor(option){
@@ -33,13 +34,23 @@ export default class SlideProjector {
 
   _wrapInContainer(){
     const slideContainer = this._generateSlideContainer();
-    this._setSlideWidth(slideContainer);
     this._fillProjectorWith(slideContainer);
+    this._setSlideWidth(slideContainer);
+  }
+
+  _setNavigator(slideContainer){
+    const nav = new Navigator(slideContainer, this.slideCount, this.projectorWidth);
+    this.projector.appendChild(nav.prevButton);
+    this.projector.appendChild(nav.nextButton);
+    nav.bindEvents();
   }
 
   _fillProjectorWith(slideContainer){
     this.projector.innerHTML = "";
     this.projector.appendChild(slideContainer);
+    if(this.option.nav.show){
+      this._setNavigator(slideContainer);
+    }
   }
 
   _generateSlideContainer(){
