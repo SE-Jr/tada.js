@@ -38,18 +38,6 @@ export default class SlideProjector {
     this.fillProjectorWith(slideContainer);
   }
 
-  addIndicator() {
-    if (this.option.indicator !== true) {
-      return;
-    }
-    alert(this.option.indicator);
-  }
-
-  fillProjectorWith(slideContainer) {
-    this.projector.innerHTML = '';
-    this.projector.appendChild(slideContainer);
-  }
-
   generateSlideContainer() {
     const slideContainer = document.createElement('div');
     const slideContainerWidth = (this.projectorWidth * this.slideCount);
@@ -67,6 +55,18 @@ export default class SlideProjector {
     slides.forEach((slide) => {
       slide.style.width = slideWidth;
     });
+  }
+
+  fillProjectorWith(slideContainer) {
+    this.projector.innerHTML = '';
+    this.projector.appendChild(slideContainer);
+  }
+
+  addIndicator() {
+    if (this.option.indicator !== true) {
+      return;
+    }
+    alert(this.option.indicator);
   }
 
   render() {
