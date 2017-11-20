@@ -7,6 +7,7 @@ export default class SlideProjector {
     this.initProjector();
     this.setProjectorSize();
     this.wrapInContainer();
+    this.addIndicator();
     this.render();
   }
 
@@ -35,6 +36,13 @@ export default class SlideProjector {
     const slideContainer = this.generateSlideContainer();
     this.setSlideWidth(slideContainer);
     this.fillProjectorWith(slideContainer);
+  }
+
+  addIndicator() {
+    if (this.option.indicator !== true) {
+      return;
+    }
+    alert(this.option.indicator);
   }
 
   fillProjectorWith(slideContainer) {
