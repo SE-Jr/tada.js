@@ -9,11 +9,9 @@ class Container {
     init() {
         let containers = dom.getElements(this.options.selector);
         containers = Array.from(containers);
-        containers.forEach(el => {
-            dom.addClass(el, DEFAULT_OPTIONS.CONTAINER_CLASS);
+        containers.forEach(container => {
+            dom.addClass(container, DEFAULT_OPTIONS.CONTAINER_CLASS);
         });
-
-        console.log(containers);
     }
 }
 
