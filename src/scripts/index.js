@@ -1,5 +1,6 @@
 import { DEFAULT_OPTIONS } from './config';
 import Container from './container';
+import '../styles/style.scss';
 
 function SlideProjector(userOptions) {
     const options = Object.assign({}, DEFAULT_OPTIONS, userOptions);
