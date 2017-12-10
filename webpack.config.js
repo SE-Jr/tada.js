@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -19,7 +20,9 @@ module.exports = {
         exclude: /node_modules/, //하지만 node_modules 안에 있는거라면 스킵해달라고도 정해주고,
         loader: 'babel-loader', //이러한 설정으로 사용할 loader는 'babel loader'입니다.
         options: {
-          presets: ['es2015']
+          presets: ['es2015'],
+          plugins: ['transform-class-properties']
+
         }
       },
       {

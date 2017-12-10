@@ -11,11 +11,11 @@ import SlideProjector from './scripts/carousel';
   });
 
   // using id selector
-  new SlideProjector({
-    selector: '#slide-projector-id',
-    width: 600,
-    height: 400,
-  });
+  // new SlideProjector({
+  //   selector: '#slide-projector-id',
+  //   width: 600,
+  //   height: 400,
+  // });
 
   // error - option required
   // new SlideProjector();
