@@ -8,7 +8,8 @@ class Container {
     constructor(options, elContainer) {
         this.options = options;
         this.elContainer = elContainer;
-        this._index = 0;
+        this.index = 0;
+        this.xPosition = 0;
     }
 
     init() {
@@ -37,19 +38,21 @@ class Container {
 
     _bindNavEvents() {
         this.elContainer.addEventListener('moveToPrev', function(e) {
-            this._index--;
-            this._moveTo(this._index);
+            this._moveTo(this.index - 1);
         }.bind(this));
 
         this.elContainer.addEventListener('moveToNext', function(e) {
-            this._index++;
-            this._moveTo(this._index);
+            this._moveTo(this.index + 1);
         }.bind(this));
     }
 
-    _moveTo(index) {
-        // 현재 인덱스와 차이 구해서 transferX
-        console.log('index: ', this._index);
+    _moveTo(destIndex) {
+        const steps = this.index - destIndex;
+        this.xPosition += steps * 300;
+
+        this.elContainer.style.transform = `translateX(${this.xPosition}px)`;
+
+        this.index = destIndex;
     }
 }
 

@@ -19,12 +19,10 @@ class Controller {
             const moveToNextEvent = new Event('moveToNext');
 
             this.listener.addEventListener('prev', function(e) {
-                console.log('prev event fired');
                 this.container.dispatchEvent(moveToPrevEvent);
             }.bind(this));
 
             this.listener.addEventListener('next', function(e) {
-                console.log('next event fired');
                 this.container.dispatchEvent(moveToNextEvent);
             }.bind(this));
         }
