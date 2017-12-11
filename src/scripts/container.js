@@ -50,7 +50,7 @@ class Container {
         const steps = this.index - destIndex;
         this.xPosition += steps * 300;
 
-        this.elContainer.style.transform = `translateX(${this.xPosition}px)`;
+        dom.setStyle(this.elContainer, 'transform', `translateX(${this.xPosition}px)`);
 
         this.index = destIndex;
     }
