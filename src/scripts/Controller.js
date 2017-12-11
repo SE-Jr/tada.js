@@ -1,32 +1,30 @@
-import EventEmitter from './EventEmitter'
 import Navigator from './Navigator'
+import Indicator from './Indicator'
 import Dom from './util/dom'
-import Observer from './Observer'
 
 export default class Controller {
+    constructor(config) {
+        this.config = config;
+		this.navigator = new Navigator(this.config);
+		this.indicator = new Indicator(this.config);
+    }
 
-    constructor(config){
-        this.config = config
-        this.init();
+    on(label, callback) {
+		this.navigator.observable.addListener(label, callback);
+		this.indicator.observable.addListener(label, callback);
     }
 
     init() {
-        const config = this.config;
-        let observable = new EventEmitter();
+        let that = this;
+		const prev = Dom.query(this.config.navigator.prev);
+		const next = Dom.query(this.config.navigator.next);
 
-        const prev = Dom.query(config.navigator.prev);
+		next.addEventListener("click", function () {
+			that.navigator.next();
+		});
 
-        const next = Dom.query(config.navigator.next);
-        // let observer = new Observer(config, observable);
-
-        let observer = new Navigator(config, observable);
-
-        next.addEventListener("click", function () {
-            observable.emit("next");
-        });
-
-        prev.addEventListener("click", function () {
-            observable.emit("prev");
-        });
+		prev.addEventListener("click", function () {
+			that.navigator.prev();
+		});
     }
 }

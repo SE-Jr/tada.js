@@ -1,14 +1,13 @@
-import Observer from "./Observer";
+import Actor from "./Actor";
 import Dom from './util/dom'
 
-class Navigator extends Observer {
+class Navigator extends Actor {
 
     constructor(config, subject){
         super(config, subject);
         this.config = config;
-        this.subject = subject;
         this.currentSlideId = config.currentPage;
-    }
+	}
 
     //TODO moveTo 활용
     next() {
@@ -22,11 +21,11 @@ class Navigator extends Observer {
 
         const wrapper = Dom.query(this.config.selector);
         wrapper.style.transform = `translate3d(${targetPosition}, 0, 0)`
+		this.observable.emit("next");
     }
 
-    prev() {
-
-    }
+    prev() {}
+    moveTo() {}
 }
 
 export default Navigator;

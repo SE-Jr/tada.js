@@ -6,10 +6,13 @@ import SlideProjector from './scripts/Carousel';
 */
 (function () {
   // using class selector
-  new SlideProjector({
+ const slideProject = new SlideProjector({
     selector: '.slide-projector-class',
   });
 
+ // slideProject.on("next", function(){
+ //    console.log("next$$$$");
+ // });
   // using id selector
   // new SlideProjector({
   //   selector: '#slide-projector-id',
