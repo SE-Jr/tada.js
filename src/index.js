@@ -1,4 +1,4 @@
-import SlideProjector from './scripts/carousel';
+import SlideProjector from './scripts/Carousel';
 
 /*
 * initialize carousel library

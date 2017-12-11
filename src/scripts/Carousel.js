@@ -1,6 +1,7 @@
 import '../styles/style.scss'
 import Dom from './util/dom'
 import Controller from './Controller'
+import { CAROUSEL_CONFIG } from './Config'
 
 export default class SlideProjector {
   constructor(option) {
@@ -13,26 +14,16 @@ export default class SlideProjector {
       const containerWidth = wrapper.offsetWidth;
       const slide = wrapper.children;
       const slideCnt = slide.length;
-      const currentPage = 0;
-      const container = '.container';
-      const prev  = '.slide-projector-prev';
-      const next  = '.slide-projector-next';
 
-      const config = {
-          container,
-          selector,
-          containerWidth,
-          slideCnt,
-          currentPage,
-          navigator : {
-              prev,
-              next
-          }
-      }
+	  const config = Object.assign({}, CAROUSEL_CONFIG, {
+		  selector,
+		  containerWidth,
+		  slideCnt,
+	  });
 
       this.initContainer(config);
       this.initController(config);
-  }
+  };
 
   initContainer = (config) => {
     const container = Dom.createElement('div');
@@ -45,7 +36,6 @@ export default class SlideProjector {
     Dom.addClass(container, 'container');
     Dom.addClass(wrapper, 'slide-wrapper');
 
-
     container.style.width = config.containerWidth;
     wrapper.style.width = config.containerWidth * config.slideCnt;
 
@@ -56,9 +46,9 @@ export default class SlideProjector {
         el.style.width = slideWidth
 
     })
-  }
+  };
 
   initController = (config) => {
       new Controller(config);
-  }
+  };
 }

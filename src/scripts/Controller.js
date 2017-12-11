@@ -21,7 +21,6 @@ export default class Controller {
 
         let observer = new Navigator(config, observable);
 
-
         next.addEventListener("click", function () {
             observable.emit("next");
         });
