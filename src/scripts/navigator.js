@@ -2,8 +2,8 @@ import { NAVIGATOR_CONFIG } from './config'
 import dom from './util/dom';
 
 class Navigator {
-    constructor(container) {
-        this.container = container;
+    constructor(contListener) {
+        this.contListener = contListener;
 
         this.prevButton = dom.createElement('button');
         this.prevButton.innerHTML = NAVIGATOR_CONFIG.PREV_BUTTON.SHAPE;
@@ -25,11 +25,11 @@ class Navigator {
         const nextEvent = new Event('next');
 
         this.prevButton.addEventListener('click', function(e) {
-            this.container.dispatchEvent(prevEvent);
+            this.contListener.dispatchEvent(prevEvent);
         }.bind(this));
 
         this.nextButton.addEventListener('click', function(e) {
-            this.container.dispatchEvent(nextEvent);
+            this.contListener.dispatchEvent(nextEvent);
         }.bind(this));
     }
 }

@@ -4,17 +4,29 @@ import dom from './util/dom';
 class Controller {
     constructor(container) {
         this.container = container;
+        this.listener = dom.createElement('div');
+
+        this._bindEvents();
     }
 
-    bindEvents() {
-        if (CONFIG.DEFAULT_OPTIONS.SHOW_NAVIGATOR) {
-            this.container.addEventListener('prev', function(e) {
-                console.log('prev event fired');
-            });
+    getListener() {
+        return this.listener;
+    }
 
-            this.container.addEventListener('next', function(e) {
+    _bindEvents() {
+        if (CONFIG.DEFAULT_OPTIONS.SHOW_NAVIGATOR) {
+            const moveToPrevEvent = new Event('moveToPrev');
+            const moveToNextEvent = new Event('moveToNext');
+
+            this.listener.addEventListener('prev', function(e) {
+                console.log('prev event fired');
+                this.container.dispatchEvent(moveToPrevEvent);
+            }.bind(this));
+
+            this.listener.addEventListener('next', function(e) {
                 console.log('next event fired');
-            });
+                this.container.dispatchEvent(moveToNextEvent);
+            }.bind(this));
         }
     }
 }
