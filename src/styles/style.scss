@@ -6,34 +6,106 @@ $third-color: rgb(245,118,86);
 $fourth-color: rgb(241,175,16);
 $fifth-color: rgb(123,168,83);
 
+/*
+사용자가 작성하는 스타일
+*/
+#demo-slide-projector-id {
+  width: 400px;
+  height: 300px;
+}
+.demo-slide-projector-class {
+  width: 600px;
+  height: 300px;
+}
+#demo-slide-projector-id, .demo-slide-projector-class{
+  & {
+    position: relative;
+  }
+  div {
+    & {
+      background-color: $default-color;
+    }
+
+    &:nth-child(1) {
+      background-color: $first-color;
+    }
+    &:nth-child(2) {
+      background-color: $second-color;
+    }
+    &:nth-child(3) {
+      background-color: $third-color;
+    }
+    &:nth-child(4) {
+      background-color: $fourth-color;
+    }
+    &:nth-child(5) {
+      background-color: $fifth-color;
+    }
+  }
+}
+
+/*
+SlideProjector 라이브러리 스타일
+*/
+.slide-projector-navigator{
+  & {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+  }
+}
+.slide-projector-navigator-prev{
+  & {
+    left: 0;
+  }
+  &:before {
+    content: '<';
+  }
+}
+.slide-projector-navigator-next{
+  & {
+    right: 0;
+  }
+  &:before {
+    content: '>';
+  }
+}
+
+.slide-projector-indicator{
+  & {
+    position: absolute;
+    bottom: 0;
+  }
+  li {
+    width: 10px;
+    height: 10px;
+    margin-right: 20px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    float: left;
+    cursor: pointer;
+  }
+}
+
 .slide-projector {
   & {
     position: relative;
     overflow: hidden;
   }
   .slider-projector-container {
+    & {
+      transition: transform 0.3s;
+    }
     div {
-        & {
-          height: 100%;
-          float: left;
-          background-color: $default-color;
-        }
-
-        &:nth-child(1) {
-          background-color: $first-color;
-        }
-        &:nth-child(2) {
-          background-color: $second-color;
-        }
-        &:nth-child(3) {
-          background-color: $third-color;
-        }
-        &:nth-child(4) {
-          background-color: $fourth-color;
-        }
-        &:nth-child(5) {
-          background-color: $fifth-color;
-        }
+      float: left;
     }
   }
 }
