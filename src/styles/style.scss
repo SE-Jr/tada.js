@@ -48,4 +48,36 @@ $fifth-color: rgb(123,168,83);
   .slide {
     float: left;
   }
+
+  .slide-projector-prev {
+    & {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0,0,0,0.5);
+      left: 0.5em;
+    }
+    &:hover {
+      color: black;
+    }
+    &::before {
+      content:'<';
+    }
+  }
+
+  .slide-projector-next {
+    & {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0,0,0,0.5);
+      right: 0.5em;
+    }
+    &:hover {
+      color: black;
+    }
+    &::before {
+      content:'>';
+    }
+  }
 }
