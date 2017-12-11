@@ -13,14 +13,15 @@ class Container {
     }
 
     init() {
+        dom.addClass(this.elContainer, DEFAULT_OPTIONS.CONTAINER_CLASS);
+        this._serialize();
+
         // init controller
         const controller = new Controller(this.elContainer);
         const listener = controller.getListener();
 
-        dom.addClass(this.elContainer, DEFAULT_OPTIONS.CONTAINER_CLASS);
-        this._serialize();
-
         if (this.options.SHOW_NAVIGATOR) {
+            // init navigator
             const navigator = new Navigator(listener);
             navigator.appendTo(this.elContainer);
 
