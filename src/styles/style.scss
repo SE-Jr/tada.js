@@ -8,9 +8,14 @@ li {
 }
 
 .sp__container {
+    position: relative;
+
     > ul > li {
         // display: inline-block;
         // width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
 
         > img {
             // width: 100%;
