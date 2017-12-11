@@ -2,29 +2,26 @@ import * as CONFIG from './config';
 import dom from './util/dom';
 
 class Controller {
-    constructor(container) {
-        this.container = container;
+    constructor() {
         this.listener = dom.createElement('div');
-
-        this._bindEvents();
     }
 
     getListener() {
         return this.listener;
     }
 
-    _bindEvents() {
+    connectTo(subscriber) {
         if (CONFIG.DEFAULT_OPTIONS.SHOW_NAVIGATOR) {
             const moveToPrevEvent = new Event('moveToPrev');
             const moveToNextEvent = new Event('moveToNext');
 
             this.listener.addEventListener('prev', function(e) {
-                this.container.dispatchEvent(moveToPrevEvent);
-            }.bind(this));
+                subscriber.container.dispatchEvent(moveToPrevEvent);
+            });
 
             this.listener.addEventListener('next', function(e) {
-                this.container.dispatchEvent(moveToNextEvent);
-            }.bind(this));
+                subscriber.container.dispatchEvent(moveToNextEvent);
+            });
         }
     }
 }

@@ -3,6 +3,7 @@ import dom from './util/dom';
 
 import Navigator from './navigator';
 import Controller from './controller';
+import Indicator from './indicator';
 
 class Container {
     constructor(options, elContainer) {
@@ -13,11 +14,15 @@ class Container {
     }
 
     init() {
+        const subscriber = {
+            container: this.elContainer
+        };
+
         dom.addClass(this.elContainer, DEFAULT_OPTIONS.CONTAINER_CLASS);
         this._serialize();
 
         // init controller
-        const controller = new Controller(this.elContainer);
+        const controller = new Controller();
         const listener = controller.getListener();
 
         if (this.options.SHOW_NAVIGATOR) {
@@ -27,6 +32,13 @@ class Container {
 
             this._bindNavEvents();
         }
+
+        if (this.options.SHOW_INDICATOR) {
+            const indicator = new Indicator(listener);
+            subscriber.indicator = indicator;
+        }
+
+        controller.connectTo(subscriber);
     }
 
     _serialize() {

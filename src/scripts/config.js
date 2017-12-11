@@ -1,6 +1,7 @@
 export const DEFAULT_OPTIONS = {
     CONTAINER_CLASS: 'sp__container',
-    SHOW_NAVIGATOR: true
+    SHOW_NAVIGATOR: true,
+    SHOW_INDICATOR: true
 };
 
 export const NAVIGATOR_CONFIG = {
