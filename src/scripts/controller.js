@@ -8,9 +8,6 @@ class Controller {
 
     bindEvents() {
         if (CONFIG.DEFAULT_OPTIONS.SHOW_NAVIGATOR) {
-            const prevButtons = dom.getElements(CONFIG.NAVIGATOR_CONFIG.PREV_BUTTON);
-            const nextButtons = dom.getElements(CONFIG.NAVIGATOR_CONFIG.NEXT_BUTTON);
-
             this.container.addEventListener('prev', function(e) {
                 console.log('prev event fired');
             });
