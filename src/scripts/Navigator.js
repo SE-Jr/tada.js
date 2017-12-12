@@ -26,7 +26,14 @@ class Navigator extends Actor {
     }
 
     moveTo(page) {
-        this.wrapper.style.marginLeft = `${-1 * page * this.containerWidth}`;
+
+        if (page >= this.slideCnt) {
+            this.currentSlideId = 0;
+        }
+        if (page < 0) {
+            this.currentSlideId = this.slideCnt - 1;
+        }
+        this.wrapper.style.marginLeft = `${-1 * this.currentSlideId * this.containerWidth}`;
     }
 }
 

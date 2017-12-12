@@ -38,7 +38,7 @@ $fifth-color: rgb(123,168,83);
 //  }
 //}
 
-.container {
+div[class^='container-'] {
   position: relative;
   overflow: hidden;
 

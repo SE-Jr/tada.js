@@ -12,7 +12,7 @@ export default class SlideProjector {
 	_setConfig = (option) => {
 		const selector  = option.selector;
 		const wrapper = Dom.query(selector);
-		const containerWidth = wrapper.parentElement.clientWidth;
+		const containerWidth = wrapper.offsetWidth;
 		const slide = wrapper.children;
 		const slideCnt = slide.length;
 
@@ -37,7 +37,7 @@ export default class SlideProjector {
 
 		parent.replaceChild(container, wrapper);
 		container.appendChild(wrapper);
-		Dom.addClass(container, 'container');
+		Dom.addClass(container, `container-${config.selector}`);
 		Dom.addClass(wrapper, 'slide-wrapper');
 
 		container.style.width = config.containerWidth;
@@ -50,7 +50,19 @@ export default class SlideProjector {
 			el.style.width = slideWidth
 
 		})
-	};
+
+		//TODO REFACTORING
+
+        const next = document.createElement('button');
+		const prev = document.createElement('button');
+
+        Dom.addClass(next, 'slide-projector-next');
+        Dom.addClass(prev, 'slide-projector-prev');
+
+        container.appendChild(next);
+        container.appendChild(prev);
+
+    };
 
 	_initController = () => {
 		this.controller = new Controller(this.config);

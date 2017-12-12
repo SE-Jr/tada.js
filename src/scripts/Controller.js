@@ -16,8 +16,8 @@ export default class Controller {
 
     init() {
         let that = this;
-		const prev = Dom.query(this.config.navigator.prev);
-		const next = Dom.query(this.config.navigator.next);
+		const prev = Dom.query(`${this.config.navigator.prev}`);
+		const next = Dom.query(`${this.config.navigator.next}`);
 
 		next.addEventListener("click", function () {
 			that.navigator.next();

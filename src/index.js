@@ -14,11 +14,9 @@ import SlideProjector from './scripts/Carousel';
  //    console.log("next$$$$");
  // });
   // using id selector
-  // new SlideProjector({
-  //   selector: '#slide-projector-id',
-  //   width: 600,
-  //   height: 400,
-  // });
+  new SlideProjector({
+    selector: '#slide-projector-id'
+  });
 
   // error - option required
   // new SlideProjector();

@@ -72,7 +72,7 @@ class Dom {
         this.validate( !this.isString(className), INVALID_STRING_TYPE );
 
         if(!this.hasClass(target, className)) {
-            target.className = target.className + ' ' + className;
+            target.classList.add(className);
         }
     }
 }
