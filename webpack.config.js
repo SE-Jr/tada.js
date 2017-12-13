@@ -34,7 +34,7 @@ module.exports = {
     ]
   },
   plugins: [
-      new UglifyJSPlugin(),
-      new ExtractTextPlugin("carousel.bundle.css")
+    new UglifyJSPlugin(),
+    new ExtractTextPlugin("carousel.bundle.css")
   ]
 };
