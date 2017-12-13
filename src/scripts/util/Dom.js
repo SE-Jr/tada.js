@@ -2,79 +2,79 @@ import { INVALID_STRING_TYPE } from './error'
 
 let instance = null;
 class Dom {
-    constructor() {
-        if(!instance) {
-            instance = this;
-        }
-
-        return instance;
+  constructor() {
+    if(!instance) {
+      instance = this;
     }
 
-    createElement = (selector) => {
-        this.validate( !this.isString(selector), INVALID_STRING_TYPE );
-        return document.createElement(selector);
-    };
+    return instance;
+  }
 
-    isDataType = (data) => {
-        return Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
-    };
+  createElement = (selector) => {
+    this.validate( !this.isString(selector), INVALID_STRING_TYPE );
+    return document.createElement(selector);
+  };
 
-    isString = (data) => {
-        return this.isDataType(data) === 'string';
-    };
+  isDataType = (data) => {
+    return Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
+  };
 
-    isFunction = (data) => {
-        return this.isDataType(data) === 'function';
-    };
+  isString = (data) => {
+    return this.isDataType(data) === 'string';
+  };
 
-    isElement = (node) => {
-        if (!node) { return false; }
-        return node.nodeType === 1;
-    };
+  isFunction = (data) => {
+    return this.isDataType(data) === 'function';
+  };
 
-    isDocument = (node) => {
-        return node.nodeType === 9;
-    };
+  isElement = (node) => {
+    if (!node) { return false; }
+    return node.nodeType === 1;
+  };
 
-    validate = (condition, error_message) => {
-        if (condition) { throw new Error(error_message); }
-    };
+  isDocument = (node) => {
+    return node.nodeType === 9;
+  };
 
-    isValidate = (condition, success, fail) => {
-        if ( condition && success && this.isFunction(success) ) { success(); }
-        if ( !condition && fail && this.isFunction(fail) ) { fail(); }
-        return condition ? true : false;
-    };
+  validate = (condition, error_message) => {
+    if (condition) { throw new Error(error_message); }
+  };
 
-    queryAll = (selector, context ) => {
-        this.validate( !this.isString(selector), INVALID_STRING_TYPE );
+  isValidate = (condition, success, fail) => {
+    if ( condition && success && this.isFunction(success) ) { success(); }
+    if ( !condition && fail && this.isFunction(fail) ) { fail(); }
+    return condition ? true : false;
+  };
 
-        context = (this.isString(context) ? this.query(context) : context) || document;
-        this.validate( !this.isElement(context) && !this.isDocument(context), 'Second Element must be element node' );
-        return context.querySelectorAll(selector);
-    };
+  queryAll = (selector, context ) => {
+    this.validate( !this.isString(selector), INVALID_STRING_TYPE );
 
-    query(selector, context) {
-        return this.queryAll(selector, context)[0];
-    };
+    context = (this.isString(context) ? this.query(context) : context) || document;
+    this.validate( !this.isElement(context) && !this.isDocument(context), 'Second Element must be element node' );
+    return context.querySelectorAll(selector);
+  };
 
-    hasClass = (target, className) => {
-        this.validate( !this.isString(className), INVALID_STRING_TYPE );
-        const classes = target.className.split(' ');
-        if (classes.indexOf(className) === -1) {
-            return false;
-        } else {
-            return true;
-        }
-    };
+  query(selector, context) {
+    return this.queryAll(selector, context)[0];
+  };
 
-    addClass = (target, className) => {
-        this.validate( !this.isString(className), INVALID_STRING_TYPE );
-
-        if(!this.hasClass(target, className)) {
-            target.classList.add(className);
-        }
+  hasClass = (target, className) => {
+    this.validate( !this.isString(className), INVALID_STRING_TYPE );
+    const classes = target.className.split(' ');
+    if (classes.indexOf(className) === -1) {
+      return false;
+    } else {
+      return true;
     }
+  };
+
+  addClass = (target, className) => {
+    this.validate( !this.isString(className), INVALID_STRING_TYPE );
+
+    if(!this.hasClass(target, className)) {
+      target.classList.add(className);
+    }
+  }
 }
 
 export default new Dom();
