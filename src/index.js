@@ -7,13 +7,15 @@ import SlideProjector from './scripts/projector';
 (function () {
   // using class selector
   new SlideProjector({
-    selector: '.slide-projector-class',
+    projectorSelector: '.slide-projector-class',
+    slideSelector: '.item',
     indicator: true
   });
 
   // using id selector
   new SlideProjector({
-    selector: '#slide-projector-id',
+    projectorSelector: '#slide-projector-id',
+    slideSelector: '.item',
     navigator: true
   });
 }());

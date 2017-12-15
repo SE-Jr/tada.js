@@ -4,6 +4,8 @@ export const SLIDER_CLASS = '__sp__slider__container';
 export const SLIDE_CLASS = '__sp__slider__slide';
 
 export const DEFAULT_OPTIONS = {
+  projectorSelector: PROJECTOR_CLASS,
+  slideSelector: SLIDE_CLASS,
   indicator: true,
   navigator: true
 };

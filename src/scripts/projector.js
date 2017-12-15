@@ -10,42 +10,63 @@ export default class SlideProjector extends Component {
     super(option);
     this.init(option);
     this.resize();
-  }
-
-  init(option) {
-    super.init(option);
-    this._initContainer();
-    this._initVariables();
-    this._initChildren(option);
-  }
-
-  _initContainer() {
-    this.container = document.querySelector(this.option.selector);
-    this.container.classList.add(PROJECTOR_CLASS);
+    this.moveTo(0);
   }
 
   _initVariables() {
-    this.slideCount = this.container.children.length;
+    super._initVariables(this);
+    this.slideCount = 0;
     this.currentSlide = 0;
+    this.width = 0;
+    this.height = 0;
+    // 드러낼 변수는 아니라서 initVariables에서 안해도..?
+    this.slider = undefined;
+  }
+
+  _refineOption(option) {
+    super._refineOption(option);
+    if (typeof option.projectorSelector !== 'string') {
+      throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
+    }
+  }
+
+  _initContainer() {
+    const container = document.querySelector(this.option.projectorSelector);
+    this.container = container;
+    container.classList.add(PROJECTOR_CLASS);
+    
+    this.slideCount = container.children.length;
+    this.width = container.offsetWidth;
+    this.height = container.offsetHeight;
   }
 
   _initChildren(option) {
-    this.components = [];
-
-    this.slider = new Slider(option, this.container);
-    this.components.push(this.slider);
+    const slider = new Slider(option, this);
+    // this.slider = slider;
+    // this.container.appendChild(slider.container);
+    this.children.push(slider);
 
     if (this.option.navigator) {
-      this.components.push(new Navigator(option));
+      this.children.push(new Navigator(option, this));
     }
     if (this.option.indicator) {
-      this.components.push(new Indicator(option));
+      this.children.push(new Indicator(option, this));
     }
   }
 
   resize() {
-    this.components.forEach((component) => {
-      component.resize();
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetHeight;
+
+    this.children.forEach((child) => {
+      child.resize();
+    });
+  }
+
+  moveTo(destSlide) {
+    this.currentSlide = destSlide;
+    this.children.forEach((child) => {
+      child.moveTo(destSlide);
     });
   }
 }
