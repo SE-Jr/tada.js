@@ -1,7 +1,8 @@
 import './styles/style.scss'
-import Dom from './scripts/util/dom'
 import Controller from './scripts/Controller'
-import { CAROUSEL_CONFIG } from './scripts/Config'
+import Container from './scripts/Container'
+import { CAROUSEL_CONFIG } from './scripts/const/Config'
+import Dom from './scripts/util/Dom'
 
 const SP = class SlideProjector {
   constructor(option) {
@@ -12,7 +13,7 @@ const SP = class SlideProjector {
   _setConfig = (option) => {
     const selector  = option.selector;
     const wrapper = Dom.query(selector);
-    const containerWidth = wrapper.offsetWidth;
+    const containerWidth = wrapper.clientWidth;
     const slide = wrapper.children;
     const slideCnt = slide.length;
 
@@ -29,39 +30,8 @@ const SP = class SlideProjector {
   };
 
   _initContainer = () => {
-    let config = this.config;
-    const container = Dom.createElement('div');
-    const wrapper = Dom.query(config.selector);
-    const parent = wrapper.parentNode;
-    const slide = wrapper.children;
-
-    parent.replaceChild(container, wrapper);
-    container.appendChild(wrapper);
-    Dom.addClass(container, `container-${config.selector}`);
-    Dom.addClass(wrapper, 'slide-wrapper');
-
-    container.style.width = config.containerWidth;
-    wrapper.style.width = config.containerWidth * config.slideCnt;
-
-    const slideWidth = `${100 / config.slideCnt}%`;
-
-    [...slide].forEach((el) => {
-      Dom.addClass(el, 'slide')
-      el.style.width = slideWidth
-
-    })
-
-    //TODO REFACTORING
-
-    const next = document.createElement('button');
-    const prev = document.createElement('button');
-
-    Dom.addClass(next, 'slide-projector-next');
-    Dom.addClass(prev, 'slide-projector-prev');
-
-    container.appendChild(next);
-    container.appendChild(prev);
-
+    this.container = new Container(this.config);
+    this.container.init();
   };
 
   _initController = () => {

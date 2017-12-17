@@ -1,4 +1,4 @@
-import { INVALID_STRING_TYPE } from './error'
+import { INVALID_STRING_TYPE } from '../const/Error'
 
 let instance = null;
 class Dom {
@@ -60,12 +60,11 @@ class Dom {
 
   hasClass = (target, className) => {
     this.validate( !this.isString(className), INVALID_STRING_TYPE );
-    const classes = target.className.split(' ');
-    if (classes.indexOf(className) === -1) {
-      return false;
-    } else {
+    const classes = target.classList;
+    if (classes.contains(className)) {
       return true;
     }
+    return false;
   };
 
   addClass = (target, className) => {
@@ -75,6 +74,13 @@ class Dom {
       target.classList.add(className);
     }
   }
-}
+
+  removeClass = (target, className) => {
+    this.validate( !this.isString(className), INVALID_STRING_TYPE );
+
+    if(this.hasClass(target, className)) {
+      target.classList.remove(className);
+    }
+  }}
 
 export default new Dom();
