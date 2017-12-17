@@ -33,15 +33,21 @@ export default class Component {
 
   resize() {}
 
-  prev() {
-    this.moveTo(this.controller.currentSlide - 1);
+  _prev() {
+    this._moveTo(this.controller.currentSlide - 1);
   }
 
-  next() {
-    this.moveTo(this.controller.currentSlide + 1);
+  _next() {
+    this._moveTo(this.controller.currentSlide + 1);
   }
 
-  moveTo(destSlide) {
-    this.controller.currentSlide = destSlide;
+  _moveTo(destSlide) {
+    this.controller.moveTo(destSlide);
   }
+
+  prev() {}
+
+  next() {}
+
+  moveTo(destSlide) {}
 }

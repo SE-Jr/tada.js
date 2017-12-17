@@ -10,6 +10,7 @@ export default class Navigator extends Component {
 
   init(option, controller) {
     super.init(option, controller);
+    this._attachEvent();
   }
 
   _initVariables(controller) {
@@ -31,5 +32,10 @@ export default class Navigator extends Component {
 
     this.controller.projector.appendChild(this.prevContainer);
     this.controller.projector.appendChild(this.nextContainer);
+  }
+
+  _attachEvent() {
+    this.prevContainer.addEventListener('click', this._prev.bind(this));
+    this.nextContainer.addEventListener('click', this._next.bind(this));
   }
 }

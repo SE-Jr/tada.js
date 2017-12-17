@@ -51,6 +51,6 @@ export default class Slider extends Component {
   }
 
   moveTo(destSlide) {
-    this.container.style.transform = `translateX(${-this.slideWidth * destSlide}px)`;
+    this.container.style.transform = `translateX(${-this.controller.width * destSlide}px)`;
   }
 }
