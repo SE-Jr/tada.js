@@ -11,6 +11,7 @@ export default class Component {
     this._refineOption(option);
     this._initContainer();
     this._initChildren(option);
+    this._attachEvent();
   }
 
   _initVariables(controller) {
@@ -30,6 +31,8 @@ export default class Component {
   _initContainer() {}
 
   _initChildren(option) {}
+
+  _attachEvent() {}
 
   resize() {}
 

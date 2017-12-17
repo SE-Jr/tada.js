@@ -1,12 +1,10 @@
 @import "reset";
-$default-color: rgb(223,229,229);
-$first-color: rgb(122,201,188);
-$second-color: rgb(236,220,191);
-$third-color: rgb(245,118,86);
-$fourth-color: rgb(241,175,16);
-$fifth-color: rgb(123,168,83);
 
 .__sp__projector__container {
+  $navigator-focused-color: rgba(255,255,255,1);
+  $navigator-color: rgba(255,255,255,0.4);
+  $navigator-disabled-color: rgba(238,238,238,0.4);
+
   position: relative;
   overflow: hidden;
 
@@ -15,13 +13,18 @@ $fifth-color: rgb(123,168,83);
       float: left;
     }
   }
+
   .__sp__navigator {
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: solid #eee;
+    border: solid $navigator-color;
     text-indent: -999px;
     position: absolute;
+
+    &:hover {
+      border-color: $navigator-focused-color;
+    }
 
     &.__sp__navigator__prev {
       border-width: 5px 0 0 5px;
@@ -36,12 +39,66 @@ $fifth-color: rgb(123,168,83);
       right: 20px;
     }
   }
+  .__sp__navigator--disabled {
+    &, &:hover {
+      border-color: $navigator-disabled-color;
+    }
+  }
+
+  .__sp__indicator__container {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+
+    $button-dimension: 12px;
+
+    .__sp__indicator__item {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: $button-dimension / 2;
+      }
+
+      & > button {
+        display: inline-block;
+        overflow: hidden;
+        padding: 0;
+        text-indent: -999px;
+        border: 0;
+        border-radius: 0;
+        background: $navigator-color;
+        outline: 0;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $navigator-focused-color;
+        }
+      }
+    }
+    .__sp__indicator__item--circle {
+      & > button {
+        width: $button-dimension;
+        height: $button-dimension;
+        border-radius: $button-dimension;
+      }
+    }
+  }
 }
 
+
+$default-color: rgb(223,229,229);
+$first-color: rgb(122,201,188);
+$second-color: rgb(236,220,191);
+$third-color: rgb(245,118,86);
+$fourth-color: rgb(241,175,16);
+$fifth-color: rgb(123,168,83);
+
 .sp {
-  width: 400px;
+  width: 80%;
   height: 300px;
-  margin: 5px;
+  margin: 10px auto;
 
   div {
     background-color: $default-color;
