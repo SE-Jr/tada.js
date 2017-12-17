@@ -7,19 +7,11 @@ import SlideProjector from './scripts/carousel';
 (function () {
   // using class selector
   new SlideProjector({
-    selector: '.slide-projector-class',
+    selector: '.slide-projector-class'
   });
 
   // using id selector
   new SlideProjector({
-    selector: '#slide-projector-id',
-    width: 600,
-    height: 400,
+    selector: '#slide-projector-id'
   });
-
-  // error - option required
-  // new SlideProjector();
-
-  // error - selector required
-  // new SlideProjector({});
 }());

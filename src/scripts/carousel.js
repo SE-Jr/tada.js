@@ -1,9 +1,12 @@
 import '../styles/style.scss';
 import { PROJECTOR_CLASS, CONTAINER_CLASS, DEFAULT_OPTIONS, ERROR_MESSAGE } from './config';
+import Component from './component';
+import Navigator from './navigator';
+import Indicator from './indicator';
 
-export default class SlideProjector {
+export default class SlideProjector extends Component {
   constructor(option) {
-    this.init(option);
+    super(option);
     this.initProjector();
     this.setProjectorSize();
     this.wrapInContainer();
@@ -11,13 +14,20 @@ export default class SlideProjector {
   }
 
   init(option) {
-    if (!option || typeof option !== 'object') {
-      throw new Error(ERROR_MESSAGE.OPTION_REQUIRED);
+    super.init(option);
+    this._addComponents(option);
+  }
+
+  _addComponents(option) {
+    this.components = [];
+    const {indicator, navigator} = this.option;
+
+    if (navigator) {
+      this.components.push(new Navigator(option));
     }
-    if (!option.selector || typeof option.selector !== 'string') {
-      throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
+    if (indicator) {
+      this.components.push(new Indicator(option));
     }
-    this.option = Object.assign(DEFAULT_OPTIONS, option);
   }
 
   initProjector() {
