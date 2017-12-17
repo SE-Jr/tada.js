@@ -16,12 +16,33 @@ $fifth-color: rgb(123,168,83);
       float: left;
     }
   }
+  .__sp__navigator {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: solid darkgray;
+    text-indent: -999px;
+    position: absolute;
+  }
+  .__sp__navigator__prev {
+    border-width: 5px 0 0 5px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    left: 20px;
+  }
+  .__sp__navigator__next {
+    border-width: 5px 5px 0 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    right: 20px;
+  }
 }
 
 .sp {
   & {
     width: 400px;
     height: 300px;
+    margin: 5px;
   }
   div {
     background-color: $default-color;

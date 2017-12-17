@@ -13,18 +13,18 @@ export default class Component {
     this._initChildren(option);
   }
 
-  _refineOption(option) {
-    if (!option || typeof option !== 'object') {
-      throw new Error(ERROR_MESSAGE.OPTION_REQUIRED);
-    }
-    this.option = Object.assign(DEFAULT_OPTIONS, option);
-  }
-
   _initVariables(controller) {
     this.controller = controller;
     this.container = undefined;
     this.children = [];
     this.option = {};
+  }
+
+  _refineOption(option) {
+    if (!option || typeof option !== 'object') {
+      throw new Error(ERROR_MESSAGE.OPTION_REQUIRED);
+    }
+    this.option = Object.assign(DEFAULT_OPTIONS, option);
   }
 
   _initContainer() {}

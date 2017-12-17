@@ -1,7 +1,15 @@
 export const VERSION = 1.0;
+
+// config도 comp별로 나누면 좋겠다
 export const PROJECTOR_CLASS = '__sp__projector__container';
 export const SLIDER_CLASS = '__sp__slider__container';
 export const SLIDE_CLASS = '__sp__slider__slide';
+export const NAVIGATOR_CLASS = '__sp__navigator';
+export const NAVIGATOR_PREV_CLASS = '__sp__navigator__prev';
+export const NAVIGATOR_NEXT_CLASS = '__sp__navigator__next';
+
+export const NAVIGATOR_PREV_PHRASE = '이전 슬라이드';
+export const NAVIGATOR_NEXT_PHRASE = '다음 슬라이드';
 
 export const DEFAULT_OPTIONS = {
   projectorSelector: PROJECTOR_CLASS,

@@ -33,6 +33,7 @@ export default class SlideProjector extends Component {
   _initContainer() {
     const container = document.querySelector(this.option.projectorSelector);
     this.container = container;
+    this.controller.projector = container;
     container.classList.add(PROJECTOR_CLASS);
     
     this.slideCount = container.children.length;
