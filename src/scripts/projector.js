@@ -65,6 +65,11 @@ export default class SlideProjector extends Component {
   }
 
   moveTo(destSlide) {
+    if (destSlide >= this.slideCount ||
+      destSlide < 0) {
+      return;
+    }
+
     this.currentSlide = destSlide;
     this.children.forEach((child) => {
       child.moveTo(destSlide);
