@@ -25,5 +25,26 @@
   </ul>
 
   <script src="./dist/carousel.min.js"></script>
+  <script>
+    /*
+    * initialize carousel library
+    * projector - container - slide
+    */
+    (function () {
+      // using class selector
+      const slideProject = new SP({
+        selector: '.slide-projector-class',
+      });
+
+      slideProject.on("next", function(){
+          console.log("next$$$$");
+      });
+      // using id selector
+      new SP({
+        selector: '#slide-projector-id'
+      });
+
+    }());
+  </script>
 </body>
 </html>
