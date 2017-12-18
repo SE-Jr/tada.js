@@ -5,20 +5,20 @@ export default class Actor {
     this.observer = observer;
     this.currentSlideId = config.currentPage;
   }
-  //TODO REFACTOR
-  moveTo(page) {
-    if (page >= this.slideCnt) {
-      this.currentSlideId = 0;
-    }
-    if (page < 0) {
-      this.currentSlideId = this.slideCnt - 1;
-    }
-  }
+
   next() {
     this.currentSlideId = this.currentSlideId + 1;
+    if (this.currentSlideId >= this.slideCnt) {
+      this.currentSlideId = 0;
+    }
   }
 
   prev() {
     this.currentSlideId = this.currentSlideId - 1;
+    if (this.currentSlideId < 0) {
+      this.currentSlideId = this.slideCnt - 1;
+    }
   }
+
+  moveTo() {}
 }

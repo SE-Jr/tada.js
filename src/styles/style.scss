@@ -3,15 +3,18 @@
 div[class^='slide-wrap'] {
   position: relative;
   overflow: hidden;
+  margin: auto 0;
 
   .slide {
     white-space: nowrap;
     font-size: 0;
-    transition: transform .3s ease-out 0s;
+    transition: all .3s ease-out;
+
   }
 
   .slide-item {
     display: inline-block;
+
   }
 
   .slide-navigator {

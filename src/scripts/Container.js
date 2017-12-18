@@ -38,6 +38,8 @@ export default class Container {
     })
   }
 
+  //TODO REFACTOR
+
   _generateNavigator() {
     const next = Dom.createElement('a');
     const prev = Dom.createElement('a');
@@ -57,7 +59,7 @@ export default class Container {
     const ul = Dom.createElement('ul');
 
     Dom.addClass(ul, 'slide-indicator')
-    Dom.addClass(ul, 'indicator-circle')
+    Dom.addClass(ul, `indicator-${this.config.indicatorShape}`)
 
     //TODO REFACTOR
 

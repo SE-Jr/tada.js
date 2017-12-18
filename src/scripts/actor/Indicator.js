@@ -4,35 +4,31 @@ import Dom from '../util/Dom'
 class Indicator extends Actor {
   constructor(config, observer){
     super(config, observer);
+    this.init();
+    this.bindEvent();
+  }
+
+  init() {
     const button = Dom.query(`button[data-slide-index="0"]`)
     Dom.addClass(button, 'active')
-    this.bindEvent();
   }
 
   bindEvent() {
     this.observer.addListener('next', () => {
-      this.next();
+      super.next();
+      this.moveTo();
+
     })
 
     this.observer.addListener('prev', () => {
-      this.prev();
+      super.prev();
+      this.moveTo();
     })
   }
 
-  //TODO REFACTOR
-  prev() {
-    super.prev();
-    this.moveTo(this.currentSlideId);
-  }
-
-  next() {
-    super.next();
-    this.moveTo(this.currentSlideId);
-  }
-
-  moveTo(page) {
+  moveTo() {
     Dom.removeClass(Dom.query('.slide-indicator-button.active'), 'active');
-    const button = Dom.query(`button[data-slide-index="${page}"]`)
+    const button = Dom.query(`button[data-slide-index="${this.currentSlideId}"]`)
     Dom.addClass(button, 'active')
 
   }
