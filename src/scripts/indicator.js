@@ -40,6 +40,8 @@ export default class Indicator extends Component {
   }
 
   _handleClick(e) {
+    e.preventDefault();
+
     const itemClassSelector = `.${INDICATOR_ITEM_CLASS}`;
     const item = e.target.closest(itemClassSelector);
     if (!item) {
