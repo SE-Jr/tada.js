@@ -36,18 +36,18 @@ export default class Indicator extends Component {
   }
 
   _attachEvent() {
-    this.container.addEventListener('click', this._moveTo.bind(this));
+    this.container.addEventListener('click', this._handleClick.bind(this));
   }
 
-  _moveTo(e) {
+  _handleClick(e) {
     const itemClassSelector = `.${INDICATOR_ITEM_CLASS}`;
     const item = e.target.closest(itemClassSelector);
     if (!item) {
       return;
     }
 
-    const destSlide = this._getIndexOf(item);
-    this.controller.moveTo(destSlide);
+    const itemIndex = this._getIndexOf(item);
+    this._moveTo(itemIndex);
   }
 
   _getIndexOf(item) {
