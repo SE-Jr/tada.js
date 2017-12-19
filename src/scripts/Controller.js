@@ -1,14 +1,12 @@
-import Navigator from './actor/Navigator'
-import Indicator from './actor/Indicator'
+import Navigator from './component/Navigator'
+import Indicator from './component/Indicator'
 import Dom from './util/dom'
-import EventEmitter from './EventEmitter';
 
 export default class Controller {
   constructor(config) {
     this.config = config;
-    this.observable = new EventEmitter();
-    this.navigator = new Navigator(this.config, this.observable);
-    this.indicator = new Indicator(this.config, this.observable);
+    this.navigator = new Navigator(this.config);
+    this.indicator = new Indicator(this.config);
   }
 
   on(label, callback) {
@@ -21,11 +19,14 @@ export default class Controller {
     const next = Dom.query('.navigator-right');
 
     next.addEventListener("click", () => {
-      this.observable.emit('next');
+      this.navigator.next();
+      this.indicator.next();
+
     });
 
     prev.addEventListener("click", () => {
-      this.observable.emit('prev');
+      this.navigator.prev();
+      this.indicator.prev();
     });
   }
 }
