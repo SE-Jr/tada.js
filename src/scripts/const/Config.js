@@ -3,7 +3,7 @@ export const CAROUSEL_CONFIG = {
   container : '.slide-wrap',
   currentPage: 0,
   infinite: true,
-  navigator: false,
-  indicator: false,
+  showNavigator: true,
+  showIndicator: true,
   indicatorShape: 'circle',
 };

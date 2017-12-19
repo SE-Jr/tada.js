@@ -1,13 +1,15 @@
 import './styles/style.scss'
 import Controller from './scripts/Controller'
-import Container from './scripts/Container'
+import Container from './scripts/component/Container'
 import { CAROUSEL_CONFIG } from './scripts/const/Config'
 import Dom from './scripts/util/Dom'
+import Navigator from './scripts/component/Navigator'
+import Indicator from './scripts/component/Indicator'
 
-const SP = class SlideProjector {
+class SlideProjector {
   constructor(option) {
     this._setConfig(option);
-    this._init();
+    this._render();
   }
 
   _setConfig = (option) => {
@@ -24,24 +26,38 @@ const SP = class SlideProjector {
     });
   };
 
-  _init = () => {
-    this._initContainer();
-    this._initController();
+  _render = () => {
+    this._renderContainer();
+    this._renderNavigator();
+    this._renderIndicator();
+    this._loadController();
   };
 
-  _initContainer = () => {
+
+  _renderContainer = () => {
     this.container = new Container(this.config);
-    this.container.init();
+    this.container.render();
   };
 
-  _initController = () => {
+  _renderNavigator = () => {
+    this.navigator = new Navigator(this.config);
+    this.navigator.render();
+  };
+
+  _renderIndicator = () => {
+    this.indicator = new Indicator(this.config);
+    this.indicator.render();
+  };
+
+  _loadController = () => {
     this.controller = new Controller(this.config);
-    this.controller.init();
+    this.controller.load();
   };
 
   on = (label, callback) => {
-    this.controller.on(label, callback);
+    this.navigator.observable.addListener(label, callback);
+    this.indicator.observable.addListener(label, callback);
   };
 }
 
-window.SP = SP;
+window.SP = SlideProjector;
