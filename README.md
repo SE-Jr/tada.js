@@ -1,3 +1,3 @@
-# Carousel.js
+# :carousel_horse:  Carousel Library
 
 In progress
