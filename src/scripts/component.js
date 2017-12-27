@@ -3,7 +3,6 @@ import { DEFAULT_OPTIONS, ERROR_MESSAGE } from './config';
 
 export default class Component {
   constructor(option) {
-    this.init(option);
   }
 
   init(option) {
@@ -19,4 +18,6 @@ export default class Component {
     }
     this.option = Object.assign(DEFAULT_OPTIONS, option);
   }
+
+  resize() {}
 }
