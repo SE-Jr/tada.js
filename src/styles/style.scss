@@ -1,39 +1,46 @@
 @import "reset";
-$default-color: rgb(122,201,188);
-$first-color: rgb(223,229,229);
+$default-color: rgb(223,229,229);
+$first-color: rgb(122,201,188);
 $second-color: rgb(236,220,191);
 $third-color: rgb(245,118,86);
 $fourth-color: rgb(241,175,16);
 $fifth-color: rgb(123,168,83);
 
-.slide-projector {
+.__sp__projector__container {
   & {
     position: relative;
     overflow: hidden;
   }
-  .slider-projector-container {
-    div {
-        & {
-          height: 100%;
-          float: left;
-          background-color: $default-color;
-        }
+  .__sp__slider__container {
+    .__sp__slider__slide {
+      float: left;
+    }
+  }
+}
 
-        &:nth-child(1) {
-          background-color: $first-color;
-        }
-        &:nth-child(2) {
-          background-color: $second-color;
-        }
-        &:nth-child(3) {
-          background-color: $third-color;
-        }
-        &:nth-child(4) {
-          background-color: $fourth-color;
-        }
-        &:nth-child(5) {
-          background-color: $fifth-color;
-        }
+.sp {
+  & {
+    width: 400px;
+    height: 300px;
+  }
+  div {
+    background-color: $default-color;
+  }
+  .item {
+    &:nth-child(1) {
+      background-color: $first-color;
+    }
+    &:nth-child(2) {
+      background-color: $second-color;
+    }
+    &:nth-child(3) {
+      background-color: $third-color;
+    }
+    &:nth-child(4) {
+      background-color: $fourth-color;
+    }
+    &:nth-child(5) {
+      background-color: $fifth-color;
     }
   }
 }

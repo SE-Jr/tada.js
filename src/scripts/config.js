@@ -1,10 +1,9 @@
 export const VERSION = 1.0;
-export const PROJECTOR_CLASS = 'slide-projector';
-export const CONTAINER_CLASS = 'slider-projector-container';
+export const PROJECTOR_CLASS = '__sp__projector__container';
+export const SLIDER_CLASS = '__sp__slider__container';
+export const SLIDE_CLASS = '__sp__slider__slide';
 
 export const DEFAULT_OPTIONS = {
-  width: 400,
-  height: 300,
   indicator: true,
   navigator: true
 };
