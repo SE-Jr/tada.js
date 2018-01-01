@@ -1,39 +1,39 @@
-@import "reset";
-$default-color: rgb(122,201,188);
-$first-color: rgb(223,229,229);
-$second-color: rgb(236,220,191);
-$third-color: rgb(245,118,86);
-$fourth-color: rgb(241,175,16);
-$fifth-color: rgb(123,168,83);
+* {
+    margin: 0;
+    padding: 0;
+}
 
-.slide-projector {
-  & {
+li {
+    list-style: none;
+}
+
+.sp__container {
     position: relative;
-    overflow: hidden;
-  }
-  .slider-projector-container {
-    div {
-        & {
-          height: 100%;
-          float: left;
-          background-color: $default-color;
-        }
 
-        &:nth-child(1) {
-          background-color: $first-color;
-        }
-        &:nth-child(2) {
-          background-color: $second-color;
-        }
-        &:nth-child(3) {
-          background-color: $third-color;
-        }
-        &:nth-child(4) {
-          background-color: $fourth-color;
-        }
-        &:nth-child(5) {
-          background-color: $fifth-color;
+    .sp__button--prev {
+        position: absolute;
+        left: 0px;
+        top: 100px;
+        font-size: 20px;
+    }
+
+    .sp__button--next {
+        position: absolute;
+        left: 300px;
+        top: 100px;
+        font-size: 20px;
+    }
+
+    > ul > li {
+        // display: inline-block;
+        // width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        > img {
+            // width: 100%;
+            width: 300px;
         }
     }
-  }
 }

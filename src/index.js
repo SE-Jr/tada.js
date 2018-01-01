@@ -1,25 +1,7 @@
-import SlideProjector from './scripts/carousel';
+import SlideProjector from './scripts';
 
-/*
-* initialize carousel library
-* projector - container - slide
-*/
-(function () {
-  // using class selector
+(function() {
   new SlideProjector({
-    selector: '.slide-projector-class',
+    SELECTOR: 'user-named-class'
   });
-
-  // using id selector
-  new SlideProjector({
-    selector: '#slide-projector-id',
-    width: 600,
-    height: 400,
-  });
-
-  // error - option required
-  // new SlideProjector();
-
-  // error - selector required
-  // new SlideProjector({});
-}());
+})();
