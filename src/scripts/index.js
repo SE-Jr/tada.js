@@ -9,8 +9,8 @@ function initProjector(userOptions) {
     const containers = dom.getElements(options.selector);
 
     // 각 컨테이너들 초기화
-    [].forEach.call(containers, (container) => {
-        new Container(options);
+    containers.forEach(container => {
+        new Container(options, container);
     });
 }
 
