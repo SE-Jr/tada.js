@@ -5,6 +5,7 @@ const dom = {
     getChildrenByTagName: (element, tagName) => element.getElementsByTagName(tagName),
     getElements: selector => document.querySelectorAll(selector),
     setAttr: (element, name, value) => element.setAttribute(name, value),
+    setStyle: (element, property, value) => element.style[property] = value
 };
 
 export default dom
