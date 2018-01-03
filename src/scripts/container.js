@@ -27,7 +27,9 @@ class Container {
             eventAggregator.subscribe('moveToPrev', this._moveToPrev.bind(this));
         }
 
-        new Indicator(this._projector, this._length);
+        if (this._options.showIndicator) {
+            new Indicator(this._projector, this._length);
+        }
     }
 
     _moveToNext() {

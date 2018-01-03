@@ -16,6 +16,7 @@ export const DEFAULT_OPTIONS = {
   width: 400,
   height: 300,
   showNavigator: true,
+  showIndicator: true
 };
 
 export const ERROR_MESSAGE = {
