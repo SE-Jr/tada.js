@@ -1,4 +1,4 @@
-import { DEFAULT_OPTIONS } from './config';
+import { DEFAULT_OPTIONS, PROJECTOR_CLASS } from './config';
 import dom from './util/dom';
 
 import Container from './container';
@@ -6,11 +6,13 @@ import Container from './container';
 function initProjector(userOptions) {
     const options = Object.assign({}, DEFAULT_OPTIONS, userOptions);
 
-    const containers = dom.getElements(options.selector);
+    const projectors = dom.getElements(options.selector);
 
-    // 각 컨테이너들 초기화
-    containers.forEach(container => {
-        new Container(options, container);
+    // 각 프로젝터들 초기화
+    projectors.forEach(projector => {
+        dom.addClass(projector, PROJECTOR_CLASS);
+
+        new Container(options, projector);
     });
 }
 

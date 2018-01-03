@@ -2,8 +2,8 @@ import { NAVIGATOR_CLASS, NAV_LEFT_CLASS, NAV_RIGHT_CLASS } from './config';
 import dom from './util/dom';
 
 class Navigator {
-    constructor(container) {
-        this.container = container;
+    constructor(projector) {
+        this.projector = projector;
         this._init();
     }
 
@@ -11,8 +11,8 @@ class Navigator {
         this._left = this._generateLeft();
         this._right = this._generateRight();
 
-        this.container.appendChild(this._left);
-        this.container.appendChild(this._right);
+        this.projector.appendChild(this._left);
+        this.projector.appendChild(this._right);
     }
 
     _generateLeft() {
