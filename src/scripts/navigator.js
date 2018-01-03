@@ -1,6 +1,8 @@
 import { NAVIGATOR_CLASS, NAV_LEFT_CLASS, NAV_RIGHT_CLASS } from './config';
 import dom from './util/dom';
 
+import eventAggregator from './eventAggregator';
+
 class Navigator {
     constructor(projector) {
         this.projector = projector;
@@ -21,6 +23,10 @@ class Navigator {
         dom.addClass(left, NAVIGATOR_CLASS);
         dom.addClass(left, NAV_LEFT_CLASS);
 
+        dom.addEvent(left, 'click', function() {
+            eventAggregator.publish('moveToPrev')
+        });
+
         return left;
     }
 
@@ -29,6 +35,10 @@ class Navigator {
         dom.setAttr(right, 'href', '#');
         dom.addClass(right, NAVIGATOR_CLASS);
         dom.addClass(right, NAV_RIGHT_CLASS);
+
+        dom.addEvent(right, 'click', function() {
+            eventAggregator.publish('moveToNext')
+        });
 
         return right;
     }

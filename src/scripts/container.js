@@ -2,6 +2,7 @@ import { CONTAINER_CLASS } from './config';
 import dom from './util/dom';
 
 import Navigator from './navigator';
+import eventAggregator from './eventAggregator';
 
 class Container {
     constructor(options, projector) {
@@ -16,13 +17,18 @@ class Container {
         dom.addClass(this.container, CONTAINER_CLASS);
 
         new Navigator(this.projector);
+
+        eventAggregator.subscribe('moveToNext', this._moveToNext);
+        eventAggregator.subscribe('moveToPrev', this._moveToPrev);
     }
 
-    /**
-     * 1. navigator 삽입 (controller 정보를 모든 컴포넌트가 공유해야한다)
-     * 2. 해당 버튼 누르면 좌우로 움직이도록 구현
-     * 3. ...indicator..?
-     */
+    _moveToNext() {
+        console.log('move to next');
+    }
+
+    _moveToPrev() {
+        console.log('move to prev');
+    }
 }
 
 export default Container
