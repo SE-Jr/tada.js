@@ -48,3 +48,47 @@ $nav-top: 40px;
     border-width: 5px 5px 0 0;
     transform: rotate(45deg);
 }
+
+/* indicator */
+$button-dimension: 20px;
+
+.slide-indicator {
+    position: absolute;
+    bottom: 5px;
+    width: 400px;
+    margin: 50px auto 0;
+    text-align: center;
+    font-size: 0;
+}
+
+.slide-indicator-item {
+    display: inline-block;
+    
+    &:not(:first-child) {
+        margin-left: 5px;
+    }
+}
+    
+.slide-indicator-button {
+    display: inline-block;
+    overflow: hidden;
+    padding: 0;
+    text-indent: -999px;
+    border: 0;
+    border-radius: 0;
+    background: darkgrey;
+    outline: 0;
+    cursor: pointer;
+        
+    &:hover {
+        background-color: skyblue;
+    }
+}
+    
+.indicator-circle {
+    .slide-indicator-button {
+        width: $button-dimension;
+        height: $button-dimension;
+        border-radius: $button-dimension;
+    }
+}

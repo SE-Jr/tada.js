@@ -2,6 +2,7 @@ import { CONTAINER_CLASS } from './config';
 import dom from './util/dom';
 
 import Navigator from './navigator';
+import Indicator from './indicator';
 import eventAggregator from './eventAggregator';
 
 class Container {
@@ -25,6 +26,8 @@ class Container {
             eventAggregator.subscribe('moveToNext', this._moveToNext.bind(this));
             eventAggregator.subscribe('moveToPrev', this._moveToPrev.bind(this));
         }
+
+        new Indicator(this._projector, this._length);
     }
 
     _moveToNext() {
