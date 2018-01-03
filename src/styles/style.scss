@@ -1,3 +1,4 @@
+/* container */
 @import "reset";
 $slide-width: 400px;
 
@@ -19,4 +20,31 @@ $slide-width: 400px;
 
 .slide-image {
     width: 100%;
+}
+
+/* navigator */
+$nav-top: 40px;
+
+.slide-navigator {
+    position: absolute;
+    display: inline-block;
+    margin: 20px;
+    width: 30px;
+    height: 30px;
+    border: solid darkgray;
+    text-indent: -999px;
+}
+
+.navigator-left {
+    top: $nav-top;
+    left: 0;
+    border-width: 5px 0 0 5px;
+    transform: rotate(-45deg);
+}
+
+.navigator-right {
+    top: $nav-top;
+    right: 0;
+    border-width: 5px 5px 0 0;
+    transform: rotate(45deg);
 }
