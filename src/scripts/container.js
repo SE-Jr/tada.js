@@ -19,10 +19,12 @@ class Container {
         this._index = 0;
         this._length = this._container.childElementCount;
 
-        new Navigator(this._projector);
+        if (this._options.showNavigator) {
+            new Navigator(this._projector);
 
-        eventAggregator.subscribe('moveToNext', this._moveToNext.bind(this));
-        eventAggregator.subscribe('moveToPrev', this._moveToPrev.bind(this));
+            eventAggregator.subscribe('moveToNext', this._moveToNext.bind(this));
+            eventAggregator.subscribe('moveToPrev', this._moveToPrev.bind(this));
+        }
     }
 
     _moveToNext() {

@@ -9,6 +9,7 @@ export const DEFAULT_OPTIONS = {
   selector: '',
   width: 400,
   height: 300,
+  showNavigator: true,
 };
 
 export const ERROR_MESSAGE = {
