@@ -3,6 +3,8 @@ import {
 } from './config';
 import dom from './util/dom';
 
+import eventAggregator from './eventAggregator';
+
 class Indicator {
     constructor(projector, length) {
         this._projector = projector;
@@ -21,13 +23,17 @@ class Indicator {
         dom.addClass(indicator, INDICATOR_CLASS);
         dom.addClass(indicator, INDI_CIRCLE_CLASS);
 
-        for (let index = 1; index <= this._length; index++) {
+        for (let index = 0; index < this._length; index++) {
             const item = dom.createTag('li');
             dom.addClass(item, INDI_ITEM_CLASS);
 
             const button = dom.createTag('button');
             dom.addClass(button, INDI_BUTTON_CLASS);
             button.innerHTML = index;
+
+            dom.addEvent(button, 'click', function() {
+                eventAggregator.publish('moveTo', index);
+            });
 
             item.appendChild(button);
             indicator.appendChild(item);

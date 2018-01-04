@@ -29,6 +29,8 @@ class Container {
 
         if (this._options.showIndicator) {
             new Indicator(this._projector, this._length);
+
+            eventAggregator.subscribe('moveTo', this._moveTo.bind(this));
         }
     }
 
@@ -37,8 +39,7 @@ class Container {
             return;
         }
 
-        this._index++;
-        dom.setStyle(this._container, 'transform', `translateX(${-this._index * this._options.width}px)`);
+        this._moveTo(this._index+1);
     }
 
     _moveToPrev() {
@@ -46,8 +47,13 @@ class Container {
             return;
         }
 
-        this._index--;
-        dom.setStyle(this._container, 'transform', `translateX(${-this._index * this._options.width}px)`);
+        this._moveTo(this._index-1);
+    }
+
+    _moveTo(destIndex) {
+        dom.setStyle(this._container, 'transform', `translateX(${-destIndex * this._options.width}px)`);
+
+        this._index = destIndex;
     }
 }
 
