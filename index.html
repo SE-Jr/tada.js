@@ -17,6 +17,22 @@
     <div class="item">3</div>
   </div>
   <script src="./dist/carousel.min.js"></script>
-</body>
+  <script>
+    (function () {
+      // using class selector
+      new SP({
+        projectorSelector: '.slide-projector-class',
+        slideSelector: '.item',
+        indicator: true
+      });
+
+      // using id selector
+      new SP({
+        projectorSelector: '#slide-projector-id',
+        slideSelector: '.item',
+        navigator: true
+      });
+    }());
+  </script>
 </body>
 </html>

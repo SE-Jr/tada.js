@@ -1,21 +1,80 @@
-import SlideProjector from './scripts/projector';
+import './styles/style.scss';
+import { PROJECTOR_CLASS } from './scripts/config';
+import Component from './scripts/component';
+import Slider from './scripts/slider';
+import Navigator from './scripts/navigator';
+import Indicator from './scripts/indicator';
 
-/*
-* initialize carousel library
-* projector - container - slide
-*/
-(function () {
-  // using class selector
-  new SlideProjector({
-    projectorSelector: '.slide-projector-class',
-    slideSelector: '.item',
-    indicator: true
-  });
+class SlideProjector extends Component {
+  constructor(option) {
+    super(option);
+    this.init(option);
+    this.resize();
+    this.moveTo(0);
+  }
 
-  // using id selector
-  new SlideProjector({
-    projectorSelector: '#slide-projector-id',
-    slideSelector: '.item',
-    navigator: true
-  });
-}());
+  _initVariables() {
+    super._initVariables(this);
+    this.slideCount = 0;
+    this.currentSlide = 0;
+    this.width = 0;
+    this.height = 0;
+    // 드러낼 변수는 아니라서 initVariables에서 안해도..?
+    this.slider = undefined;
+  }
+
+  _refineOption(option) {
+    super._refineOption(option);
+    if (typeof option.projectorSelector !== 'string') {
+      throw new Error(ERROR_MESSAGE.INVALID_SELECTOR);
+    }
+  }
+
+  _initContainer() {
+    const container = document.querySelector(this.option.projectorSelector);
+    this.container = container;
+    this.controller.projector = container;
+    container.classList.add(PROJECTOR_CLASS);
+    
+    this.slideCount = container.children.length;
+    this.width = container.offsetWidth;
+    this.height = container.offsetHeight;
+  }
+
+  _initChildren(option) {
+    const slider = new Slider(option, this);
+    // this.slider = slider;
+    // this.container.appendChild(slider.container);
+    this.children.push(slider);
+
+    if (this.option.navigator) {
+      this.children.push(new Navigator(option, this));
+    }
+    if (this.option.indicator) {
+      this.children.push(new Indicator(option, this));
+    }
+  }
+
+  resize() {
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetHeight;
+
+    this.children.forEach((child) => {
+      child.resize();
+    });
+  }
+
+  moveTo(destSlide) {
+    if (destSlide >= this.slideCount ||
+      destSlide < 0) {
+      return;
+    }
+
+    this.currentSlide = destSlide;
+    this.children.forEach((child) => {
+      child.moveTo(destSlide);
+    });
+  }
+}
+
+window.SP = SlideProjector;
