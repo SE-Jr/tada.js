@@ -51,6 +51,10 @@ class Container {
     }
 
     _moveTo(destIndex) {
+        if (destIndex === this._index) {
+            return;
+        }
+
         dom.setStyle(this._container, 'transform', `translateX(${-destIndex * this._options.width}px)`);
 
         this._index = destIndex;
