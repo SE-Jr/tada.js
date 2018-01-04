@@ -23,6 +23,7 @@ class Container {
         if (this._options.showNavigator) {
             new Navigator(this._projector);
 
+            // TODO: moveToPrev, moveToNext를 moveTo 하나로 처리할 수 없을까
             eventAggregator.subscribe('moveToNext', this._moveToNext.bind(this));
             eventAggregator.subscribe('moveToPrev', this._moveToPrev.bind(this));
         }

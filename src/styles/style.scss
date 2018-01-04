@@ -83,6 +83,10 @@ $button-dimension: 20px;
     &:hover {
         background-color: skyblue;
     }
+
+    &.is-active {
+        background-color: skyblue;
+    }
 }
     
 .indicator-circle {
