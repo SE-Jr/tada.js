@@ -5,11 +5,15 @@ import eventAggregator from './eventAggregator';
 
 class Navigator {
     constructor(projector) {
-        this.projector = projector;
-        this._init();
+        this._initFields(projector);
+        this._appendButtons();
     }
 
-    _init() {
+    _initFields(projector) {
+        this.projector = projector;
+    }
+
+    _appendButtons() {
         this._left = this._generateLeft();
         this._right = this._generateRight();
 

@@ -7,19 +7,21 @@ import eventAggregator from './eventAggregator';
 
 class Container {
     constructor(options, projector) {
+        this._initFields(options, projector);
+        this._initSubs();
+    }
+
+    _initFields(options, projector) {
         this._options = options;
         this._projector = projector;
         this._container = dom.getChildrenByTagName(this._projector, 'ul')[0];
-
-        this._init();
-    }
-
-    _init() {
-        dom.addClass(this._container, CONTAINER_CLASS);
-
         this._index = 0;
         this._length = this._container.childElementCount;
 
+        dom.addClass(this._container, CONTAINER_CLASS);
+    }
+
+    _initSubs() {
         if (this._options.showNavigator) {
             new Navigator(this._projector);
 

@@ -7,29 +7,36 @@ import eventAggregator from './eventAggregator';
 
 class Indicator {
     constructor(projector, length) {
+        this._initFields(projector, length);
+        this._initIndicator();
+        this._subscribeEvents();
+    }
+
+    _initFields(projector, length) {
         this._projector = projector;
         this._index = 0;
         this._length = length;
-
-        this._init();
+        this._buttons = [];
     }
 
-    _init() {
-        this._setIndicator();
-        this._activateIndicatorAt(0);
+    _initIndicator() {
+        this._indicator = this._generateIndicator();
+        this._projector.appendChild(this._indicator);
 
+        this._activateIndicatorAt(0);
+    }
+
+    _subscribeEvents() {
         // TODO: moveToPrev, moveToNext를 moveTo 하나로 처리할 수 없을까
         eventAggregator.subscribe('moveToPrev', this._moveToPrev.bind(this));
         eventAggregator.subscribe('moveToNext', this._moveToNext.bind(this));
         eventAggregator.subscribe('moveTo', this._moveTo.bind(this));
     }
 
-    _setIndicator() {
+    _generateIndicator() {
         const indicator = dom.createTag('ul');
         dom.addClass(indicator, INDICATOR_CLASS);
         dom.addClass(indicator, INDI_CIRCLE_CLASS);
-
-        this._buttons = [];
 
         for (let index = 0; index < this._length; index++) {
             const item = dom.createTag('li');
@@ -37,11 +44,10 @@ class Indicator {
 
             const button = dom.createTag('button');
             dom.addClass(button, INDI_BUTTON_CLASS);
-            button.innerHTML = index;
-
             dom.addEvent(button, 'click', function() {
                 eventAggregator.publish('moveTo', index);
             });
+            button.innerHTML = index;
 
             this._buttons.push(button);
 
@@ -49,8 +55,7 @@ class Indicator {
             indicator.appendChild(item);
         }
 
-        this._indicator = indicator;
-        this._projector.appendChild(this._indicator);
+        return indicator;
     }
 
     _moveToNext() {

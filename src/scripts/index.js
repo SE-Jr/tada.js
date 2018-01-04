@@ -5,10 +5,9 @@ import Container from './container';
 
 function initProjector(userOptions) {
     const options = Object.assign({}, DEFAULT_OPTIONS, userOptions);
-
     const projectors = dom.getElements(options.selector);
 
-    // 각 프로젝터들 초기화
+    // 각 프로젝터들에 대해 Container 초기화
     projectors.forEach(projector => {
         dom.addClass(projector, PROJECTOR_CLASS);
 
