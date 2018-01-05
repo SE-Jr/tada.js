@@ -1,39 +1,98 @@
+/* container */
 @import "reset";
-$default-color: rgb(122,201,188);
-$first-color: rgb(223,229,229);
-$second-color: rgb(236,220,191);
-$third-color: rgb(245,118,86);
-$fourth-color: rgb(241,175,16);
-$fifth-color: rgb(123,168,83);
+$slide-width: 400px;
 
-.slide-projector {
-  & {
+.slide-wrap {
     position: relative;
+    max-width: $slide-width;
+    margin: 100px auto 0;
     overflow: hidden;
-  }
-  .slider-projector-container {
-    div {
-        & {
-          height: 100%;
-          float: left;
-          background-color: $default-color;
-        }
+}
 
-        &:nth-child(1) {
-          background-color: $first-color;
-        }
-        &:nth-child(2) {
-          background-color: $second-color;
-        }
-        &:nth-child(3) {
-          background-color: $third-color;
-        }
-        &:nth-child(4) {
-          background-color: $fourth-color;
-        }
-        &:nth-child(5) {
-          background-color: $fifth-color;
-        }
+.slide {
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.slide-item {
+    display: inline-block;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+/* navigator */
+$nav-top: 40px;
+
+.slide-navigator {
+    position: absolute;
+    display: inline-block;
+    margin: 20px;
+    width: 30px;
+    height: 30px;
+    border: solid darkgray;
+    text-indent: -999px;
+}
+
+.navigator-left {
+    top: $nav-top;
+    left: 0;
+    border-width: 5px 0 0 5px;
+    transform: rotate(-45deg);
+}
+
+.navigator-right {
+    top: $nav-top;
+    right: 0;
+    border-width: 5px 5px 0 0;
+    transform: rotate(45deg);
+}
+
+/* indicator */
+$button-dimension: 20px;
+
+.slide-indicator {
+    position: absolute;
+    bottom: 5px;
+    width: 400px;
+    margin: 50px auto 0;
+    text-align: center;
+    font-size: 0;
+}
+
+.slide-indicator-item {
+    display: inline-block;
+    
+    &:not(:first-child) {
+        margin-left: 5px;
     }
-  }
+}
+    
+.slide-indicator-button {
+    display: inline-block;
+    overflow: hidden;
+    padding: 0;
+    text-indent: -999px;
+    border: 0;
+    border-radius: 0;
+    background: darkgrey;
+    outline: 0;
+    cursor: pointer;
+        
+    &:hover {
+        background-color: skyblue;
+    }
+
+    &.is-active {
+        background-color: skyblue;
+    }
+}
+    
+.indicator-circle {
+    .slide-indicator-button {
+        width: $button-dimension;
+        height: $button-dimension;
+        border-radius: $button-dimension;
+    }
 }

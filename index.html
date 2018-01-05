@@ -4,39 +4,25 @@
   <link rel="stylesheet" type="text/css" href="./dist/carousel.bundle.css">
 </head>
 <body>
-  <div class="slide-projector-class">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div id="slide-projector-id">
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="slide-wrap">
+    <ul class="slide">
+      <li class="slide-item">
+        <a href="#url" class="slide-link">
+          <img src="https://picsum.photos/800/300/?image=0" alt="" class="slide-image">
+        </a>
+      </li>
+      <li class="slide-item">
+        <a href="#url" class="slide-link">
+          <img src="https://picsum.photos/800/300/?image=1" alt="" class="slide-image">
+        </a>
+      </li>
+      <li class="slide-item">
+        <a href="#url" class="slide-link">
+          <img src="https://picsum.photos/800/300/?image=2" alt="" class="slide-image">
+        </a>
+      </li>
+    </ul>
   </div>
   <script src="./dist/carousel.min.js"></script>
-  <script>
-    (function () {
-      // using class selector
-      new SP({
-        selector: '.slide-projector-class',
-      });
-
-      // using id selector
-      new SP({
-        selector: '#slide-projector-id',
-        width: 600,
-        height: 400,
-      });
-
-      // error - option required
-      // new SlideProjector();
-
-      // error - selector required
-      // new SlideProjector({});
-    }());
-  </script>
 </body>
 </html>
