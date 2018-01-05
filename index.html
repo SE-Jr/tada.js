@@ -21,6 +21,26 @@
     <div></div>
   </div>
   <script src="./dist/carousel.min.js"></script>
-</body>
+  <script>
+    (function () {
+      // using class selector
+      new SP({
+        selector: '.slide-projector-class',
+      });
+
+      // using id selector
+      new SP({
+        selector: '#slide-projector-id',
+        width: 600,
+        height: 400,
+      });
+
+      // error - option required
+      // new SlideProjector();
+
+      // error - selector required
+      // new SlideProjector({});
+    }());
+  </script>
 </body>
 </html>
