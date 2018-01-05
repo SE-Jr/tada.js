@@ -4,6 +4,8 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+    autoWatch: false,
+
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -12,26 +14,47 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/test/*.test.js'
+      'test/**/*.test.js',
     ],
 
 
     // list of files to exclude
     exclude: [
     ],
-
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/test/*.test.js':['babel'],
+      'test/**/*.test.js': ['webpack'],
     },
-
+    webpack: {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015'],
+            },
+          },
+          {
+            test: /\.scss$/,
+            use: [
+              { loader: 'css-loader' },
+              { loader: 'sass-loader'},
+            ],
+          },
+        ],
+      },
+    },
+    webpackMiddleware: {
+      noInfo: true,
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'mocha'],
 
 
     // web server port
@@ -53,22 +76,14 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'ChromeHeadless', 'MyHeadlessChrome'],
-
+    // browsers: ['Chrome', 'ChromeHeadless', 'MyHeadlessChrome'],
+    browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
+    singleRun: true,
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
-
-    customLaunchers: {
-      MyHeadlessChrome: {
-        base: 'ChromeHeadless',
-        flags: ['--disable-translate', '--disable-extensions', '--remote-debugging-port=9223']
-      }
-    }
   })
 }

@@ -1,3 +1,5 @@
+import slider from ''
+
 chai.should();
 
 describe("Carousel Test", ()=>{
