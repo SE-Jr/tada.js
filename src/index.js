@@ -1,22 +1,16 @@
-import SlideProjector from './scripts/carousel';
+import './styles/style.scss';
+import { PROJECTOR_CLASS } from './scripts/config';
+import Controller from './scripts/controller';
 
-/*
-* initialize carousel library
-* projector - container - slide
-*/
-(function () {
-  // using class selector
-  new SlideProjector({
-    projectorSelector: '.demo-slide-projector-class'
-  });
+export default class SlideProjector {
+  constructor(option) {
+    const { selector } = option;
+    const projectors = document.querySelectorAll(selector);
+    projectors.forEach((projector)=>{
+      projector.classList.add(PROJECTOR_CLASS);
+      new Controller(projector, option).init();
+    });
+  }
+}
 
-  new SlideProjector({
-    projectorSelector: '#demo-slide-projector-id'
-  });
-
-  // error - option required
-  // new SlideProjector();
-
-  // error - selector required
-  // new SlideProjector({});
-}());
+window.SP = SlideProjector;
