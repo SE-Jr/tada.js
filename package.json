@@ -7,7 +7,7 @@
     "build": "webpack --watch",
     "lint": "eslint src/**/*.js",
     "start": "webpack-dev-server --hot --inline",
-    "test": "node_modules/karma/bin/karma start ./karma.conf.js",
+    "test": "node_modules/karma/bin/karma start ./karma.conf.js"
   },
   "repository": {
     "type": "git",
