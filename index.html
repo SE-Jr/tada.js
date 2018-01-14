@@ -4,38 +4,41 @@
   <link rel="stylesheet" type="text/css" href="./dist/carousel.bundle.css">
 </head>
 <body>
-  <div class="slide-projector-class">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div id="slide-projector-id">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <ul class="slide-projector-class">
+    <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=sample" /></li>
+  </ul>
+
+  <!--<ul id="slide-projector-id">-->
+    <!--<li><img src="https://placeimg.com/640/480/animals"></li>-->
+    <!--<li><img src="https://placeimg.com/640/480/arch"></li>-->
+    <!--<li><img src="https://placeimg.com/640/480/nature"></li>-->
+    <!--<li><img src="https://placeimg.com/640/480/people"></li>-->
+    <!--<li><img src="https://placeimg.com/640/480/tech"></li>-->
+  <!--</ul>-->
+
   <script src="./dist/carousel.min.js"></script>
   <script>
+    /*
+    * initialize carousel library
+    * projector - container - slide
+    */
     (function () {
       // using class selector
-      new SP({
+      const slideProject = new SP({
         selector: '.slide-projector-class',
       });
 
+//      slideProject.on("next", function(){
+//          console.log("next$$$$");
+//      });
       // using id selector
-      new SP({
-        selector: '#slide-projector-id',
-        width: 600,
-        height: 400,
-      });
-
-      // error - option required
-      // new SlideProjector();
-
-      // error - selector required
-      // new SlideProjector({});
+//      new SP({
+//        selector: '#slide-projector-id'
+//      });
     }());
   </script>
 </body>
