@@ -1,29 +1,24 @@
 import './styles/style.scss'
 import Controller from './scripts/Controller'
 import Container from './scripts/component/Container'
-import { CAROUSEL_CONFIG } from './scripts/const/Config'
 import Dom from './scripts/util/Dom'
 import Navigator from './scripts/component/Navigator'
+import Model from "./scripts/Model";
 import Indicator from './scripts/component/Indicator'
 
 class SlideProjector {
   constructor(option) {
+    this.model = new Model();
     this._setConfig(option);
     this._render();
   }
 
   _setConfig = (option) => {
-    const selector  = option.selector;
-    const wrapper = Dom.query(selector);
-    const containerWidth = wrapper.clientWidth;
+    const wrapper = Dom.query(option.selector);
     const slide = wrapper.children;
-    const slideCnt = slide.length;
-
-    this.config = Object.assign({}, CAROUSEL_CONFIG, {
-      selector,
-      containerWidth,
-      slideCnt,
-    });
+    this.model.selector = option.selector;
+    this.model.containerWidth = wrapper.clientWidth;
+    this.model.slideCnt = slide.length;
   };
 
   _render = () => {
@@ -35,22 +30,23 @@ class SlideProjector {
 
 
   _renderContainer = () => {
-    this.container = new Container(this.config);
+    this.container = new Container(this.model);
     this.container.render();
   };
 
   _renderNavigator = () => {
-    this.navigator = new Navigator(this.config);
+    this.navigator = new Navigator(this.model);
     this.navigator.render();
   };
 
   _renderIndicator = () => {
-    this.indicator = new Indicator(this.config);
+    this.indicator = new Indicator(this.model);
     this.indicator.render();
   };
 
   _loadController = () => {
-    this.controller = new Controller(this.config);
+    //TODO REFACTOR
+    this.controller = new Controller(this.model, this.navigator, this.indicator);
     this.controller.load();
   };
 

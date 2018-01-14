@@ -1,24 +1,20 @@
 import Dom from '../util/Dom'
 import EventEmitter from '../EventEmitter';
-import Component from './Component';
 
-class Indicator extends Component{
-  constructor(config){
-    super(config)
-    this.observable = new EventEmitter();
-    this.config = config;
+class Indicator {
+  constructor(model){
+    this._observable = new EventEmitter();
+    this._model = model;
   }
 
   next() {
-    super.next();
-    this.moveTo(this.slideIdx);
-    this.observable.emit('next');
+    this.moveTo(this._model.currentPage);
+    this._observable.emit('next');
   }
 
   prev() {
-    super.prev();
-    this.moveTo(this.slideIdx);
-    this.observable.emit('prev');
+    this.moveTo(this._model.currentPage);
+    this._observable.emit('prev');
   }
 
   moveTo(page) {
@@ -32,11 +28,11 @@ class Indicator extends Component{
     const ul = Dom.createElement('ul');
 
     Dom.addClass(ul, 'slide-indicator')
-    Dom.addClass(ul, `indicator-${this.config.indicatorShape}`)
+    Dom.addClass(ul, `indicator-${this._model.indicatorShape}`)
 
     //TODO REFACTOR
 
-    for(let i = 0 ; i < this.config.slideCnt; i++) {
+    for(let i = 0 ; i < this._model.slideCnt; i++) {
       const li = Dom.createElement('li');
       ul.appendChild(li);
       Dom.addClass(li, 'slide-indicator-item')

@@ -1,27 +1,23 @@
 import Dom from '../util/Dom'
 import EventEmitter from '../EventEmitter';
-import Component from './Component';
 
-class Navigator extends Component{
-  constructor(config){
-    super(config)
-    this.observable = new EventEmitter();
-    this.config = config;
-    this.selector = config.selector;
-    this.containerWidth = config.containerWidth;
-    this.wrapper = Dom.query(this.selector);
+class Navigator {
+  constructor(model){
+    this._observable = new EventEmitter();
+    this._model = model;
+    this._selector = model.selector;
+    this._containerWidth = model.containerWidth;
+    this._wrapper = Dom.query(this._selector);
   }
 
   next() {
-    super.next();
-    this.moveTo(this.slideIdx);
-    this.observable.emit('next');
+    this.moveTo(this._model.currentPage);
+    this._observable.emit('next');
   }
 
   prev() {
-    super.prev();
-    this.moveTo(this.slideIdx);
-    this.observable.emit('prev');
+    this.moveTo(this._model.currentPage);
+    this._observable.emit('prev');
   }
 
   render() {
@@ -41,7 +37,7 @@ class Navigator extends Component{
   }
 
   moveTo(page) {
-    this.wrapper.style.transform = `translateX(${-1 * page * this.containerWidth}px)`;
+    this._wrapper.style.transform = `translateX(${-1 * page * this._containerWidth}px)`;
     // this.wrapper.style.marginLeft = `${-1 * this.currentSlideId * this.containerWidth}`;
   }
 }
