@@ -1,5 +1,6 @@
 class Model {
   constructor() {
+    this._id = "id";
     this._container = '.slide-wrap';
     this._prevPage = 0;
     this._currentPage = 0;

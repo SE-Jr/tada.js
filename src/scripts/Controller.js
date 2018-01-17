@@ -3,14 +3,22 @@ import Indicator from './component/Indicator'
 import Dom from './util/dom'
 import { next, prev } from "./util/Helper";
 
-
-//TODO refactor 변경된 model을 store에 저장했다가 가져와서 inject 해줄수 있는 방법이 없을까?.?
 export default class Controller {
   constructor(model) {
     this.model = model;
-    this.navigator = new Navigator(this.model);
-    this.indicator = new Indicator(this.model);
+    this._renderNavigator();
+    this._renderIndicator();
   }
+
+  _renderNavigator = () => {
+    this.navigator = new Navigator(this.model);
+    this.navigator.render();
+  };
+
+  _renderIndicator = () => {
+    this.indicator = new Indicator(this.model);
+    this.indicator.render();
+  };
 
   load() {
     const prevButton = Dom.query('.navigator-left');
@@ -39,6 +47,9 @@ export default class Controller {
         this.indicator.moveTo(page);
       }
     })
-
+  }
+  on = () => {
+    this.navigator.observable.addListener(label, callback);
+    this.indicator.observable.addListener(label, callback);
   }
 }
