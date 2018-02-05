@@ -8,6 +8,10 @@ export default class EventEmitter {
     this.listeners.get(label).push(callback);
   }
 
+  removeListener() {
+
+  }
+
   emit(label, ...args) {
     let listeners = this.listeners.get(label);
 

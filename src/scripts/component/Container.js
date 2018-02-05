@@ -1,13 +1,11 @@
 import Dom from "../util/Dom"
 
-
 export default class Container {
   constructor(model) {
     this._model = model;
   }
 
   render() {
-
     this.container = Dom.createElement('div');
     const wrapper = Dom.query(this._model.selector);
     const parent = wrapper.parentNode;

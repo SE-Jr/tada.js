@@ -56,7 +56,7 @@ export default class Controller {
       }
     })
   }
-  
+
   on = () => {
     this.navigator.observable.addListener(label, callback);
     this.indicator.observable.addListener(label, callback);

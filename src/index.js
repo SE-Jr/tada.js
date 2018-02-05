@@ -5,7 +5,7 @@ import Model from "./scripts/Model";
 
 class SlideProjector {
   constructor(option) {
-    this.model = new Model({option,  });
+    this.model = new Model();
     this._setConfig(option);
     this._loadController();
   }
