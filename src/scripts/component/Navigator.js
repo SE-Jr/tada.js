@@ -3,7 +3,7 @@ import EventEmitter from '../EventEmitter';
 
 class Navigator {
   constructor(model){
-    this._observable = new EventEmitter();
+    this._evetnEmitter = new EventEmitter();
     this._model = model;
     this._selector = model.selector;
     this._containerWidth = model.containerWidth;
@@ -12,12 +12,12 @@ class Navigator {
 
   next() {
     this.moveTo(this._model.currentPage);
-    this._observable.emit('next');
+    this._evetnEmitter.emit('next');
   }
 
   prev() {
     this.moveTo(this._model.currentPage);
-    this._observable.emit('prev');
+    this._evetnEmitter.emit('prev');
   }
 
   render() {

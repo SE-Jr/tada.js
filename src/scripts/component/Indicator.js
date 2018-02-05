@@ -3,24 +3,24 @@ import EventEmitter from '../EventEmitter';
 
 class Indicator {
   constructor(model){
-    this._observable = new EventEmitter();
+    this._evetnEmitter = new EventEmitter();
     this._model = model;
   }
 
   next() {
     this.moveTo(this._model.currentPage);
-    this._observable.emit('next');
+    this._evetnEmitter.emit('next');
   }
 
   prev() {
     this.moveTo(this._model.currentPage);
-    this._observable.emit('prev');
+    this._evetnEmitter.emit('prev');
   }
 
   moveTo(page) {
     Dom.removeClass(Dom.query('.slide-indicator-button.active'), 'active');
     const button = Dom.query(`button[data-slide-index="${page}"]`)
-    Dom.addClass(button, 'active')
+    Dom.addClass(button, 'active');
   }
 
   render() {

@@ -1,14 +1,22 @@
 import Navigator from './component/Navigator'
 import Indicator from './component/Indicator'
+import Container from './component/Container'
 import Dom from './util/dom'
 import { next, prev } from "./util/Helper";
 
 export default class Controller {
   constructor(model) {
     this.model = model;
+
+    this._renderContainer();
     this._renderNavigator();
     this._renderIndicator();
   }
+
+  _renderContainer = () => {
+    this.container = new Container(this.model);
+    this.container.render();
+  };
 
   _renderNavigator = () => {
     this.navigator = new Navigator(this.model);
@@ -48,6 +56,7 @@ export default class Controller {
       }
     })
   }
+  
   on = () => {
     this.navigator.observable.addListener(label, callback);
     this.indicator.observable.addListener(label, callback);

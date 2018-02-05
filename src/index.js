@@ -1,14 +1,13 @@
 import './styles/style.scss'
 import Controller from './scripts/Controller'
-import Container from './scripts/component/Container'
 import Dom from './scripts/util/Dom'
 import Model from "./scripts/Model";
 
 class SlideProjector {
   constructor(option) {
-    this.model = new Model();
+    this.model = new Model({option,  });
     this._setConfig(option);
-    this._render();
+    this._loadController();
   }
 
   _setConfig = (option) => {
@@ -18,18 +17,6 @@ class SlideProjector {
     this.model.containerWidth = wrapper.clientWidth;
     this.model.slideCnt = slide.length;
   };
-
-  _render = () => {
-    this._renderContainer();
-    this._loadController();
-  };
-
-
-  _renderContainer = () => {
-    this.container = new Container(this.model);
-    this.container.render();
-  };
-
 
   _loadController = () => {
     this.controller = new Controller(this.model);
