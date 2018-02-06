@@ -1,4 +1,3 @@
-import Dom from '../util/Dom'
 import EventEmitter from '../EventEmitter';
 
 class Navigator {
@@ -7,7 +6,7 @@ class Navigator {
     this._model = model;
     this._selector = model.selector;
     this._containerWidth = model.containerWidth;
-    this._wrapper = Dom.query(this._selector);
+    this._wrapper = document.querySelector(this._selector);
   }
 
   next() {
@@ -21,17 +20,13 @@ class Navigator {
   }
 
   render() {
-    const next = Dom.createElement('a');
-    const prev = Dom.createElement('a');
+    const next = document.createElement('a');
+    const prev = document.createElement('a');
 
-    Dom.addClass(next, 'slide-navigator');
-    Dom.addClass(next, 'navigator-right');
+    next.classList.add('slide-navigator', 'navigator-right');
+    prev.classList.add('slide-navigator', 'navigator-left');
 
-    Dom.addClass(prev, 'slide-navigator');
-    Dom.addClass(prev, 'navigator-left');
-
-    const container = Dom.query('.slide-wrap');
-
+    const container = document.querySelector('.slide-wrap');
     container.appendChild(next);
     container.appendChild(prev);
   }

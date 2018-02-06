@@ -1,6 +1,5 @@
 import './styles/style.scss'
 import Controller from './scripts/Controller'
-import Dom from './scripts/util/Dom'
 import Model from "./scripts/Model";
 
 class SlideProjector {
@@ -11,7 +10,7 @@ class SlideProjector {
   }
 
   _setConfig = (option) => {
-    const wrapper = Dom.query(option.selector);
+    const wrapper = document.querySelector(option.selector);
     const slide = wrapper.children;
     this.model.selector = option.selector;
     this.model.containerWidth = wrapper.clientWidth;

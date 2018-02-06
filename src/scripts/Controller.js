@@ -1,7 +1,6 @@
-import Navigator from './component/Navigator'
-import Indicator from './component/Indicator'
-import Container from './component/Container'
-import Dom from './util/dom'
+import Navigator from './component/Navigator';
+import Indicator from './component/Indicator';
+import Container from './component/Container';
 import { next, prev } from "./util/Helper";
 
 export default class Controller {
@@ -29,8 +28,8 @@ export default class Controller {
   };
 
   load() {
-    const prevButton = Dom.query('.navigator-left');
-    const nextButton = Dom.query('.navigator-right');
+    const prevButton = document.querySelector('.navigator-left');
+    const nextButton = document.querySelector('.navigator-right');
 
     nextButton.addEventListener("click", () => {
       next(this.model);
@@ -46,7 +45,7 @@ export default class Controller {
     });
 
 
-    const indicator = Dom.query('.slide-indicator');
+    const indicator = document.querySelector('.slide-indicator');
 
     indicator.addEventListener("click", (e) => {
       if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {
