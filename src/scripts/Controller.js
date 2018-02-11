@@ -1,11 +1,14 @@
 import Navigator from './component/Navigator';
-import Indicator from './component/Indicator';
+import Pagination from './component/Pagination';
 import Container from './component/Container';
+import State from './State';
+
 import { next, prev } from "./util/Helper";
 
 export default class Controller {
-  constructor(model) {
-    this.model = model;
+  constructor(config) {
+    this._config = config;
+    this._state = new State();
 
     this._renderContainer();
     this._renderNavigator();
@@ -13,18 +16,18 @@ export default class Controller {
   }
 
   _renderContainer = () => {
-    this.container = new Container(this.model);
-    this.container.render();
+    this._container = new Container(this._config);
+    this._container.render();
   };
 
   _renderNavigator = () => {
-    this.navigator = new Navigator(this.model);
-    this.navigator.render();
+    this._navigator = new Navigator(this._config, this._state);
+    this._navigator.render();
   };
 
   _renderIndicator = () => {
-    this.indicator = new Indicator(this.model);
-    this.indicator.render();
+    this._pagination = new Pagination(this._config, this._state);
+    this._pagination.render();
   };
 
   load() {
@@ -32,16 +35,16 @@ export default class Controller {
     const nextButton = document.querySelector('.navigator-right');
 
     nextButton.addEventListener("click", () => {
-      next(this.model);
-      this.navigator.next();
-      this.indicator.next();
+      next(this._state);
+      this._navigator.next();
+      this._pagination.next();
 
     });
 
     prevButton.addEventListener("click", () => {
-      prev(this.model);
-      this.navigator.prev();
-      this.indicator.prev();
+      prev(this._state);
+      this._navigator.prev();
+      this._pagination.prev();
     });
 
 
@@ -50,14 +53,14 @@ export default class Controller {
     indicator.addEventListener("click", (e) => {
       if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {
         const page = e.target.getAttribute('data-slide-index')
-        this.navigator.moveTo(page);
-        this.indicator.moveTo(page);
+        this._navigator.moveTo(page);
+        this._pagination.moveTo(page);
       }
     })
   }
 
-  on = () => {
-    this.navigator.observable.addListener(label, callback);
-    this.indicator.observable.addListener(label, callback);
+  on = (label, callback) => {
+    this._navigator._evetnEmitter.addListener(label, callback);
+    this._pagination._evetnEmitter.addListener(label, callback);
   }
 }

@@ -1,31 +1,32 @@
-import './styles/style.scss'
-import Controller from './scripts/Controller'
-import Model from "./scripts/Model";
+import './styles/style.scss';
+import Controller from './scripts/Controller';
+import { CAROUSEL } from './scripts/Consts';
+import Config from './scripts/Config';
 
 class SlideProjector {
   constructor(option) {
-    this.model = new Model();
     this._setConfig(option);
     this._loadController();
   }
 
   _setConfig = (option) => {
-    const wrapper = document.querySelector(option.selector);
-    const slide = wrapper.children;
-    this.model.selector = option.selector;
-    this.model.containerWidth = wrapper.clientWidth;
-    this.model.slideCnt = slide.length;
+    this._config = new Config(Object.assign(CAROUSEL, option));
+    this._config.wrapper = document.querySelector(option.selector);
+    const slide = this._config.wrapper.children;
+    this._config.selector = option.selector;
+    this._config.containerWidth = this._config.wrapper.clientWidth;
+    this._config.slideCnt = slide.length;
+
+    console.log(this._config);
   };
 
   _loadController = () => {
-    this.controller = new Controller(this.model);
+    this.controller = new Controller(this._config);
     this.controller.load();
   };
 
   on = (label, callback) => {
-    this.controller.on();
-    this.navigator.observable.addListener(label, callback);
-    this.indicator.observable.addListener(label, callback);
+    this.controller.on(label, callback);
   };
 }
 

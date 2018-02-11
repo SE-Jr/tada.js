@@ -1,18 +1,19 @@
 import EventEmitter from '../EventEmitter';
 
-class Indicator {
-  constructor(model){
+class Pagination {
+  constructor(config, state){
     this._evetnEmitter = new EventEmitter();
-    this._model = model;
+    this._config = config;
+    this._state = state;
   }
 
   next() {
-    this.moveTo(this._model.currentPage);
+    this.moveTo(this._state.currentPage);
     this._evetnEmitter.emit('next');
   }
 
   prev() {
-    this.moveTo(this._model.currentPage);
+    this.moveTo(this._state.currentPage);
     this._evetnEmitter.emit('prev');
   }
 
@@ -25,12 +26,12 @@ class Indicator {
   render() {
 
     const ul = document.createElement('ul');
-    ul.classList.add('slide-indicator', `indicator-${this._model.indicatorShape}`);
+    ul.classList.add('slide-indicator', `indicator-${this._config.indicatorShape}`);
 
 
     //TODO REFACTOR
 
-    for(let i = 0 ; i < this._model.slideCnt; i++) {
+    for(let i = 0 ; i < this._config.slideCnt; i++) {
       const li = document.createElement('li');
       ul.appendChild(li);
       li.classList.add('slide-indicator-item');
@@ -51,4 +52,4 @@ class Indicator {
   }
 }
 
-export default Indicator
+export default Pagination

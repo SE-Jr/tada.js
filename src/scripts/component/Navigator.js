@@ -1,21 +1,22 @@
 import EventEmitter from '../EventEmitter';
 
 class Navigator {
-  constructor(model){
+  constructor(config, state){
     this._evetnEmitter = new EventEmitter();
-    this._model = model;
-    this._selector = model.selector;
-    this._containerWidth = model.containerWidth;
-    this._wrapper = document.querySelector(this._selector);
+    this._config = config;
+    this._selector = config.selector;
+    this._containerWidth = config.containerWidth;
+    this._wrapper = config.wrapper;
+    this._state = state;
   }
 
   next() {
-    this.moveTo(this._model.currentPage);
+    this.moveTo(this._state.currentPage);
     this._evetnEmitter.emit('next');
   }
 
   prev() {
-    this.moveTo(this._model.currentPage);
+    this.moveTo(this._state.currentPage);
     this._evetnEmitter.emit('prev');
   }
 
