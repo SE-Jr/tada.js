@@ -31,11 +31,11 @@ class Config {
     return this._showNavigator;
   }
 
-  set indicator(status) {
+  set pagination(status) {
     this._showPagination = status;
   }
 
-  get indicator() {
+  get pagination() {
     return this._showPagination;
   }
 
@@ -55,12 +55,12 @@ class Config {
     return this._containerWidth;
   }
 
-  set slideCnt(slideCnt) {
-    this._slideCnt = slideCnt;
+  set slideCount(slideCount) {
+    this._slideCount = slideCount;
   }
 
-  get slideCnt() {
-    return this._slideCnt;
+  get slideCount() {
+    return this._slideCount;
   }
 
   set wrapper(wrapper) {

@@ -31,7 +31,7 @@ class Pagination {
 
     //TODO REFACTOR
 
-    for(let i = 0 ; i < this._config.slideCnt; i++) {
+    for(let i = 0 ; i < this._config.slideCount; i++) {
       const li = document.createElement('li');
       ul.appendChild(li);
       li.classList.add('slide-indicator-item');

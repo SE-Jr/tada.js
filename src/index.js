@@ -15,9 +15,7 @@ class SlideProjector {
     const slide = this._config.wrapper.children;
     this._config.selector = option.selector;
     this._config.containerWidth = this._config.wrapper.clientWidth;
-    this._config.slideCnt = slide.length;
-
-    console.log(this._config);
+    this._config.slideCount = slide.length;
   };
 
   _loadController = () => {

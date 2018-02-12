@@ -17,9 +17,9 @@ export default class Container {
     wrapper.classList.add(SLIDE_CLASSES.slides);
 
     this.container.style.width = this._config.containerWidth;
-    wrapper.style.width = this._config.containerWidth * this._config.slideCnt;
+    wrapper.style.width = this._config.containerWidth * this._config.slideCount;
 
-    const slideWidth = `${100 / this._config.slideCnt}%`;
+    const slideWidth = `${100 / this._config.slideCount}%`;
 
     [...slides].forEach((el) => {
       el.classList.add(SLIDE_CLASSES.slideItem);

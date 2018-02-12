@@ -1,10 +1,10 @@
 function loop(model){
-  if (model.currentPage >= model.slideCnt) {
+  if (model.currentPage >= model.slideCount) {
     model.currentPage =  0;
   }
 
   if (model.currentPage < 0) {
-    model.currentPage = model.slideCnt - 1;
+    model.currentPage = model.slideCount - 1;
   }
 }
 
