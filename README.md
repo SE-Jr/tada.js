@@ -1,3 +1,3 @@
-# :carousel_horse:  Carousel Library
+# :tada:  Carousel Library
 
 In progress
