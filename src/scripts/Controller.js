@@ -35,14 +35,14 @@ export default class Controller {
     const nextButton = document.querySelector('.navigator-right');
 
     nextButton.addEventListener("click", () => {
-      next(this._state);
+      next(this._state, this._config);
       this._navigator.next();
       this._pagination.next();
 
     });
 
     prevButton.addEventListener("click", () => {
-      prev(this._state);
+      prev(this._state, this._config);
       this._navigator.prev();
       this._pagination.prev();
     });

@@ -5,6 +5,7 @@ class Config {
     this._pagenationShape = option.pagenationShape;
     this._showNavigator = option.showNavigator || false;
     this._showPagination = option.showPagination || false;
+    this._infinite = !!option.infinite;
   }
 
   set container(container) {
@@ -69,6 +70,11 @@ class Config {
 
   get wrapper() {
     return this._wrapper;
+  }
+
+  // 초기화에만 설정하는 값이므로 setter 는 안 만듦
+  get infinite() {
+    return this._infinite;
   }
 }
 

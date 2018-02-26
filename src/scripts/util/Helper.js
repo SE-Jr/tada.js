@@ -1,28 +1,29 @@
-function loop(model){
-  if (model.currentPage >= model.slideCount) {
-    model.currentPage =  0;
+// state, config 합쳐서 model 로 만들것인가?
+
+function loop(state, config){
+  if (state.currentPage >= config.slideCount) {
+    state.currentPage =  0;
   }
 
-  if (model.currentPage < 0) {
-    model.currentPage = model.slideCount - 1;
+  if (state.currentPage < 0) {
+    state.currentPage = config.slideCount - 1;
   }
 }
 
-export function next(model) {
-  model.prevPage = model.currentPage;
-  model.currentPage = model.prevPage + 1;
+export function next(state, config) {
+  state.prevPage = state.currentPage;
+  state.currentPage = state.prevPage + 1;
 
-  if(model.infinite) {
-    loop(model)
+  if(config && config.infinite) {
+    loop(state, config);
   }
-
 }
 
-export function prev(model) {
-  model.prevPage = model.currentPage;
-  model.currentPage = model.prevPage - 1;
+export function prev(state, config) {
+  state.prevPage = state.currentPage;
+  state.currentPage = state.prevPage - 1;
 
-  if(model.infinite) {
-    loop(model)
+  if(config && config.infinite) {
+    loop(state, config);
   }
 }
