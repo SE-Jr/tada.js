@@ -1,4 +1,5 @@
 import EventEmitter from '../EventEmitter';
+import { CLASSNAMES } from '../Consts';
 
 class Navigator {
   constructor(config, state){
@@ -24,16 +25,17 @@ class Navigator {
     const next = document.createElement('a');
     const prev = document.createElement('a');
 
-    next.classList.add('slide-navigator', 'navigator-right');
-    prev.classList.add('slide-navigator', 'navigator-left');
-
-    const container = document.querySelector('.slide-wrap');
-    container.appendChild(next);
-    container.appendChild(prev);
+    next.classList.add(CLASSNAMES.navigator, CLASSNAMES.rightNavigator);
+    prev.classList.add(CLASSNAMES.navigator, CLASSNAMES.leftNavigator);
+    const wrapper = document.querySelector('.' + CLASSNAMES.wrapper);
+    wrapper.appendChild(next);
+    wrapper.appendChild(prev);
   }
 
+  //TODO container 움직이는 로직이 여기가 맞을까??
   moveTo(page) {
-    this._wrapper.style.transform = `translateX(${-1 * page * this._containerWidth}px)`;
+    const container = document.querySelector('.' + CLASSNAMES.container);    
+    container.style.transform = `translateX(${-1 * page * this._containerWidth}px)`;
     // this.wrapper.style.marginLeft = `${-1 * this.currentSlideId * this.containerWidth}`;
   }
 }

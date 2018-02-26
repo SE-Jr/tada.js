@@ -1,10 +1,22 @@
+/** 
+ * - container/wrapper가 dom이 아니라 그냥 classname? dom으로 할 지 classname인지
+ * - || false 같은 기본값 정의는 const DEFAULT OPTION으로 이동
+*/
+import { DEFAULT_OPTION } from './Consts';
 
 class Config {
-  constructor(option) {
-    this._container = option.container;
-    this._pagenationShape = option.pagenationShape;
-    this._showNavigator = option.showNavigator || false;
-    this._showPagination = option.showPagination || false;
+  constructor(option, wrapper) {
+    const _option = Object.assign({}, DEFAULT_OPTION, option);
+    
+    this._wrapper = wrapper;
+    this._containerWidth = wrapper.clientWidth;
+    this._container = wrapper.children[0];//<ul>
+    this._slideCount = this._container.children.length;
+    
+    this._selector = _option.selector;
+    this._paginationShape = _option.paginationShape;
+    this._showNavigator = _option.showNavigator;
+    this._showPagination = _option.showPagination;
   }
 
   set container(container) {
@@ -15,12 +27,12 @@ class Config {
     return this._container;
   }
 
-  set indicatorShape(shape) {
-    this._pagenationShape = shape;
+  set paginationShape(shape) {
+    this._paginationShape = shape;
   }
 
-  get indicatorShape() {
-    return this._pagenationShape;
+  get paginationShape() {
+    return this._paginationShape;
   }
 
   set navigator(status) {

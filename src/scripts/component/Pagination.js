@@ -18,7 +18,7 @@ class Pagination {
   }
 
   moveTo(page) {
-    document.querySelector('.slide-indicator-button.active').classList.remove('active');
+    document.querySelector('.slide-pagination-button.active').classList.remove('active');
     const button = document.querySelector(`button[data-slide-index="${page}"]`);
     button.classList.add('active');
   }
@@ -26,7 +26,7 @@ class Pagination {
   render() {
 
     const ul = document.createElement('ul');
-    ul.classList.add('slide-indicator', `indicator-${this._config.indicatorShape}`);
+    ul.classList.add('slide-pagination', `pagination-${this._config.paginationShape}`);
 
 
     //TODO REFACTOR
@@ -34,12 +34,12 @@ class Pagination {
     for(let i = 0 ; i < this._config.slideCount; i++) {
       const li = document.createElement('li');
       ul.appendChild(li);
-      li.classList.add('slide-indicator-item');
+      li.classList.add('slide-pagination-item');
       const button = document.createElement('button');
       li.appendChild(button);
       li.setAttribute('data-slide-index', `${i}`);
 
-      button.classList.add('slide-indicator-button')
+      button.classList.add('slide-pagination-button')
       button.setAttribute('data-slide-index', `${i}`);
 
       if (i === 0) {
@@ -47,8 +47,8 @@ class Pagination {
       }
     }
 
-    const container = document.querySelector('.slide-wrap');
-    container.appendChild(ul);
+    const wrapper = document.querySelector('.slide-wrapper');
+    wrapper.appendChild(ul);
   }
 }
 

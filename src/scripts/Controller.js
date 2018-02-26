@@ -2,6 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
+import { CLASSNAMES } from './Consts';
 
 import { next, prev } from "./util/Helper";
 
@@ -12,7 +13,7 @@ export default class Controller {
 
     this._renderContainer();
     this._renderNavigator();
-    this._renderIndicator();
+    this._renderPagination();
   }
 
   _renderContainer = () => {
@@ -25,14 +26,16 @@ export default class Controller {
     this._navigator.render();
   };
 
-  _renderIndicator = () => {
+  _renderPagination = () => {
     this._pagination = new Pagination(this._config, this._state);
     this._pagination.render();
   };
 
+  //TODO 1 navigator/pagination을 매번 쿼리로 찾아와야 할까?
+  //TODO 2 navigator/pagination option false인 경우 구현 필요
   load() {
-    const prevButton = document.querySelector('.navigator-left');
-    const nextButton = document.querySelector('.navigator-right');
+    const prevButton = document.querySelector('.' + CLASSNAMES.leftNavigator);
+    const nextButton = document.querySelector('.' + CLASSNAMES.rightNavigator);
 
     nextButton.addEventListener("click", () => {
       next(this._state);
@@ -48,9 +51,9 @@ export default class Controller {
     });
 
 
-    const indicator = document.querySelector('.slide-indicator');
+    const pagination = document.querySelector('.' + CLASSNAMES.pagination);
 
-    indicator.addEventListener("click", (e) => {
+    pagination.addEventListener("click", (e) => {
       if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {
         const page = e.target.getAttribute('data-slide-index')
         this._navigator.moveTo(page);

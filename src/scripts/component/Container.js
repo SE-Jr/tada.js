@@ -1,4 +1,4 @@
-import {SLIDE_CLASSES} from '../Consts';
+import { CLASSNAMES } from '../Consts';
 
 export default class Container {
   constructor(config) {
@@ -6,24 +6,18 @@ export default class Container {
   }
 
   render() {
-    this.container = document.createElement('div');
-    const wrapper = this._config.wrapper;
-    const parent = wrapper.parentNode;
-    const slides = wrapper.children;
+    const { wrapper, container, containerWidth, slideCount } = this._config;
+    container.classList.add(CLASSNAMES.container);
+    wrapper.classList.add(CLASSNAMES.wrapper);
 
-    parent.replaceChild(this.container, wrapper);
-    this.container.appendChild(wrapper);
-    this.container.classList.add(this._config.container);
-    wrapper.classList.add(SLIDE_CLASSES.slides);
+    wrapper.style.width = containerWidth;
+    container.style.width = containerWidth * slideCount;
 
-    this.container.style.width = this._config.containerWidth;
-    wrapper.style.width = this._config.containerWidth * this._config.slideCount;
-
-    const slideWidth = `${100 / this._config.slideCount}%`;
-
-    [...slides].forEach((el) => {
-      el.classList.add(SLIDE_CLASSES.slideItem);
-      el.style.width = slideWidth;
+    const slideWidth = `${100 / slideCount}%`;
+    const slides = container.children;
+    [...slides].forEach((slideItem) => {
+      slideItem.classList.add(CLASSNAMES.slideItem);
+      slideItem.style.width = slideWidth;
     });
   }
 }
