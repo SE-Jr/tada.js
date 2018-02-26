@@ -27,10 +27,17 @@ div[class^='slide-wrap'] {
     margin: 20px;
     width: 30px;
     height: 30px;
-    border: solid darkgray;
+    border: solid white;
     text-indent: -999px;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
+
+    &.disabled {
+      border-color: darkgray;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 
   .navigator-left {
