@@ -2,21 +2,31 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" href="./dist/carousel.bundle.css">
+  <style>
+    .tada-class {
+      width: 800px;
+      height: 600px;
+      position: relative;/*or absolute*/
+    }
+  </style>
 </head>
 <body>
-  <ul class="slide-projector-class">
-    <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=sample" /></li>
-  </ul>
+  <!-- initialize with class selector -->
+  <div class="tada-class">
+    <ul>
+      <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=1" alt="slide-image-01"/></li>
+      <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=2" alt="slide-image-02"/></li>
+      <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=3" alt="slide-image-03"/></li>
+      <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=4" alt="slide-image-04"/></li>
+      <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=5" alt="slide-image-05"/></li>
+    </ul>
+  </div>
 
   <script src="./dist/carousel.min.js"></script>
   <script>
     (function () {
-      const slideProject = new SP({
-        selector: '.slide-projector-class',
+      const tadaWithClass = new SP({
+        selector: ".tada-class",
         showNavigator: true,
         showPagination: true
       });
