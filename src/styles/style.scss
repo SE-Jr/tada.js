@@ -1,22 +1,22 @@
 @import "reset";
 
-div[class^='slide-wrap'] {
-  position: relative;
+.slide-wrapper {
+  white-space: nowrap;
+  font-size: 0;
   overflow: hidden;
-  margin: auto 0;
 
-  .slide {
-    white-space: nowrap;
-    font-size: 0;
-    transition: all .3s ease-out;
-
+  .slide-container{
+    transition: all .3s ease-out;    
   }
 
   .slide-item {
     display: inline-block;
 
     img {
-      margin: auto
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
     }
 
   }
@@ -46,17 +46,17 @@ div[class^='slide-wrap'] {
     right: 0.5em;
   }
 
-
   $button-dimension: 20px;
 
-  .slide-indicator {
-    width: 400px;
-    margin: 50px auto 0;
+  .slide-pagination {
+    // width: 400px;
+    // margin: 50px auto 0;
+    width: 100%;    
     text-align: center;
     font-size: 0;
   }
 
-  .slide-indicator-item {
+  .slide-pagination-item {
     display: inline-block;
 
     &:not(:first-child) {
@@ -64,7 +64,7 @@ div[class^='slide-wrap'] {
     }
   }
 
-  .slide-indicator-button {
+  .slide-pagination-button {
     display: inline-block;
     overflow: hidden;
     padding: 0;
@@ -80,23 +80,23 @@ div[class^='slide-wrap'] {
     }
   }
 
-  .indicator-circle {
-    .slide-indicator-button {
+  .pagination-circle {
+    .slide-pagination-button {
       width: $button-dimension;
       height: $button-dimension;
       border-radius: $button-dimension;
     }
   }
 
-  .indicator-line {
-    .slide-indicator-button {
+  .pagination-line {
+    .slide-pagination-button {
       width: $button-dimension;
       height: 4px;
     }
   }
 
-  .indicator-line-padding {
-    .slide-indicator-button {
+  .pagination-line-padding {
+    .slide-pagination-button {
       background: none;
       padding: 10px 0;
 
