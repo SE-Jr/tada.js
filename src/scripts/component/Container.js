@@ -7,6 +7,7 @@ export default class Container {
 
   render() {
     this.container = document.createElement('div');
+    this._config.elContainer = this.container;
     const wrapper = this._config.wrapper;
     const parent = wrapper.parentNode;
     const slides = wrapper.children;

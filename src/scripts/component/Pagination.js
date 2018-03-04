@@ -47,7 +47,7 @@ class Pagination {
       }
     }
 
-    const container = document.querySelector('.slide-wrap');
+    const container = this._config.elContainer;
     container.appendChild(ul);
   }
 }

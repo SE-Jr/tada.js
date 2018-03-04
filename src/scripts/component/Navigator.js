@@ -27,7 +27,7 @@ class Navigator {
     next.classList.add('slide-navigator', 'navigator-right');
     prev.classList.add('slide-navigator', 'navigator-left');
 
-    const container = document.querySelector('.slide-wrap');
+    const container = this._config.elContainer;
     container.appendChild(next);
     container.appendChild(prev);
   }
