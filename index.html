@@ -4,7 +4,15 @@
   <link rel="stylesheet" type="text/css" href="./dist/carousel.bundle.css">
 </head>
 <body>
-  <ul class="slide-projector-class">
+  <ul class="slide-projector-class slide-projector-class-1">
+    <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=sample" /></li>
+    <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=sample" /></li>
+  </ul>
+
+  <ul class="slide-projector-class slide-projector-class-2" style="margin-top: 50px">
     <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=sample" /></li>
     <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=sample" /></li>
     <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=sample" /></li>
@@ -28,10 +36,16 @@
     */
     (function () {
       // using class selector
-      const slideProject = new SP({
-        selector: '.slide-projector-class',
+      const slideProject1 = new SP({
+        selector: '.slide-projector-class-1',
         showNavigator: true,
         showPagination: true
+      });
+
+      const slideProject2 = new SP({
+        selector: '.slide-projector-class-2',
+        showNavigator: false,
+        showPagination: false
       });
 
 //      slideProject.on("next", function(){
