@@ -1,4 +1,5 @@
 import EventEmitter from '../EventEmitter';
+import { CLASSNAMES } from '../Consts';
 
 class Pagination {
   constructor(config, state){
@@ -18,7 +19,7 @@ class Pagination {
   }
 
   moveTo(page) {
-    document.querySelector('.slide-pagination-button.active').classList.remove('active');
+    document.querySelector('.tada-pagination-button.active').classList.remove('active');
     const button = document.querySelector(`button[data-slide-index="${page}"]`);
     button.classList.add('active');
   }
@@ -26,20 +27,18 @@ class Pagination {
   render() {
 
     const ul = document.createElement('ul');
-    ul.classList.add('slide-pagination', `pagination-${this._config.paginationShape}`);
-
+    ul.classList.add('tada-pagination', `pagination-${this._config.paginationShape}`);
 
     //TODO REFACTOR
-
     for(let i = 0 ; i < this._config.slideCount; i++) {
       const li = document.createElement('li');
       ul.appendChild(li);
-      li.classList.add('slide-pagination-item');
+      li.classList.add(CLASSNAMES.paginationItem);
       const button = document.createElement('button');
       li.appendChild(button);
       li.setAttribute('data-slide-index', `${i}`);
 
-      button.classList.add('slide-pagination-button')
+      button.classList.add(CLASSNAMES.paginationButton);
       button.setAttribute('data-slide-index', `${i}`);
 
       if (i === 0) {
@@ -47,7 +46,7 @@ class Pagination {
       }
     }
 
-    const wrapper = document.querySelector('.slide-wrapper');
+    const wrapper = document.querySelector('.' + CLASSNAMES.wrapper);
     wrapper.appendChild(ul);
   }
 }

@@ -3,7 +3,6 @@ import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
 import { CLASSNAMES } from './Consts';
-
 import { next, prev } from "./util/Helper";
 
 export default class Controller {
@@ -36,6 +35,7 @@ export default class Controller {
   load() {
     const prevButton = document.querySelector('.' + CLASSNAMES.leftNavigator);
     const nextButton = document.querySelector('.' + CLASSNAMES.rightNavigator);
+    const pagination = document.querySelector('.' + CLASSNAMES.pagination);
 
     nextButton.addEventListener("click", () => {
       next(this._state);
@@ -49,9 +49,6 @@ export default class Controller {
       this._navigator.prev();
       this._pagination.prev();
     });
-
-
-    const pagination = document.querySelector('.' + CLASSNAMES.pagination);
 
     pagination.addEventListener("click", (e) => {
       if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {

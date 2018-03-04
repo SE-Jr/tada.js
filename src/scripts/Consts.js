@@ -6,13 +6,15 @@ export const DEFAULT_OPTION = {
 }
 
 export const CLASSNAMES = {
-  container: 'slide-container',
-  wrapper: 'slide-wrapper',
-  slideItem: 'slide-item',
-  navigator: 'slide-navigator',
-  rightNavigator: 'navigator-right',
-  leftNavigator: 'navigator-left',
-  pagination: 'slide-pagination'
+  container: 'tada-container',
+  wrapper: 'tada-wrapper',
+  slideItem: 'tada-slide',
+  navigator: 'tada-navigator',
+  rightNavigator: 'tada-navigator-right',
+  leftNavigator: 'tada-navigator-left',
+  pagination: 'tada-pagination',
+  paginationItem: 'tada-pagination-item',
+  paginationButton: 'tada-pagination-button'
 }
 
 export default {

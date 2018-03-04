@@ -1,15 +1,15 @@
 @import "reset";
 
-.slide-wrapper {
+.tada-wrapper {
   white-space: nowrap;
   font-size: 0;
   overflow: hidden;
 
-  .slide-container{
-    transition: all .3s ease-out;    
+  .tada-container{
+    transition: all .3s ease-out;
   }
 
-  .slide-item {
+  .tada-slide {
     display: inline-block;
 
     img {
@@ -18,10 +18,9 @@
       height: auto;
       max-height: 100%;
     }
-
   }
 
-  .slide-navigator {
+  .tada-navigator {
     position: absolute;
     display: inline-block;
     margin: 20px;
@@ -33,14 +32,14 @@
     transform: translateY(-50%);
   }
 
-  .navigator-left {
+  .tada-navigator-left {
     border-width: 5px 0 0 5px;
     transform: rotate(-45deg);
     left: 0.5em;
 
   }
 
-  .navigator-right {
+  .tada-navigator-right {
     border-width: 5px 5px 0 0;
     transform: rotate(45deg);
     right: 0.5em;
@@ -48,15 +47,13 @@
 
   $button-dimension: 20px;
 
-  .slide-pagination {
-    // width: 400px;
-    // margin: 50px auto 0;
-    width: 100%;    
+  .tada-pagination {
+    width: 100%;
     text-align: center;
     font-size: 0;
   }
 
-  .slide-pagination-item {
+  .tada-pagination-item {
     display: inline-block;
 
     &:not(:first-child) {
@@ -64,7 +61,7 @@
     }
   }
 
-  .slide-pagination-button {
+  .tada-pagination-button {
     display: inline-block;
     overflow: hidden;
     padding: 0;
@@ -81,7 +78,7 @@
   }
 
   .pagination-circle {
-    .slide-pagination-button {
+    .tada-pagination-button {
       width: $button-dimension;
       height: $button-dimension;
       border-radius: $button-dimension;
@@ -89,14 +86,14 @@
   }
 
   .pagination-line {
-    .slide-pagination-button {
+    .tada-pagination-button {
       width: $button-dimension;
       height: 4px;
     }
   }
 
   .pagination-line-padding {
-    .slide-pagination-button {
+    .tada-pagination-button {
       background: none;
       padding: 10px 0;
 
