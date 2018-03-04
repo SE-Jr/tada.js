@@ -2,7 +2,7 @@ import './styles/style.scss';
 import Controller from './scripts/Controller';
 import Config from './scripts/Config';
 
-class SlideProjector {
+class Tada {
   constructor(option) {
     const config = this._createConfig(option);
     this._loadController(config);
@@ -24,4 +24,4 @@ class SlideProjector {
   };
 }
 
-window.SP = SlideProjector;
+window.tada = Tada;
