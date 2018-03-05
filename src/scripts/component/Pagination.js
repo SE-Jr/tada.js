@@ -27,7 +27,7 @@ class Pagination {
   render() {
 
     const ul = document.createElement('ul');
-    ul.classList.add('tada-pagination', `pagination-${this._config.paginationShape}`);
+    ul.classList.add(CLASSNAMES.pagination, `pagination-${this._config.paginationShape}`);
 
     //TODO REFACTOR
     for(let i = 0 ; i < this._config.slideCount; i++) {
