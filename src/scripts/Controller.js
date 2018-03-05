@@ -54,7 +54,7 @@ export default class Controller {
       const { target } = e;
       if(target && (target.nodeName === "LI" || target.nodeName === "BUTTON")) {
         const page = target.getAttribute('data-slide-index')
-        this._navigator.moveTo(page);
+        this._container.moveTo(page);
         this._pagination.moveTo(page);
       }
     })
