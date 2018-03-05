@@ -22,19 +22,20 @@ img,
 video {
   display: block; }
 
-div[class^='slide-wrap'] {
-  position: relative;
-  overflow: hidden;
-  margin: auto 0; }
-  div[class^='slide-wrap'] .slide {
-    white-space: nowrap;
-    font-size: 0;
+.tada-wrapper {
+  white-space: nowrap;
+  font-size: 0;
+  overflow: hidden; }
+  .tada-wrapper .tada-container {
     transition: all .3s ease-out; }
-  div[class^='slide-wrap'] .slide-item {
+  .tada-wrapper .tada-slide {
     display: inline-block; }
-    div[class^='slide-wrap'] .slide-item img {
-      margin: auto; }
-  div[class^='slide-wrap'] .slide-navigator {
+    .tada-wrapper .tada-slide img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%; }
+  .tada-wrapper .tada-navigator {
     position: absolute;
     display: inline-block;
     margin: 20px;
@@ -44,24 +45,23 @@ div[class^='slide-wrap'] {
     text-indent: -999px;
     top: 50%;
     transform: translateY(-50%); }
-  div[class^='slide-wrap'] .navigator-left {
+  .tada-wrapper .tada-navigator-left {
     border-width: 5px 0 0 5px;
     transform: rotate(-45deg);
     left: 0.5em; }
-  div[class^='slide-wrap'] .navigator-right {
+  .tada-wrapper .tada-navigator-right {
     border-width: 5px 5px 0 0;
     transform: rotate(45deg);
     right: 0.5em; }
-  div[class^='slide-wrap'] .slide-indicator {
-    width: 400px;
-    margin: 50px auto 0;
+  .tada-wrapper .tada-pagination {
+    width: 100%;
     text-align: center;
     font-size: 0; }
-  div[class^='slide-wrap'] .slide-indicator-item {
+  .tada-wrapper .tada-pagination-item {
     display: inline-block; }
-    div[class^='slide-wrap'] .slide-indicator-item:not(:first-child) {
+    .tada-wrapper .tada-pagination-item:not(:first-child) {
       margin-left: 5px; }
-  div[class^='slide-wrap'] .slide-indicator-button {
+  .tada-wrapper .tada-pagination-button {
     display: inline-block;
     overflow: hidden;
     padding: 0;
@@ -71,27 +71,27 @@ div[class^='slide-wrap'] {
     background: #444;
     outline: 0;
     cursor: pointer; }
-    div[class^='slide-wrap'] .slide-indicator-button.active, div[class^='slide-wrap'] .slide-indicator-button:hover {
+    .tada-wrapper .tada-pagination-button.active, .tada-wrapper .tada-pagination-button:hover {
       background-color: skyblue; }
-  div[class^='slide-wrap'] .indicator-circle .slide-indicator-button {
+  .tada-wrapper .pagination-circle .tada-pagination-button {
     width: 20px;
     height: 20px;
     border-radius: 20px; }
-  div[class^='slide-wrap'] .indicator-line .slide-indicator-button {
+  .tada-wrapper .pagination-line .tada-pagination-button {
     width: 20px;
     height: 4px; }
-  div[class^='slide-wrap'] .indicator-line-padding .slide-indicator-button {
+  .tada-wrapper .pagination-line-padding .tada-pagination-button {
     background: none;
     padding: 10px 0; }
-    div[class^='slide-wrap'] .indicator-line-padding .slide-indicator-button:before {
+    .tada-wrapper .pagination-line-padding .tada-pagination-button:before {
       content: '';
       display: block;
       width: 20px;
       height: 4px;
       background: #444; }
-    div[class^='slide-wrap'] .indicator-line-padding .slide-indicator-button:hover:before {
+    .tada-wrapper .pagination-line-padding .tada-pagination-button:hover:before {
       background: skyblue; }
-  div[class^='slide-wrap'] .blind {
+  .tada-wrapper .blind {
     position: absolute;
     top: 0;
     left: 0; }
