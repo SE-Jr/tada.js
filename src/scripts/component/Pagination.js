@@ -3,7 +3,7 @@ import { CLASSNAMES } from '../Consts';
 
 class Pagination {
   constructor(config, state){
-    this._eventEmitter = new EventEmitter();
+    this.eventEmitter = new EventEmitter();
     this._config = config;
     this._state = state;
     this._tadaWrapper = config.wrapper
@@ -11,12 +11,12 @@ class Pagination {
 
   next() {
     this.moveTo(this._state.currentPage);
-    this._eventEmitter.emit('next');
+    this.eventEmitter.emit('next');
   }
 
   prev() {
     this.moveTo(this._state.currentPage);
-    this._eventEmitter.emit('prev');
+    this.eventEmitter.emit('prev');
   }
 
   moveTo(page) {
@@ -32,6 +32,7 @@ class Pagination {
       pagination.appendChild(paginationItem);
     }
     this._tadaWrapper.appendChild(pagination);
+    this.paginationElement = pagination;
   }
 
   _createPaginationWrapper() {

@@ -16,12 +16,12 @@ export default class Controller {
   }
 
   _renderContainer = () => {
-    this._container = new Container(this._config);
+    this._container = new Container(this._config, this._state);
     this._container.render();
   };
 
   _renderNavigator = () => {
-    this._navigator = new Navigator(this._config, this._state);
+    this._navigator = new Navigator(this._config);
     this._navigator.render();
   };
 
@@ -30,29 +30,30 @@ export default class Controller {
     this._pagination.render();
   };
 
-  //TODO 1 navigator/pagination을 매번 쿼리로 찾아와야 할까?
-  //TODO 2 navigator/pagination option false인 경우 구현 필요
   load() {
-    const prevButton = document.querySelector('.' + CLASSNAMES.leftNavigator);
-    const nextButton = document.querySelector('.' + CLASSNAMES.rightNavigator);
-    const pagination = document.querySelector('.' + CLASSNAMES.pagination);
+    this._bindNavigatorEvents();
+    this._bindPaginationEvents();
+  }
 
-    nextButton.addEventListener("click", () => {
+  _bindNavigatorEvents() {
+    this._navigator.nextNavigatorElement.addEventListener("click", () => {
       next(this._state);
-      this._navigator.next();
+      this._container.next();
       this._pagination.next();
-
     });
 
-    prevButton.addEventListener("click", () => {
+    this._navigator.prevNavigatorElement.addEventListener("click", () => {
       prev(this._state);
-      this._navigator.prev();
+      this._container.prev();
       this._pagination.prev();
     });
+  }
 
-    pagination.addEventListener("click", (e) => {
-      if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {
-        const page = e.target.getAttribute('data-slide-index')
+  _bindPaginationEvents() {
+    this._pagination.paginationElement.addEventListener("click", (e) => {
+      const { target } = e;
+      if(target && (target.nodeName === "LI" || target.nodeName === "BUTTON")) {
+        const page = target.getAttribute('data-slide-index')
         this._navigator.moveTo(page);
         this._pagination.moveTo(page);
       }
@@ -60,7 +61,7 @@ export default class Controller {
   }
 
   on = (label, callback) => {
-    this._navigator._evetnEmitter.addListener(label, callback);
-    this._pagination._evetnEmitter.addListener(label, callback);
+    this._navigator.eventEmitter.addListener(label, callback);
+    this._pagination.eventEmitter.addListener(label, callback);
   }
 }
