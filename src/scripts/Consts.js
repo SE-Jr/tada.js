@@ -1,15 +1,24 @@
 export const VERSION = 1.0;
-export const CAROUSEL = {
-  container: 'slide-wrap',
-  pagenationShape: 'circle'
+export const DEFAULT_OPTION = {
+  paginationShape: 'circle',
+  showNavigator: true,
+  showPagination: true
 }
 
-export const SLIDE_CLASSES = {
-  slides: 'slide',
-  slideItem: 'slide-item'
+export const CLASSNAMES = {
+  container: 'tada-container',
+  wrapper: 'tada-wrapper',
+  slideItem: 'tada-slide',
+  navigator: 'tada-navigator',
+  rightNavigator: 'tada-navigator-right',
+  leftNavigator: 'tada-navigator-left',
+  pagination: 'tada-pagination',
+  paginationItem: 'tada-pagination-item',
+  paginationButton: 'tada-pagination-button'
 }
 
 export default {
   VERSION,
-  CAROUSEL
+  DEFAULT_OPTION,
+  CLASSNAMES
 }
