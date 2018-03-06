@@ -2,6 +2,8 @@
 
 now in progress....
 
+[demo](https://se-jr.github.io/tada.js/)
+
 
 ## Installing
 ```
