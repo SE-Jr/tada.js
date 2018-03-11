@@ -2,8 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
-import { CLASSNAMES } from './Consts';
-import { next, prev } from "./util/Helper";
+import { next, prev } from './util/Helper';
 
 export default class Controller {
   constructor(config) {
@@ -36,13 +35,13 @@ export default class Controller {
   }
 
   _bindNavigatorEvents() {
-    this._navigator.nextNavigatorElement.addEventListener("click", () => {
+    this._navigator.nextNavigatorElement.addEventListener('click', () => {
       next(this._state);
       this._container.next();
       this._pagination.next();
     });
 
-    this._navigator.prevNavigatorElement.addEventListener("click", () => {
+    this._navigator.prevNavigatorElement.addEventListener('click', () => {
       prev(this._state);
       this._container.prev();
       this._pagination.prev();
@@ -50,14 +49,14 @@ export default class Controller {
   }
 
   _bindPaginationEvents() {
-    this._pagination.paginationElement.addEventListener("click", (e) => {
+    this._pagination.paginationElement.addEventListener('click', (e) => {
       const { target } = e;
-      if(target && (target.nodeName === "LI" || target.nodeName === "BUTTON")) {
-        const page = target.getAttribute('data-slide-index')
+      if (target && (target.nodeName === 'LI' || target.nodeName === 'BUTTON')) {
+        const page = target.getAttribute('data-slide-index');
         this._container.moveTo(page);
         this._pagination.moveTo(page);
       }
-    })
+    });
   }
 
   on = (label, callback) => {

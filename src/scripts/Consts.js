@@ -2,8 +2,8 @@ export const VERSION = 1.0;
 export const DEFAULT_OPTION = {
   paginationShape: 'circle',
   showNavigator: true,
-  showPagination: true
-}
+  showPagination: true,
+};
 
 export const CLASSNAMES = {
   container: 'tada-container',
@@ -14,11 +14,11 @@ export const CLASSNAMES = {
   leftNavigator: 'tada-navigator-left',
   pagination: 'tada-pagination',
   paginationItem: 'tada-pagination-item',
-  paginationButton: 'tada-pagination-button'
-}
+  paginationButton: 'tada-pagination-button',
+};
 
 export default {
   VERSION,
   DEFAULT_OPTION,
-  CLASSNAMES
-}
+  CLASSNAMES,
+};
