@@ -1,7 +1,6 @@
-# :tada: :carousel_horse:  Simple Carousel Library tada
+# :tada: :carousel_horse:  Simple Carousel Library tada [![license](https://img.shields.io/github/license/desktop/desktop.svg?style=flat-square)](https://github.com/desktop/desktop/blob/master/LICENSE) [![CircleCI](https://circleci.com/gh/SE-Jr/tada.js/tree/develop.svg?style=svg)](https://circleci.com/gh/SE-Jr/tada.js/tree/develop)
 
 now in progress....
-
 
 ## Installing
 ```
