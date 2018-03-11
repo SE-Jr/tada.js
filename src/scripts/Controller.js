@@ -2,8 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
-
-import { next, prev } from "./util/Helper";
+import { next, prev } from './util/Helper';
 
 export default class Controller {
   constructor(config) {
@@ -12,55 +11,56 @@ export default class Controller {
 
     this._renderContainer();
     this._renderNavigator();
-    this._renderIndicator();
+    this._renderPagination();
   }
 
   _renderContainer = () => {
-    this._container = new Container(this._config);
+    this._container = new Container(this._config, this._state);
     this._container.render();
   };
 
   _renderNavigator = () => {
-    this._navigator = new Navigator(this._config, this._state);
+    this._navigator = new Navigator(this._config);
     this._navigator.render();
   };
 
-  _renderIndicator = () => {
+  _renderPagination = () => {
     this._pagination = new Pagination(this._config, this._state);
     this._pagination.render();
   };
 
   load() {
-    const prevButton = document.querySelector('.navigator-left');
-    const nextButton = document.querySelector('.navigator-right');
+    this._bindNavigatorEvents();
+    this._bindPaginationEvents();
+  }
 
-    nextButton.addEventListener("click", () => {
+  _bindNavigatorEvents() {
+    this._navigator.nextNavigatorElement.addEventListener('click', () => {
       next(this._state);
-      this._navigator.next();
+      this._container.next();
       this._pagination.next();
-
     });
 
-    prevButton.addEventListener("click", () => {
+    this._navigator.prevNavigatorElement.addEventListener('click', () => {
       prev(this._state);
-      this._navigator.prev();
+      this._container.prev();
       this._pagination.prev();
     });
+  }
 
-
-    const indicator = document.querySelector('.slide-indicator');
-
-    indicator.addEventListener("click", (e) => {
-      if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {
-        const page = e.target.getAttribute('data-slide-index')
-        this._navigator.moveTo(page);
+  _bindPaginationEvents() {
+    this._pagination.paginationElement.addEventListener('click', (e) => {
+      const { target } = e;
+      if (target && (target.nodeName === 'LI' || target.nodeName === 'BUTTON')) {
+        const page = target.getAttribute('data-slide-index');
+        this._container.moveTo(page);
         this._pagination.moveTo(page);
       }
-    })
+    });
   }
 
   on = (label, callback) => {
-    this._navigator._evetnEmitter.addListener(label, callback);
-    this._pagination._evetnEmitter.addListener(label, callback);
+    this._navigator.eventEmitter.addListener(label, callback);
+    this._pagination.eventEmitter.addListener(label, callback);
   }
 }
