@@ -4,6 +4,7 @@
   white-space: nowrap;
   font-size: 0;
   overflow: hidden;
+  position: relative;
 
   .tada-container{
     transition: all .3s ease-out;
@@ -26,10 +27,17 @@
     margin: 20px;
     width: 30px;
     height: 30px;
-    border: solid darkgray;
+    border: solid #fff;
     text-indent: -999px;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
+
+    &.disabled {
+      border-color: #a9a9a9;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 
   .tada-navigator-left {
@@ -71,6 +79,7 @@
     background: #444;
     outline: 0;
     cursor: pointer;
+    margin-top: 20px;
 
     &.active, &:hover {
       background-color: skyblue;

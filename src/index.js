@@ -9,7 +9,6 @@ class Tada {
   }
 
   _createConfig = (option) => {
-    //TODO 여러개 셀렉터 대응 필요
     const wrapper = document.querySelector(option.selector);
     return new Config(option, wrapper);
   };

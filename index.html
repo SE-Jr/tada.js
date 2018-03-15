@@ -6,7 +6,6 @@
     .tada-class {
       width: 800px;
       height: 600px;
-      position: relative;/*or absolute*/
     }
   </style>
 </head>
@@ -27,8 +26,9 @@
     (function () {
       const tadaWithClass = new tada({
         selector: ".tada-class",
-        showNavigator: true,
-        showPagination: true
+        navigator: true,
+        pagination: true,
+        paginationShape: 'line'
       });
     }());
   </script>

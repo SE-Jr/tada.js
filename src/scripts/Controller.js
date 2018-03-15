@@ -2,7 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
-import { next, prev } from './util/Helper';
+import { next, prev, canMove } from './util/Helper';
 
 export default class Controller {
   constructor(config) {
@@ -10,8 +10,12 @@ export default class Controller {
     this._state = new State();
 
     this._renderContainer();
-    this._renderNavigator();
-    this._renderPagination();
+    if (this._config.showNavigator) {
+      this._renderNavigator();
+    }
+    if (this._config.showPagination) {
+      this._renderPagination();
+    }
   }
 
   _renderContainer = () => {
@@ -30,26 +34,40 @@ export default class Controller {
   };
 
   load() {
-    this._bindNavigatorEvents();
-    this._bindPaginationEvents();
+    if (this._config.showNavigator) {
+      this._bindNavigatorEvents();
+    }
+
+    if (this._config.showPagination) {
+      this._bindPaginationEvents();
+    }
   }
 
   _bindNavigatorEvents() {
-    this._navigator.nextNavigatorElement.addEventListener('click', () => {
-      next(this._state);
-      this._container.next();
-      this._pagination.next();
-    });
+    [...this._navigator.elem].forEach(elem => elem.addEventListener('click', (e) => {
+      const { target } = e;
+      const direction = target.getAttribute('data-direction');
+      if (direction === 'right') {
+        next(this._state);
+      }
 
-    this._navigator.prevNavigatorElement.addEventListener('click', () => {
-      prev(this._state);
-      this._container.prev();
-      this._pagination.prev();
-    });
+      if (direction === 'left') {
+        prev(this._state);
+      }
+
+      const status = canMove(this._state, this._config);
+      this._container.moveTo();
+      if (this._config.showNavigator) {
+        this._navigator.toggle(direction, status);
+      }
+      if (this._config.showPagination) {
+        this._pagination.move(direction);
+      }
+    }));
   }
 
   _bindPaginationEvents() {
-    this._pagination.paginationElement.addEventListener('click', (e) => {
+    this._pagination.elem.addEventListener('click', (e) => {
       const { target } = e;
       if (target && (target.nodeName === 'LI' || target.nodeName === 'BUTTON')) {
         const page = target.getAttribute('data-slide-index');
@@ -60,7 +78,12 @@ export default class Controller {
   }
 
   on = (label, callback) => {
-    this._navigator.eventEmitter.addListener(label, callback);
-    this._pagination.eventEmitter.addListener(label, callback);
+    if (this._config.showNavigator) {
+      this._navigator.eventEmitter.addListener(label, callback);
+    }
+
+    if (this._config.showPagination) {
+      this._pagination.eventEmitter.addListener(label, callback);
+    }
   }
 }
