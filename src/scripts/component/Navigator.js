@@ -1,26 +1,31 @@
 import EventEmitter from '../EventEmitter';
 import { CLASSNAMES } from '../Consts';
+import { canMove } from '../util/Helper';
+
 
 class Navigator {
-  constructor(config){
+  constructor(config, state) {
     this.eventEmitter = new EventEmitter();
     this._config = config;
+    this._state = state;
     this._selector = config.selector;
     this._containerWidth = config.containerWidth;
     this._tadaWrapper = config.wrapper;
   }
 
-  toggle(direction, status) {
-    [...this.elem].forEach(e => e.classList.remove('disabled'));
+  toggle() {
+    const { direction, on } = canMove(this._state, this._config);
+    [...this.elem].forEach(e => e.disabled = false);
 
-    if (!status) {
-      this._tadaWrapper.querySelector(`a[data-direction="${direction}"]`).classList.add('disabled');
+    if (!on) {
+      this._tadaWrapper.querySelector(`button[data-direction="${direction}"]`).disabled = !on;
     }
+
   }
 
   render() {
-    const next = document.createElement('a');
-    const prev = document.createElement('a');
+    const next = document.createElement('button');
+    const prev = document.createElement('button');
 
     next.classList.add(CLASSNAMES.navigator, CLASSNAMES.rightNavigator);
     prev.classList.add(CLASSNAMES.navigator, CLASSNAMES.leftNavigator);

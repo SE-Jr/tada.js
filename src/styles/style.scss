@@ -32,10 +32,11 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
 
-    &.disabled {
+    &:disabled {
       border-color: #a9a9a9;
-      pointer-events: none;
       cursor: default;
     }
   }

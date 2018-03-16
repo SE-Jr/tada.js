@@ -2,7 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
-import { next, prev, canMove } from './util/Helper';
+import { next, prev, updateCurrentPage } from './util/Helper';
 
 export default class Controller {
   constructor(config) {
@@ -24,7 +24,7 @@ export default class Controller {
   };
 
   _renderNavigator = () => {
-    this._navigator = new Navigator(this._config);
+    this._navigator = new Navigator(this._config, this._state);
     this._navigator.render();
   };
 
@@ -55,14 +55,14 @@ export default class Controller {
         prev(this._state);
       }
 
-      const status = canMove(this._state, this._config);
-      this._container.moveTo();
       if (this._config.showNavigator) {
-        this._navigator.toggle(direction, status);
+        this._navigator.toggle();
       }
       if (this._config.showPagination) {
         this._pagination.move(direction);
       }
+
+      this._container.moveTo();
     }));
   }
 
@@ -71,8 +71,12 @@ export default class Controller {
       const { target } = e;
       if (target && (target.nodeName === 'LI' || target.nodeName === 'BUTTON')) {
         const page = target.getAttribute('data-slide-index');
+        updateCurrentPage(this._state, page);
         this._container.moveTo(page);
         this._pagination.moveTo(page);
+      }
+      if (this._config.showNavigator) {
+        this._navigator.toggle();
       }
     });
   }

@@ -13,17 +13,29 @@ export function next(model) {
   model.currentPage = model.prevPage + 1;
 }
 
+export function updateCurrentPage(model, page) {
+  model.currentPage = page;
+}
+
 export function canMove(model, config) {
   if (model.currentPage >= config.slideCount - 1) {
     model.currentPage = config.slideCount - 1;
-    return false;
+    return {
+      direction: 'right',
+      on: false,
+    };
   }
 
   if (model.currentPage <= 0) {
     model.currentPage = 0;
-    return false;
+    return {
+      direction: 'left',
+      on: false,
+    };
   }
-  return true;
+  return {
+    on: true,
+  };
 }
 
 export function prev(model) {
