@@ -1,4 +1,6 @@
 import { CLASSNAMES } from '../Consts';
+import { canMove } from '../util/Helper';
+
 
 export default class Container {
   constructor(config, state) {
@@ -6,18 +8,6 @@ export default class Container {
     this._state = state;
     this._containerWidth = config.containerWidth;
     this.containerElement = config.container;
-  }
-
-  /** TODO
-  /* 이름은 next()인데 실제로 페이지 수를 변경하는 건 util/Helper에서 끝난 상태라
-  /* next/prev가 사실상 같은 내용이 되어 버렸...
-  **/
-  next() {
-    this.moveTo(this._state.currentPage);
-  }
-
-  prev() {
-    this.moveTo(this._state.currentPage);
   }
 
   render() {
@@ -39,7 +29,7 @@ export default class Container {
     });
   }
 
-  moveTo(page) {
+  moveTo(page = this._state.currentPage) {
     this.containerElement.style.transform = `translateX(${-1 * page * this._containerWidth}px)`;
   }
 }
