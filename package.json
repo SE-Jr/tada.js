@@ -1,5 +1,5 @@
 {
-  "name": "tada.js",
+  "name": "tada-carousel.js",
   "version": "0.0.1",
   "description": "Simple Carousel Library",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SE-Jr/Carousel.js.git"
+    "url": "git+https://github.com/SE-Jr/tada-carousel.js.git"
   },
   "author": "ZAGDANG",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SE-Jr/tada.js/issues"
+    "url": "https://github.com/SE-Jr/tada-carousel.js/issues"
   },
-  "homepage": "https://github.com/SE-Jr/tada.js#readme",
+  "homepage": "https://github.com/SE-Jr/tada-carousel.js#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
