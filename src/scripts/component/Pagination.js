@@ -48,7 +48,7 @@ class Pagination {
     return paginationItem;
   }
 
-  static _createPaginationButton(index) {
+  _createPaginationButton(index) {
     const paginationButton = document.createElement('button');
     paginationButton.classList.add(CLASSNAMES.paginationButton);
     paginationButton.setAttribute('data-slide-index', `${index}`);
@@ -56,7 +56,7 @@ class Pagination {
     return paginationButton;
   }
 
-  static _setCurrentActivatedButton(index, button) {
+  _setCurrentActivatedButton(index, button) {
     if (index === 0) {
       button.classList.add('active');
     }

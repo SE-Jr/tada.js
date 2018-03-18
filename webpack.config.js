@@ -11,9 +11,9 @@ module.exports = {
     filename: 'tada.min.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'Tada',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    libraryExport: 'default'
   },
-  devtool: "inline-source-map",
   module: {
     rules: [
       {
