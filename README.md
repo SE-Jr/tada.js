@@ -4,9 +4,9 @@ Simple Carousel Library
 
 ## Installing
 
-Setup Markup
-```
-<div>
+Setup the html and add either class name or id name in the markup
+```html
+<div class="carousel">
   <ul>
     <li><img /></li>
     <li><img /></li>
@@ -15,47 +15,50 @@ Setup Markup
 </div>
 ```
 
-option 1: when using a module bundler like Webpack
+OPTION 1: when using a module bundler like Webpack
 
-```
-$ npm install tada
-```
-
-```
-import Tada from 'tada-carousel';
-new Tada();
+```shell
+$ npm install ta-dah
 ```
 
-option 2: when injecting the minified script into your project.
+```javascript
+import Tada from 'ta-dah';
 
+new Tada({
+  selector: ".carousel"
+});
 ```
+
+OPTION 2: when injecting the minified script into your project.
+
+```javascript
 <script src="tada.min.js"></script>
 <script>
-   var carouesl = new Tada({
-     selector: ".tada-class"
+   const carousel = new Tada({
+     selector: ".carousel"
    });
 </script>
 
 ```
 
-## Option
+## Configuration
 In this carousel library, there are few options and events.
 
 ### Settings
 | option          | desc | default |
 |-----------------|------|---------|
-| navigator       |      | false   |
-| pagination      |      | false   |
-| paginationShape |      | circle  |
+| navigator       | can show navigator | false   |
+| pagination      | can show pagination | false   |
+| paginationShape | can set two types of shape: circle, bar | circle  |
 
 For example,
-```
+```javascript
 <script>
-   var carouesl = new Tada({
+   const carousel = new Tada({
      selector: ".tada-class",
      navigator: true,
      pagination: true,
-     paginationShape: line
+     paginationShape: bar
    });
 </script>
 ```
@@ -64,25 +67,25 @@ For example,
 
 | event | desc |
 |-------|------|
-| right |      |
-| left  |      |
+| right |  the event when clicking right navigator     |
+| left  |  the event when clicking left navigator    |
 
 For example,
 
-```
+```javascript
 <script>
-   var carouesl = new Tada({
-     selector: ".tada-class"
+   const carousel = new Tada({
+     selector: ".carousel"
    });
 
    carousel.on("right", function(e) {
-     console.log(e);
+     console.log("right");
    });
 </script>
 ```
 
 ## Versioning
-0.0.3
+0.0.4
 
 ## Special Thanks
 @hyeonmi @CoderK
