@@ -2,7 +2,7 @@ import './styles/style.scss';
 import Controller from './scripts/Controller';
 import Config from './scripts/Config';
 
-class Tada {
+export default class Tada {
   constructor(option) {
     const config = this._createConfig(option);
     this._loadController(config);
@@ -22,5 +22,3 @@ class Tada {
     this.controller.on(label, callback);
   };
 }
-
-window.tada = Tada;

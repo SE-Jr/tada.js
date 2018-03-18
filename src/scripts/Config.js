@@ -1,7 +1,3 @@
-/*
- * - container/wrapper가 dom이 아니라 그냥 classname? dom으로 할 지 classname인지
- * - || false 같은 기본값 정의는 const DEFAULT OPTION으로 이동
-*/
 import { DEFAULT_OPTION } from './Consts';
 
 class Config {
@@ -13,7 +9,6 @@ class Config {
     const [first] = wrapper.children;
     this._container = first;
     this._slideCount = this._container.children.length;
-
     this._selector = _option.selector;
     this._paginationShape = _option.paginationShape;
     this._showNavigator = _option.navigator;

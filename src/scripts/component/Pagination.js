@@ -22,7 +22,7 @@ class Pagination {
 
   render() {
     const pagination = this._createPaginationWrapper();
-    for(let i = 0 ; i < this._config.slideCount; i++) {
+    for (let i = 0; i < this._config.slideCount; i += 1) {
       const paginationItem = this._createPaginationItem(i);
       pagination.appendChild(paginationItem);
     }
