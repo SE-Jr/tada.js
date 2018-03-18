@@ -1,6 +1,6 @@
 {
-  "name": "tada-carousel.js",
-  "version": "0.0.1",
+  "name": "tada-carousel",
+  "version": "0.0.2",
   "description": "Simple Carousel Library",
   "main": "index.js",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SE-Jr/tada-carousel.js.git"
+    "url": "git+https://github.com/SE-Jr/tada.js.git"
   },
   "author": "ZAGDANG",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SE-Jr/tada-carousel.js/issues"
+    "url": "https://github.com/SE-Jr/tada.js/issues"
   },
-  "homepage": "https://github.com/SE-Jr/tada-carousel.js#readme",
+  "homepage": "https://github.com/SE-Jr/tada.js#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
@@ -42,6 +42,7 @@
     "mocha": "^4.0.1",
     "node-sass": "^4.6.0",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.1.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.7"
