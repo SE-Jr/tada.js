@@ -2,8 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
-
-import { next, prev } from "./util/Helper";
+import { right, left, updateCurrentPage } from './util/Helper';
 
 export default class Controller {
   constructor(config) {
@@ -11,12 +10,16 @@ export default class Controller {
     this._state = new State();
 
     this._renderContainer();
-    this._renderNavigator();
-    this._renderIndicator();
+    if (this._config.showNavigator) {
+      this._renderNavigator();
+    }
+    if (this._config.showPagination) {
+      this._renderPagination();
+    }
   }
 
   _renderContainer = () => {
-    this._container = new Container(this._config);
+    this._container = new Container(this._config, this._state);
     this._container.render();
   };
 
@@ -25,42 +28,66 @@ export default class Controller {
     this._navigator.render();
   };
 
-  _renderIndicator = () => {
+  _renderPagination = () => {
     this._pagination = new Pagination(this._config, this._state);
     this._pagination.render();
   };
 
   load() {
-    const prevButton = document.querySelector('.navigator-left');
-    const nextButton = document.querySelector('.navigator-right');
+    if (this._config.showNavigator) {
+      this._bindNavigatorEvents();
+    }
 
-    nextButton.addEventListener("click", () => {
-      next(this._state);
-      this._navigator.next();
-      this._pagination.next();
+    if (this._config.showPagination) {
+      this._bindPaginationEvents();
+    }
+  }
 
-    });
+  _bindNavigatorEvents() {
+    [...this._navigator.elem].forEach(elem => elem.addEventListener('click', (e) => {
+      const { target } = e;
+      const direction = target.getAttribute('data-direction');
+      if (direction === 'right') {
+        right(this._state);
+      }
 
-    prevButton.addEventListener("click", () => {
-      prev(this._state);
-      this._navigator.prev();
-      this._pagination.prev();
-    });
+      if (direction === 'left') {
+        left(this._state);
+      }
 
+      if (this._config.showNavigator) {
+        this._navigator.toggle();
+      }
+      if (this._config.showPagination) {
+        this._pagination.move(direction);
+      }
 
-    const indicator = document.querySelector('.slide-indicator');
+      this._container.moveTo();
+    }));
+  }
 
-    indicator.addEventListener("click", (e) => {
-      if(e.target && (e.target.nodeName === "LI" || e.target.nodeName === "BUTTON")) {
-        const page = e.target.getAttribute('data-slide-index')
-        this._navigator.moveTo(page);
+  _bindPaginationEvents() {
+    this._pagination.elem.addEventListener('click', (e) => {
+      const { target } = e;
+      if (target && (target.nodeName === 'LI' || target.nodeName === 'BUTTON')) {
+        const page = target.getAttribute('data-slide-index');
+        updateCurrentPage(this._state, page);
+        this._container.moveTo(page);
         this._pagination.moveTo(page);
       }
-    })
+      if (this._config.showNavigator) {
+        this._navigator.toggle();
+      }
+    });
   }
 
   on = (label, callback) => {
-    this._navigator._evetnEmitter.addListener(label, callback);
-    this._pagination._evetnEmitter.addListener(label, callback);
+    if (this._config.showNavigator) {
+      this._navigator.eventEmitter.addListener(label, callback);
+    }
+
+    if (this._config.showPagination) {
+      this._pagination.eventEmitter.addListener(label, callback);
+    }
   }
 }

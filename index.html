@@ -1,46 +1,37 @@
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" type="text/css" href="./dist/carousel.bundle.css">
 </head>
 <body>
-  <ul class="slide-projector-class">
-    <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=sample" /></li>
-    <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=sample" /></li>
-  </ul>
-
-  <!--<ul id="slide-projector-id">-->
-    <!--<li><img src="https://placeimg.com/640/480/animals"></li>-->
-    <!--<li><img src="https://placeimg.com/640/480/arch"></li>-->
-    <!--<li><img src="https://placeimg.com/640/480/nature"></li>-->
-    <!--<li><img src="https://placeimg.com/640/480/people"></li>-->
-    <!--<li><img src="https://placeimg.com/640/480/tech"></li>-->
-  <!--</ul>-->
-
-  <script src="./dist/carousel.min.js"></script>
+  <div style="width: 800px">
+    <!-- initialize with class selector -->
+    <div class="tada-class">
+      <ul>
+        <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=1" alt="slide-image-01"/></li>
+        <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=2" alt="slide-image-02"/></li>
+        <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=3" alt="slide-image-03"/></li>
+        <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=4" alt="slide-image-04"/></li>
+        <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=5" alt="slide-image-05"/></li>
+      </ul>
+    </div>
+  </div>
+  <script src="./dist/tada.min.js"></script>
   <script>
-    /*
-    * initialize carousel library
-    * projector - container - slide
-    */
     (function () {
-      // using class selector
-      const slideProject = new SP({
-        selector: '.slide-projector-class',
-        showNavigator: true,
-        showPagination: true
+      var tadaWithClass = new Tada({
+        selector: ".tada-class",
+        navigator: true,
+        pagination: true,
+        paginationShape: "bar"
       });
 
-//      slideProject.on("next", function(){
-//          console.log("next$$$$");
-//      });
-      // using id selector
-//      new SP({
-//        selector: '#slide-projector-id'
-//      });
+      tadaWithClass.on("right", function () {
+        console.log("right")
+      });
+
+      tadaWithClass.on("left", function () {
+        console.log("left")
+      });
     }());
   </script>
 </body>

@@ -1,10 +1,19 @@
+import { DEFAULT_OPTION } from './Consts';
 
 class Config {
-  constructor(option) {
-    this._container = option.container;
-    this._pagenationShape = option.pagenationShape;
-    this._showNavigator = option.showNavigator || false;
-    this._showPagination = option.showPagination || false;
+  constructor(option, wrapper) {
+    const _option = Object.assign({}, DEFAULT_OPTION, option);
+
+    this._wrapper = wrapper;
+    this._containerWidth = wrapper.clientWidth;
+    const [first] = wrapper.children;
+    this._container = first;
+    this._slideCount = this._container.children.length;
+    this._selector = _option.selector;
+    this._paginationShape = _option.paginationShape;
+    this._showNavigator = _option.navigator;
+    this._showPagination = _option.pagination;
+    this._infinite = false;
   }
 
   set container(container) {
@@ -15,27 +24,27 @@ class Config {
     return this._container;
   }
 
-  set indicatorShape(shape) {
-    this._pagenationShape = shape;
+  set paginationShape(shape) {
+    this._paginationShape = shape;
   }
 
-  get indicatorShape() {
-    return this._pagenationShape;
+  get paginationShape() {
+    return this._paginationShape;
   }
 
-  set navigator(status) {
+  set showNavigator(status) {
     this._showNavigator = status;
   }
 
-  get navigator() {
+  get showNavigator() {
     return this._showNavigator;
   }
 
-  set pagination(status) {
+  set showPagination(status) {
     this._showPagination = status;
   }
 
-  get pagination() {
+  get showPagination() {
     return this._showPagination;
   }
 
@@ -61,6 +70,10 @@ class Config {
 
   get slideCount() {
     return this._slideCount;
+  }
+
+  get infinite() {
+    return this._infinite;
   }
 
   set wrapper(wrapper) {
