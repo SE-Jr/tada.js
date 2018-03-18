@@ -22,7 +22,7 @@ class Pagination {
 
   render() {
     const pagination = this._createPaginationWrapper();
-    for(let i = 0 ; i < this._config.slideCount; i++) {
+    for (let i = 0; i < this._config.slideCount; i += 1) {
       const paginationItem = this._createPaginationItem(i);
       pagination.appendChild(paginationItem);
     }
@@ -48,7 +48,7 @@ class Pagination {
     return paginationItem;
   }
 
-  _createPaginationButton(index) {
+  static _createPaginationButton(index) {
     const paginationButton = document.createElement('button');
     paginationButton.classList.add(CLASSNAMES.paginationButton);
     paginationButton.setAttribute('data-slide-index', `${index}`);
@@ -56,7 +56,7 @@ class Pagination {
     return paginationButton;
   }
 
-  _setCurrentActivatedButton(index, button) {
+  static _setCurrentActivatedButton(index, button) {
     if (index === 0) {
       button.classList.add('active');
     }

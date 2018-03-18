@@ -9,7 +9,9 @@ export default class Container {
   }
 
   render() {
-    const { wrapper, container, containerWidth, slideCount } = this._config;
+    const {
+      wrapper, container, containerWidth, slideCount,
+    } = this._config;
     const slideWidth = `${100 / slideCount}%`;
     const slides = container.children;
 
@@ -23,7 +25,6 @@ export default class Container {
       slideItem.classList.add(CLASSNAMES.slideItem);
       slideItem.style.width = slideWidth;
     });
-
   }
 
   moveTo(page = this._state.currentPage) {
