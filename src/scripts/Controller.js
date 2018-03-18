@@ -2,7 +2,7 @@ import Navigator from './component/Navigator';
 import Pagination from './component/Pagination';
 import Container from './component/Container';
 import State from './State';
-import { next, prev, updateCurrentPage } from './util/Helper';
+import { right, left, updateCurrentPage } from './util/Helper';
 
 export default class Controller {
   constructor(config) {
@@ -48,11 +48,11 @@ export default class Controller {
       const { target } = e;
       const direction = target.getAttribute('data-direction');
       if (direction === 'right') {
-        next(this._state);
+        right(this._state);
       }
 
       if (direction === 'left') {
-        prev(this._state);
+        left(this._state);
       }
 
       if (this._config.showNavigator) {

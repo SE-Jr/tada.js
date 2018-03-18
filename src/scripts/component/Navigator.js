@@ -20,7 +20,6 @@ class Navigator {
     if (!on) {
       this._tadaWrapper.querySelector(`button[data-direction="${direction}"]`).disabled = !on;
     }
-
   }
 
   render() {

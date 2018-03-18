@@ -1,33 +1,36 @@
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <style>
-    .tada-class {
-      width: 800px;
-      height: 600px;
-    }
-  </style>
 </head>
 <body>
-  <!-- initialize with class selector -->
-  <div class="tada-class">
-    <ul>
-      <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=1" alt="slide-image-01"/></li>
-      <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=2" alt="slide-image-02"/></li>
-      <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=3" alt="slide-image-03"/></li>
-      <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=4" alt="slide-image-04"/></li>
-      <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=5" alt="slide-image-05"/></li>
-    </ul>
+  <div style="width: 800px">
+    <!-- initialize with class selector -->
+    <div class="tada-class">
+      <ul>
+        <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=1" alt="slide-image-01"/></li>
+        <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=2" alt="slide-image-02"/></li>
+        <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=3" alt="slide-image-03"/></li>
+        <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=4" alt="slide-image-04"/></li>
+        <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=5" alt="slide-image-05"/></li>
+      </ul>
+    </div>
   </div>
-
   <script src="./dist/tada.min.js"></script>
   <script>
     (function () {
-      const tadaWithClass = new tada({
+      const tadaWithClass = new Tada({
         selector: ".tada-class",
         navigator: true,
         pagination: true,
-        paginationShape: 'line'
+        paginationShape: "line"
+      });
+
+      tadaWithClass.on("right", function () {
+        console.log("right")
+      });
+
+      tadaWithClass.on("left", function () {
+        console.log("left")
       });
     }());
   </script>

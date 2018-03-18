@@ -23,4 +23,4 @@ class Tada {
   };
 }
 
-window.tada = Tada;
+window.Tada = Tada;

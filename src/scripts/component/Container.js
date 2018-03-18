@@ -1,6 +1,4 @@
 import { CLASSNAMES } from '../Consts';
-import { canMove } from '../util/Helper';
-
 
 export default class Container {
   constructor(config, state) {
@@ -15,11 +13,9 @@ export default class Container {
     const slideWidth = `${100 / slideCount}%`;
     const slides = container.children;
 
-    //set tada-wrapper
     wrapper.classList.add(CLASSNAMES.wrapper);
     wrapper.style.width = containerWidth;
 
-    //set tada-container
     container.classList.add(CLASSNAMES.container);
     container.style.width = containerWidth * slideCount;
 
@@ -27,6 +23,7 @@ export default class Container {
       slideItem.classList.add(CLASSNAMES.slideItem);
       slideItem.style.width = slideWidth;
     });
+
   }
 
   moveTo(page = this._state.currentPage) {
