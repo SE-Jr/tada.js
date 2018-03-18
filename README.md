@@ -1,14 +1,10 @@
-# :tada: :carousel_horse:  Simple Carousel Library tada [![license](https://img.shields.io/github/license/desktop/desktop.svg?style=flat-square)](https://github.com/desktop/desktop/blob/master/LICENSE) [![CircleCI](https://circleci.com/gh/SE-Jr/tada.js/tree/develop.svg?style=svg)](https://circleci.com/gh/SE-Jr/tada.js/tree/develop)
+# :tada: :carousel_horse: tada [![license](https://img.shields.io/github/license/desktop/desktop.svg?style=flat-square)](https://github.com/desktop/desktop/blob/master/LICENSE) [![CircleCI](https://circleci.com/gh/SE-Jr/tada.js/tree/develop.svg?style=svg)](https://circleci.com/gh/SE-Jr/tada.js/tree/develop)
 
-now in progress....
+Simple Carousel Library
 
 ## Installing
-```
-$ npm install tada
-```
 
-## Data Attribute Settings
-
+Setup Markup
 ```
 <div>
   <ul>
@@ -19,28 +15,74 @@ $ npm install tada
 </div>
 ```
 
+option 1: when using a module bundler like Webpack
+
 ```
-const tadaClass = new tada({
-    selector: ".tada-class",
-    showNavigator: true,
-    showPagination: true
-})
+$ npm install tada
+```
+
+```
+import Tada from 'tada-carousel';
+new Tada();
+```
+
+option 2: when injecting the minified script into your project.
+
+```
+<script src="tada.min.js"></script>
+<script>
+   var carouesl = new Tada({
+     selector: ".tada-class"
+   });
+</script>
+
 ```
 
 ## Option
+In this carousel library, there are few options and events.
 
 ### Settings
+| option          | desc | default |
+|-----------------|------|---------|
+| navigator       |      | false   |
+| pagination      |      | false   |
+| paginationShape |      | circle  |
+
+For example,
+```
+<script>
+   var carouesl = new Tada({
+     selector: ".tada-class",
+     navigator: true,
+     pagination: true,
+     paginationShape: line
+   });
+</script>
+```
 
 ### Events
 
+| event | desc |
+|-------|------|
+| right |      |
+| left  |      |
 
-## Running the tests
+For example,
 
-## Deployment
+```
+<script>
+   var carouesl = new Tada({
+     selector: ".tada-class"
+   });
 
+   carousel.on("right", function(e) {
+     console.log(e);
+   });
+</script>
+```
 
 ## Versioning
-0.0.1
+0.0.3
 
 ## Special Thanks
 @hyeonmi @CoderK
