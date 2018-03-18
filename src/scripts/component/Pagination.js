@@ -2,37 +2,32 @@ import EventEmitter from '../EventEmitter';
 import { CLASSNAMES } from '../Consts';
 
 class Pagination {
-  constructor(config, state){
+  constructor(config, state) {
     this.eventEmitter = new EventEmitter();
     this._config = config;
     this._state = state;
-    this._tadaWrapper = config.wrapper
+    this._tadaWrapper = config.wrapper;
   }
 
-  next() {
+  move(direction) {
     this.moveTo(this._state.currentPage);
-    this.eventEmitter.emit('next');
-  }
-
-  prev() {
-    this.moveTo(this._state.currentPage);
-    this.eventEmitter.emit('prev');
+    this.eventEmitter.emit(direction);
   }
 
   moveTo(page) {
-    document.querySelector(`.${CLASSNAMES.paginationButton}.active`).classList.remove('active');
-    const paginationButton = document.querySelector(`button[data-slide-index="${page}"]`);
+    this._tadaWrapper.querySelector(`.${CLASSNAMES.paginationButton}.active`).classList.remove('active');
+    const paginationButton = this._tadaWrapper.querySelector(`button[data-slide-index="${page}"]`);
     paginationButton.classList.add('active');
   }
 
   render() {
     const pagination = this._createPaginationWrapper();
-    for(let i = 0 ; i < this._config.slideCount; i++) {
+    for (let i = 0; i < this._config.slideCount; i += 1) {
       const paginationItem = this._createPaginationItem(i);
       pagination.appendChild(paginationItem);
     }
     this._tadaWrapper.appendChild(pagination);
-    this.paginationElement = pagination;
+    this.elem = pagination;
   }
 
   _createPaginationWrapper() {
@@ -68,4 +63,4 @@ class Pagination {
   }
 }
 
-export default Pagination
+export default Pagination;

@@ -1,26 +1,28 @@
 {
-  "name": "carousel.js",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "ta-dah",
+  "version": "0.0.4",
+  "description": "Simple Carousel Library",
+  "main": "dist/tada.min.js",
+  "module": "dist/tada.min.js",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack",
     "lint": "eslint src/**/*.js",
-    "start": "webpack-dev-server --hot --inline",
+    "start": "webpack-dev-server --hot --watch-content-base",
     "test": "node_modules/karma/bin/karma start ./karma.conf.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SE-Jr/Carousel.js.git"
+    "url": "git+https://github.com/SE-Jr/tada.js.git"
   },
-  "author": "",
+  "author": "ZAGDANG",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SE-Jr/Carousel.js/issues"
+    "url": "https://github.com/SE-Jr/tada.js/issues"
   },
-  "homepage": "https://github.com/SE-Jr/Carousel.js#readme",
+  "homepage": "https://github.com/SE-Jr/tada.js#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
@@ -28,6 +30,7 @@
     "css-loader": "^0.28.7",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.8.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "karma": "^1.7.1",
@@ -41,6 +44,7 @@
     "mocha": "^4.0.1",
     "node-sass": "^4.6.0",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.1.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.7"

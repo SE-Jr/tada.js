@@ -2,14 +2,13 @@ import './styles/style.scss';
 import Controller from './scripts/Controller';
 import Config from './scripts/Config';
 
-class Tada {
+export default class Tada {
   constructor(option) {
     const config = this._createConfig(option);
     this._loadController(config);
   }
 
   _createConfig = (option) => {
-    //TODO 여러개 셀렉터 대응 필요
     const wrapper = document.querySelector(option.selector);
     return new Config(option, wrapper);
   };
@@ -23,5 +22,3 @@ class Tada {
     this.controller.on(label, callback);
   };
 }
-
-window.tada = Tada;

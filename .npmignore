@@ -1,0 +1,8 @@
+.gitignore
+package-lock.json
+src/
+webpack.config.js
+.eslintrc
+.eslintignore
+.babelrc
+karma.conf.js
