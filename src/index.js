@@ -8,17 +8,18 @@ export default class Tada {
     this._loadController(config);
   }
 
-  _createConfig = (option) => {
+  _createConfig(option) {
     const wrapper = document.querySelector(option.selector);
-    return new Config(option, wrapper);
-  };
+    const config = new Config(option, wrapper);
+    return config.toJson();
+  }
 
-  _loadController = (config) => {
+  _loadController(config) {
     this.controller = new Controller(config);
     this.controller.load();
-  };
+  }
 
-  on = (label, callback) => {
+  on(label, callback) {
     this.controller.on(label, callback);
-  };
+  }
 }
