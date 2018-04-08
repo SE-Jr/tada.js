@@ -44,16 +44,17 @@ describe('initial test', function() {
     });
   });
 
-  describe('on >> ', function () {
+  describe('when register event of Tada >> ', function () {
     it('invoke `on` function of controller', function () {
       const option = { selector: '.tada-class' };
       const tada = new Tada(option);
       const nextSpy = sinon.spy();
-      tada.controller = { on: sinon.spy()}
+      tada.controller = { on: () => {}}
+      const eventSpy = sandbox.spy(tada.controller, 'on');
       //when
       tada.on('next', nextSpy)
       //then
-      sinon.assert.calledWith(tada.controller.on, 'next', nextSpy);
+      expect(eventSpy.calledWith('next', nextSpy))
     });
   });
 });
