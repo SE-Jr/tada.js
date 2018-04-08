@@ -16,12 +16,12 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader",
-      },
+      // {
+      //   enforce: "pre",
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: "eslint-loader",
+      // },
       { //각 loader에서 사용할 설정들을 세세하게 지정할 수 있어요.
         test: /\.js$/, //webpack이 '.js'파일을 찾으면 이 로더를 타게 됩니다.
         exclude: /node_modules/, //하지만 node_modules 안에 있는거라면 스킵해달라고도 정해주고,
