@@ -18,7 +18,7 @@ Setup the html and add either class name or id name in the markup
 OPTION 1: when using a module bundler like Webpack
 
 ```shell
-$ npm install ta-dah
+$ npm install ta-dah --save-dev
 ```
 
 ```javascript
