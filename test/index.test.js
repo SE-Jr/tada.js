@@ -44,6 +44,24 @@ describe('initial test', () => {
       expect(tada).to.be.a('error', 'required selector');
     });
 
+    it('should throw error when selector is not string', () => {
+      //given
+      const option = { selector: 1 };
+      //when
+      const tada = new Tada(option);
+      //then
+      expect(tada).to.be.a('error', 'selector must be string type');
+    });
+
+    it('should throw error when wrapper is not element', () => {
+      //given
+      const option = { selector: '#hi' };
+      //when
+      const tada = new Tada(option);
+      //then
+      expect(tada).to.be.a('error', 'wrapper must be element node');
+    });
+
     it('invoke `_createConfig` function', () => {
       //given
       const option = { selector: '#tada-class' };
