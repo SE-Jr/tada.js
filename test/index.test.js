@@ -6,7 +6,7 @@ chai.use(sinonChai);
 const expect = chai.expect;
 
 
-describe('initial test', function() {
+describe('initial test', () => {
   let sandbox;
   let fixture;
 
@@ -32,8 +32,19 @@ describe('initial test', function() {
 
   });
 
-  describe('when create instance of Tada >> ', function () {
-    it('invoke `_createConfig` function', function () {
+  describe('when create instance of Tada >> ', () => {
+    it('should throw when `option` do not has selector', () => {
+      //given
+      const option = {};
+
+      //when
+      const tada = new Tada(option);
+
+      //then
+      expect(tada).to.be.a("error", "required selector");
+    });
+
+    it('invoke `_createConfig` function', () => {
       //given
       const option = { selector: '#tada-class' };
       const spyConfig = sandbox.spy(Tada.prototype, '_createConfig');
@@ -44,7 +55,7 @@ describe('initial test', function() {
       expect(spyConfig.calledWith(option)).to.be.true;
     });
 
-    it('invoke `_loadController` function', function () {
+    it('invoke `_loadController` function', () => {
       //given
       const option = { selector: '#tada-class' };
       //when
@@ -54,15 +65,15 @@ describe('initial test', function() {
     });
   });
 
-  describe('when register event of Tada >> ', function () {
-    it('invoke `on` function of controller', function () {
+  describe('when register event of Tada >> ', () => {
+    it('invoke `on` function of controller', () => {
       const option = { selector: '#tada-class' };
       const tada = new Tada(option);
       const nextSpy = sinon.spy();
-      tada.controller = { on: () => {}}
+      tada.controller = { on: () => {}};
       const eventSpy = sandbox.spy(tada.controller, 'on');
       //when
-      tada.on('next', nextSpy)
+      tada.on('next', nextSpy);
       //then
       expect(eventSpy.calledWith('next', nextSpy));
     });
