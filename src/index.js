@@ -4,6 +4,9 @@ import Config from './scripts/Config';
 
 export default class Tada {
   constructor(option) {
+    if (!option.selector) {
+      return new Error('required selector');
+    }
     const config = this._createConfig(option);
     this._loadController(config);
   }
