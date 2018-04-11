@@ -41,7 +41,7 @@ describe('initial test', () => {
       const tada = new Tada(option);
 
       //then
-      expect(tada).to.be.a("error", "required selector");
+      expect(tada).to.be.a('error', 'required selector');
     });
 
     it('invoke `_createConfig` function', () => {
