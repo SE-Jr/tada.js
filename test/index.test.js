@@ -2,33 +2,23 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import Tada from '../src/index';
+import testHelper from './test.helper';
+
 chai.use(sinonChai);
 const expect = chai.expect;
 
 
 describe('initial test', () => {
   let sandbox;
-  let fixture;
-
-  const createFixture = function (){
-    fixture = document.createElement('div');
-    fixture.id = 'tada-class';
-    fixture.innerHTML = '<div></div>';
-    document.body.append(fixture);
-  };
-
-  const removeFixture = function () {
-    document.body.removeChild(fixture);
-  };
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    createFixture();
+    testHelper.createFixture();
   });
 
   afterEach(() => {
     sandbox.restore();
-    removeFixture();
+    testHelper.removeFixture();
 
   });
 
