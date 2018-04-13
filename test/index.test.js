@@ -33,7 +33,7 @@ describe('initial test', () => {
   });
 
   describe('when create instance of Tada >> ', () => {
-    it('should throw when no `selector` option', () => {
+    it('should throw error when no `selector` option', () => {
       //given
       const option = {};
 

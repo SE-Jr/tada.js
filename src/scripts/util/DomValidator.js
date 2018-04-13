@@ -1,13 +1,12 @@
+const ELEMENT_TYPE = 1;
+
 const DOM = {
-  isDataType(data) {
-    return Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
-  },
   isString(data) {
-    return DOM.isDataType(data) === 'string';
+    return typeof data === 'string';
   },
   isElement(node) {
     if (!node) { return false; }
-    return node.nodeType === 1;
+    return node.nodeType === ELEMENT_TYPE;
   },
 };
 
