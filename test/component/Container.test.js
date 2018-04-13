@@ -18,7 +18,7 @@ describe('Container component test >>', () => {
 
   describe('slide container rendering >> ', () => {
     describe('when user set `containerWidth` config >>', () => {
-      it('slide container width have to equal with `containerWidth` config', () => {
+      it('should equal `containerWidth` config', () => {
         // given
         const state = new State();
         const wrapper = document.getElementById('tada-class');
