@@ -16,18 +16,21 @@ describe('Container component test >>', () => {
     testHelper.removeFixture();
   });
 
-  describe('when user set `Container` config >>', () => {
-    it('should slide container width equals config `containerWidth`', () => {
-      // given
-      const state = new State();
-      const wrapper = document.getElementById('tada-class');
-      const configs = { wrapper, containerWidth: 100 };
-
-      // when
-      const container = new Container(configs, state);
-    
-      // then
-      expect(container._containerWidth).to.be.equal(configs.containerWidth);
+  describe('slide container rendering >> ', () => {
+    describe('when user set `containerWidth` config >>', () => {
+      it('slide container width have to equal with `containerWidth` config', () => {
+        // given
+        const state = new State();
+        const wrapper = document.getElementById('tada-class');
+        const configs = { wrapper, containerWidth: 100 };
+  
+        // when
+        const container = new Container(configs, state);
+      
+        // then
+        expect(container._containerWidth).to.be.equal(configs.containerWidth);
+      });
     });
+  
   });
 });
