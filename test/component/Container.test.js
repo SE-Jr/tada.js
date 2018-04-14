@@ -69,12 +69,12 @@ describe('Container component test >>', () => {
       const config = new Config(option, wrapper);
       
       // when
-      const instance = new Container(config, state);
-      instance.render();
+      const container = new Container(config, state);
+      container.render();
   
       // then
-      const { container, containerWidth, slideCount } = config.toJson();
-      expect(container.style.width).to.include(containerWidth * slideCount);
+      const { containerWidth, slideCount } = config.toJson();
+      expect(container.containerElement.style.width).to.include(containerWidth * slideCount);
     });
   });
 });
