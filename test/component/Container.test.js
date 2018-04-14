@@ -10,38 +10,19 @@ chai.use(sinonChai);
 const expect = chai.expect;
 
 describe('Container component test >>', () => {
-  beforeEach(() => {
-    testHelper.createFixture();
-  });
-  afterEach(() => {
-    testHelper.removeFixture();
-  });
-  
-  describe('slide container rendering >> ', () => {
+  describe('slide container initialize >> ', () => {
     let state;
     let wrapper;
     beforeEach(() => {
+      testHelper.createFixture();
       state = new State();
       wrapper = document.getElementById('tada-class');
     });
-
     afterEach(() => {
+      testHelper.removeFixture();
       state = null;
       wrapper = null;
     });
-
-    it('when create instance of Container should set `currentPage` first slide', () => {
-      // given
-      const option = {};
-      const config = new Config(option, wrapper);
-      
-      // when
-      const container = new Container(config, state);
-  
-      // then
-      expect(state.currentPage).to.be.equal(0);
-    });
-
     it('when user set `containerWidth` config >> should equal `containerWidth` config', () => {
       // given
       const option = { containerWidth: 100 };
@@ -64,6 +45,36 @@ describe('Container component test >>', () => {
 
       // then
       expect(container._containerWidth).to.be.equal(wrapper.parentElement.clientWidth);
+    });
+  });
+
+  describe('slide container rendering >>', () => {
+    let state;
+    let wrapper;  
+    beforeEach(() => {
+      testHelper.createFixture('<ul><li><div>1</div></li><li><div>2</div></li></ul>');
+      state = new State();
+      wrapper = document.getElementById('tada-class');
+    });
+
+    afterEach(() => {
+      testHelper.removeFixture();
+      state = null;
+      wrapper = null;
+    });
+
+    it('when invonke `render` should equal `containerElement` with all slide continer width', () => {
+      // given
+      const option = {};
+      const config = new Config(option, wrapper);
+      
+      // when
+      const instance = new Container(config, state);
+      instance.render();
+  
+      // then
+      const { container, containerWidth, slideCount } = config.toJson();
+      expect(container.style.width).to.include(containerWidth * slideCount);
     });
   });
 });

@@ -19,7 +19,7 @@ export default class Container {
     wrapper.style.width = containerWidth;
 
     container.classList.add(CLASSNAMES.container);
-    container.style.width = containerWidth * slideCount;
+    container.style.width = `${containerWidth * slideCount}px`;
 
     [...slides].forEach((slideItem) => {
       slideItem.classList.add(CLASSNAMES.slideItem);
