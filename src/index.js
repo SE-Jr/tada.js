@@ -1,32 +1,40 @@
 import './styles/style.scss';
 import Controller from './scripts/Controller';
 import Config from './scripts/Config';
-import DOM from './scripts/util/DomValidator';
+import Validator from './scripts/util/Validator';
 
 export default class Tada {
   constructor(option) {
     if (!option.selector) {
       return new Error('required selector');
     }
-    if (!DOM.isString(option.selector)) {
+    if (!Validator.isString(option.selector)) {
       return new Error('selector must be string type');
     }
-    const wrapper = document.querySelector(option.selector);
 
-    if (!DOM.isElement(wrapper)) {
+    if (option.navigator && !Validator.isBoolean(option.navigator)) {
+      return new Error('navigator must be boolean type');
+    }
+    if (option.pagination && !Validator.isBoolean(option.pagination)) {
+      return new Error('pagination must be boolean type');
+    }
+
+    const wrapper = document.querySelector(option.selector);
+    if (!Validator.isElement(wrapper)) {
       return new Error('wrapper must be element node');
     }
-    const config = this._createConfig(option, wrapper);
-    this._loadController(config);
+
+    this._createConfig(option, wrapper);
+    this._loadController();
   }
 
   _createConfig(option, wrapper) {
     const config = new Config(option, wrapper);
-    return config.toJson();
+    this._config = config.toJson();
   }
 
-  _loadController(config) {
-    this.controller = new Controller(config);
+  _loadController() {
+    this.controller = new Controller(this._config);
     this.controller.load();
   }
 

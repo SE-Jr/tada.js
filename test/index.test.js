@@ -94,19 +94,35 @@ describe('initial test', () => {
         //when
         const tada = new Tada(option);
         //then
-        expect(tada.controller._config.showNavigator).to.be.false;
-        expect(tada.controller._config.showPagination).to.be.false;
-        expect(tada.controller._config.paginationShape).to.equal('circle');
+        expect(tada._config.showNavigator).to.be.false;
+        expect(tada._config.showPagination).to.be.false;
+        expect(tada._config.paginationShape).to.equal('circle');
       });
     });
     describe('when user set option >> ', () => {
+      it('should throw error when navigator is not boolean', () => {
+        //given
+        const option = { selector: '#tada-class', navigator: 'hi' };
+        //when
+        const tada = new Tada(option);
+        //then
+        expect(tada).to.be.a('error', 'navigator must be boolean type');
+      });
+      it('should throw error when pagination is not boolean', () => {
+        //given
+        const option = { selector: '#tada-class', pagination: 'hi' };
+        //when
+        const tada = new Tada(option);
+        //then
+        expect(tada).to.be.a('error', 'pagination must be boolean type');
+      });
       it('can show navigator', () => {
         //given
         const option = {selector: '#tada-class', navigator: true };
         //when
         const tada = new Tada(option);
         //then
-        expect(tada.controller._config.showNavigator).to.be.true;
+        expect(tada._config.showNavigator).to.be.true;
       });
       it('can hide navigator', () => {
         //given
@@ -114,7 +130,7 @@ describe('initial test', () => {
         //when
         const tada = new Tada(option);
         //then
-        expect(tada.controller._config.showNavigator).to.be.false;
+        expect(tada._config.showNavigator).to.be.false;
       });
       it('can show pagination', () => {
         //given
@@ -122,7 +138,7 @@ describe('initial test', () => {
         //when
         const tada = new Tada(option);
         //then
-        expect(tada.controller._config.showPagination).to.be.true;
+        expect(tada._config.showPagination).to.be.true;
       });
       it('can hide pagination', () => {
         //given
@@ -130,23 +146,34 @@ describe('initial test', () => {
         //when
         const tada = new Tada(option);
         //then
-        expect(tada.controller._config.showPagination).to.be.false;
+        expect(tada._config.showPagination).to.be.false;
       });
-      it('can change pagination shape to circle', () => {
-        //given
-        const option = {selector: '#tada-class', paginationShape: 'circle' };
-        //when
-        const tada = new Tada(option);
-        //then
-        expect(tada.controller._config.paginationShape).to.equal('circle');
-      });
-      it('can change pagination shape to bar', () => {
+      it('can change pagination shape to circle from bar', () => {
         //given
         const option = {selector: '#tada-class', paginationShape: 'bar' };
+        const tada = new Tada(option);
+        //when
+        tada._config.paginationShape = 'circle';
+        //then
+        expect(tada._config.paginationShape).to.equal('circle');
+      });
+      it('can change pagination shape to bar from circle', () => {
+        //given
+        const option = {selector: '#tada-class', paginationShape: 'circle' };
+        const tada = new Tada(option);
+        //when
+        tada._config.paginationShape = 'bar';
+        //then
+        expect(tada._config.paginationShape).to.equal('bar');
+      });
+
+      it('can set default pagination shape to circle if user set weird shape', () => {
+        //given
+        const option = {selector: '#tada-class', paginationShape: 'hi' };
         //when
         const tada = new Tada(option);
         //then
-        expect(tada.controller._config.paginationShape).to.equal('bar');
+        expect(tada._config.paginationShape).to.equal('circle');
       });
     });
   });

@@ -2,8 +2,7 @@ import { DEFAULT_OPTION } from './Consts';
 
 class Config {
   constructor(option, wrapper) {
-    const _option = Object.assign({}, DEFAULT_OPTION, option);
-
+    const _option = this._generateOption(option);
     this._wrapper = wrapper;
     this._containerWidth = wrapper.clientWidth;
     const [first] = wrapper.children;
@@ -16,85 +15,25 @@ class Config {
     this._infinite = false;
   }
 
-  set container(container) {
-    this._container = container;
-  }
+  _generateOption(option) {
+    if (['circle', 'bar'].indexOf(option.paginationShape) === -1) {
+      option.paginationShape = 'circle';
+    }
 
-  get container() {
-    return this._container;
-  }
-
-  set paginationShape(shape) {
-    this._paginationShape = shape;
-  }
-
-  get paginationShape() {
-    return this._paginationShape;
-  }
-
-  set showNavigator(status) {
-    this._showNavigator = status;
-  }
-
-  get showNavigator() {
-    return this._showNavigator;
-  }
-
-  set showPagination(status) {
-    this._showPagination = status;
-  }
-
-  get showPagination() {
-    return this._showPagination;
-  }
-
-  set selector(selector) {
-    this._selector = selector;
-  }
-
-  get selector() {
-    return this._selector;
-  }
-
-  set containerWidth(containerWidth) {
-    this._containerWidth = containerWidth;
-  }
-
-  get containerWidth() {
-    return this._containerWidth;
-  }
-
-  set slideCount(slideCount) {
-    this._slideCount = slideCount;
-  }
-
-  get slideCount() {
-    return this._slideCount;
-  }
-
-  get infinite() {
-    return this._infinite;
-  }
-
-  set wrapper(wrapper) {
-    this._wrapper = wrapper;
-  }
-
-  get wrapper() {
-    return this._wrapper;
+    return Object.assign({}, DEFAULT_OPTION, option);
   }
 
   toJson() {
     return {
-      wrapper: this.wrapper,
-      containerWidth: this.containerWidth,
-      container: this.container,
-      slideCount: this.slideCount,
-      selector: this.selector,
-      paginationShape: this.paginationShape,
-      showNavigator: this.showNavigator,
-      showPagination: this.showPagination,
-      infinite: this.infinite,
+      wrapper: this._wrapper,
+      containerWidth: this._containerWidth,
+      container: this._container,
+      slideCount: this._slideCount,
+      selector: this._selector,
+      paginationShape: this._paginationShape,
+      showNavigator: this._showNavigator,
+      showPagination: this._showPagination,
+      infinite: this._infinite,
     };
   }
 }
