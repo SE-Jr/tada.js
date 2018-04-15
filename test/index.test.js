@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import Tada from '../src/index';
+import testHelper from './test.helper';
 
 chai.use(sinonChai);
 const expect = chai.expect;
@@ -9,41 +10,19 @@ const expect = chai.expect;
 
 describe('initial test', () => {
   let sandbox;
-  let fixture;
-
-  const createFixture = function (){
-    fixture = document.createElement('div');
-    fixture.id = 'tada-class';
-    fixture.innerHTML = `
-        <div>
-            <ul>
-                <li><img src="http://placehold.it/700x500/C2024F/ffffff?text=1" alt="slide-image-01"/></li>
-                <li><img src="http://placehold.it/700x500/04BBBF/ffffff?text=2" alt="slide-image-02"/></li>
-                <li><img src="http://placehold.it/700x500/D2D945/ffffff?text=3" alt="slide-image-03"/></li>
-                <li><img src="http://placehold.it/700x500/FCB13F/ffffff?text=4" alt="slide-image-04"/></li>
-                <li><img src="http://placehold.it/700x500/FF594F/ffffff?text=5" alt="slide-image-05"/></li>
-            </ul>
-        </div>`;
-    document.body.append(fixture);
-  };
-
-  const removeFixture = function () {
-    document.body.removeChild(fixture);
-  };
-
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    createFixture();
+    testHelper.createFixture();
   });
 
   afterEach(() => {
     sandbox.restore();
-    removeFixture();
+    testHelper.removeFixture();
 
   });
 
   describe('when create instance of Tada >> ', () => {
-    it('should throw when no `selector` option', () => {
+    it('should throw error when no `selector` option', () => {
       //given
       const option = {};
 
