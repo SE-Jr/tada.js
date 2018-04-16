@@ -63,7 +63,7 @@ describe('Container component test >>', () => {
       wrapper = null;
     });
 
-    it('when invonke `render` should equal `containerElement` with all slide container width', () => {
+    it('when invoke `render` should equal `containerElement` with all slide container width', () => {
       // given
       const option = {};
       const config = new Config(option, wrapper);
