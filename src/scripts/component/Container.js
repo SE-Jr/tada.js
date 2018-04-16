@@ -16,7 +16,7 @@ export default class Container {
     const slides = container.children;
 
     wrapper.classList.add(CLASSNAMES.wrapper);
-    wrapper.style.width = containerWidth;
+    wrapper.style.width = `${containerWidth}px`;
 
     container.classList.add(CLASSNAMES.container);
     container.style.width = `${containerWidth * slideCount}px`;

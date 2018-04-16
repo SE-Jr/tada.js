@@ -77,6 +77,19 @@ describe('Container component test >>', () => {
         const { containerWidth, slideCount } = config.toJson();
         expect(container.containerElement.style.width).to.include(containerWidth * slideCount);
       });
+
+      it('wrapper\'s width should equal container\'s width', () => {
+        // given
+        const option = {};
+        const config = new Config(option, wrapper);
+
+        // when
+        const container = new Container(config, state);
+        container.render();
+
+        // then
+        expect(config.wrapper.style.width).to.include(container._containerWidth);
+      });
     });
   });
 });
