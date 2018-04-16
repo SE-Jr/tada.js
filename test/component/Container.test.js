@@ -50,7 +50,7 @@ describe('Container component test >>', () => {
 
   describe('slide container rendering >>', () => {
     let state;
-    let wrapper;  
+    let wrapper;
     beforeEach(() => {
       testHelper.createFixture('<ul><li><div>1</div></li><li><div>2</div></li></ul>');
       state = new State();
@@ -63,18 +63,20 @@ describe('Container component test >>', () => {
       wrapper = null;
     });
 
-    it('when invoke `render` should equal `containerElement` with all slide container width', () => {
-      // given
-      const option = {};
-      const config = new Config(option, wrapper);
-      
-      // when
-      const container = new Container(config, state);
-      container.render();
-  
-      // then
-      const { containerWidth, slideCount } = config.toJson();
-      expect(container.containerElement.style.width).to.include(containerWidth * slideCount);
+    describe('when invoke `render` >>', () => {
+      it('container\'s width should equal all slide width', () => {
+        // given
+        const option = {};
+        const config = new Config(option, wrapper);
+
+        // when
+        const container = new Container(config, state);
+        container.render();
+
+        // then
+        const { containerWidth, slideCount } = config.toJson();
+        expect(container.containerElement.style.width).to.include(containerWidth * slideCount);
+      });
     });
   });
 });
