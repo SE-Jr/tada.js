@@ -23,7 +23,7 @@ describe('Container component test >>', () => {
       state = null;
       wrapper = null;
     });
-    it('when user set `containerWidth` config >> should equal `containerWidth` config', () => {
+    it('when user set `containerWidth` config should equal `containerWidth` config', () => {
       // given
       const option = { containerWidth: 100 };
       const config = new Config(option, wrapper);
@@ -35,7 +35,7 @@ describe('Container component test >>', () => {
       expect(container._containerWidth).to.be.equal(config.containerWidth);
     });
 
-    it('when user does not set `containerWidth` config >> should equal parent width with `containerWith` config', () => {
+    it('when user does not set `containerWidth` config it should equal parent\'s element\'s width', () => {
       // given
       const option = {};
       const config = new Config(option, wrapper);
@@ -63,7 +63,7 @@ describe('Container component test >>', () => {
       wrapper = null;
     });
 
-    it('when invonke `render` should equal `containerElement` with all slide continer width', () => {
+    it('when invonke `render` should equal `containerElement` with all slide container width', () => {
       // given
       const option = {};
       const config = new Config(option, wrapper);
