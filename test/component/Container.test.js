@@ -110,5 +110,23 @@ describe('Container component test >>', () => {
         expect(slides[1].style.width).to.be.equal(expectSlideWidth);
       });
     });
+
+    describe('when invoke `moveTo` with page >>', () => {
+      it('should move to slide page ', () => {
+        // given
+        const option = {};
+        const config = new Config(option, wrapper);
+        const container = new Container(config, state);
+        container.render();
+
+        // when
+        const page = 1;
+        container.moveTo(page);
+
+        // then
+        const { containerWidth } = config.toJson();
+        expect(container.containerElement.style.transform).to.include(-1 * page * containerWidth);
+      });
+    });
   });
 });
