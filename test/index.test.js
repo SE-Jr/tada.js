@@ -87,7 +87,7 @@ describe('initial test', () => {
   });
 
   describe('custom Tada ', () => {
-    describe('in default Tada case without no options >> ', () => {
+    describe("if don't have Tada options >> ", () => {
       it('hide navigator and pagination', () => {
         //given
         const option = {selector: '#tada-class'};
@@ -147,24 +147,6 @@ describe('initial test', () => {
         const tada = new Tada(option);
         //then
         expect(tada._config.showPagination).to.be.false;
-      });
-      it('can change pagination shape to circle from bar', () => {
-        //given
-        const option = {selector: '#tada-class', paginationShape: 'bar' };
-        const tada = new Tada(option);
-        //when
-        tada._config.paginationShape = 'circle';
-        //then
-        expect(tada._config.paginationShape).to.equal('circle');
-      });
-      it('can change pagination shape to bar from circle', () => {
-        //given
-        const option = {selector: '#tada-class', paginationShape: 'circle' };
-        const tada = new Tada(option);
-        //when
-        tada._config.paginationShape = 'bar';
-        //then
-        expect(tada._config.paginationShape).to.equal('bar');
       });
 
       it('can set default pagination shape to circle if user set weird shape', () => {
