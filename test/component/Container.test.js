@@ -5,6 +5,7 @@ import testHelper from '../test.helper';
 import Container from '../../src/scripts/component/Container';
 import State from '../../src/scripts/State';
 import Config from '../../src/scripts/Config';
+import { CLASSNAMES } from '../../src/scripts/Consts';
 
 chai.use(sinonChai);
 const expect = chai.expect;
@@ -64,7 +65,7 @@ describe('Container component test >>', () => {
     });
 
     describe('when invoke `render` >>', () => {
-      it('container\'s width should equal all slide width', () => {
+      it('container\'s width should equal all slide width and has container class', () => {
         // given
         const option = {};
         const config = new Config(option, wrapper);
@@ -75,10 +76,11 @@ describe('Container component test >>', () => {
 
         // then
         const { containerWidth, slideCount } = config.toJson();
-        expect(container.containerElement.style.width).to.include(containerWidth * slideCount);
+        expect(container.containerElement.style.width).to.be.equal(`${containerWidth * slideCount}px`);
+        expect(container.containerElement.classList.contains(CLASSNAMES.container));
       });
 
-      it('wrapper\'s width should equal container\'s width', () => {
+      it('wrapper\'s width should equal container\'s width and has wrapper class', () => {
         // given
         const option = {};
         const config = new Config(option, wrapper);
@@ -88,7 +90,24 @@ describe('Container component test >>', () => {
         container.render();
 
         // then
-        expect(config.wrapper.style.width).to.include(container._containerWidth);
+        expect(container.wrapperElement.style.width).to.be.equal(`${container._containerWidth}px`);
+        expect(container.wrapperElement.classList.contains(CLASSNAMES.wrapper));
+      });
+
+      it('slide\'s width should be set same ratio', () => {
+        // given
+        const option = {};
+        const config = new Config(option, wrapper);
+
+        // when
+        const container = new Container(config, state);
+        container.render();
+
+        //then
+        const expectSlideWidth = `${100 / 2}%`;
+        const slides = container.containerElement.children;
+        expect(slides[0].style.width).to.be.equal(expectSlideWidth);
+        expect(slides[1].style.width).to.be.equal(expectSlideWidth);
       });
     });
   });
