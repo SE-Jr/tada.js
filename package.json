@@ -8,7 +8,8 @@
     "build": "webpack",
     "lint": "eslint src/**/*.js",
     "start": "webpack-dev-server --hot --watch-content-base",
-    "test": "node_modules/karma/bin/karma start ./karma.conf.js"
+    "test": "node_modules/karma/bin/karma start ./karma.conf.js --single-run",
+    "test:watch": "node_modules/karma/bin/karma start ./karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,8 @@
     "mocha": "^4.0.1",
     "node-sass": "^4.6.0",
     "sass-loader": "^6.0.6",
+    "sinon": "^4.4.8",
+    "sinon-chai": "^3.0.0",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.1.0",
     "webpack": "^3.8.1",

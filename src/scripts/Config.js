@@ -83,6 +83,20 @@ class Config {
   get wrapper() {
     return this._wrapper;
   }
+
+  toJson() {
+    return {
+      wrapper: this.wrapper,
+      containerWidth: this.containerWidth,
+      container: this.container,
+      slideCount: this.slideCount,
+      selector: this.selector,
+      paginationShape: this.paginationShape,
+      showNavigator: this.showNavigator,
+      showPagination: this.showPagination,
+      infinite: this.infinite,
+    };
+  }
 }
 
 export default Config;
