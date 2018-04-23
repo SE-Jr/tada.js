@@ -40,6 +40,8 @@ OPTION 2: when injecting the minified script into your project.
 </script>
 
 ```
+We also provide a CDN option from [rawgit.com](https://rawgit.com).
+[CDN](https://cdn.rawgit.com/SE-Jr/tada.js/a8c22ed027a08858e1f062424673d8ed698a10b3/dist/tada.min.js)
 
 ## Configuration
 In this carousel library, there are few options and events.
@@ -85,7 +87,7 @@ For example,
 ```
 
 ## Versioning
-0.0.4
+0.0.5
 
 ## Special Thanks
 @hyeonmi @CoderK
