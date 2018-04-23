@@ -1,6 +1,6 @@
 {
   "name": "ta-dah",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple Carousel Library",
   "main": "dist/tada.min.js",
   "module": "dist/tada.min.js",
