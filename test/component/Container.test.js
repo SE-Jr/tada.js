@@ -94,7 +94,7 @@ describe('Container component test >>', () => {
         expect(container.wrapperElement.classList.contains(CLASSNAMES.wrapper));
       });
 
-      it('slide\'s width should be set same ratio', () => {
+      it('slide\'s width should be set to the same ratio', () => {
         // given
         const option = {};
         const config = new Config(option, wrapper);
