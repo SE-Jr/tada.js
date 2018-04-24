@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import Tada from '../src/index';
+import { CLASSNAMES } from '../src/scripts/Consts';
 import testHelper from './test.helper';
 
 chai.use(sinonChai);
@@ -13,7 +14,7 @@ describe('initial test', () => {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    testHelper.createFixture();
+    testHelper.createFixture('<ul><li><div>1</div></li><li><div>2</div></li><li><div>3</div></li></ul>');
   });
 
   afterEach(() => {
@@ -70,6 +71,38 @@ describe('initial test', () => {
       const tada = new Tada(option);
       //then
       expect(tada.controller).to.exist;
+    });
+  });
+
+  describe('tada init >> ', () => {
+    it('when click navigator right should move to next slide and next pagination', () => {
+      // given
+      const tada = new Tada({ selector: '#tada-class' });
+
+      // when
+      const rightNavigator = document.querySelector(`.${CLASSNAMES.rightNavigator}`);
+      rightNavigator.click();
+
+      // then
+      const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
+      const activateIndex = expectPagination.getAttribute('data-slide-index');
+      expect(activateIndex).to.be.equal('1');
+      expect(tada.controller._state.currentPage).to.be.equal(1);
+    });
+
+    it('when click navigator left should not move', () => {
+      // given
+      const tada = new Tada({ selector: '#tada-class' });
+
+      // when
+      const rightNavigator = document.querySelector(`.${CLASSNAMES.leftNavigator}`);
+      rightNavigator.click();
+
+      // then
+      const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
+      const activateIndex = expectPagination.getAttribute('data-slide-index');
+      expect(activateIndex).to.be.equal('0');
+      expect(tada.controller._state.currentPage).to.be.equal(0);
     });
   });
 
