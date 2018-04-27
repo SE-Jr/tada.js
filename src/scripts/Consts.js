@@ -1,8 +1,8 @@
 export const VERSION = 1.0;
 export const DEFAULT_OPTION = {
   paginationShape: 'circle',
-  showNavigator: true,
-  showPagination: true,
+  navigator: true,
+  pagination: true,
 };
 
 export const CLASSNAMES = {
