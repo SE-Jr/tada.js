@@ -74,10 +74,45 @@ describe('initial test', () => {
     });
   });
 
-  describe('tada init >> ', () => {
+  describe('the current slide is first >> ', () => {
+    let tada;
+    beforeEach(() => {
+      tada = new Tada({ selector: '#tada-class' });
+    });
+
+    afterEach(() => {
+      tada = null;
+    });
+
+    it('a left navigator should disabled', () => {
+      // given
+
+
+      // when
+      const rightNavigator = document.querySelector(`.${CLASSNAMES.leftNavigator}`);
+      rightNavigator.click();
+
+      // then
+      expect(rightNavigator.disabled).to.be.true;
+    });
+
+    it('when click a left navigator should not move', () => {
+      // given
+
+      // when
+      const leftNavigator = document.querySelector(`.${CLASSNAMES.leftNavigator}`);
+      leftNavigator.click();
+
+      // then
+      const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
+      const activateIndex = parseInt(expectPagination.getAttribute('data-slide-index'), 10);
+      const currentIndex = 0;
+      expect(activateIndex).to.be.equal(currentIndex);
+      expect(tada.controller._state.currentPage).to.be.equal(currentIndex);
+    });
+
     it('when click a right navigator, should move to next slide and next pagination', () => {
       // given
-      const tada = new Tada({ selector: '#tada-class' });
 
       // when
       const rightNavigator = document.querySelector(`.${CLASSNAMES.rightNavigator}`);
@@ -90,21 +125,59 @@ describe('initial test', () => {
       expect(activateIndex).to.be.equal(nextIndex);
       expect(tada.controller._state.currentPage).to.be.equal(nextIndex);
     });
+  });
 
-    it('when click a left navigator should not move', () => {
+  describe('the current slide is last >> ', () => {
+    let tada;
+    let rightNavigator;
+
+    beforeEach(() => {
+      tada = new Tada({ selector: '#tada-class' });
+      rightNavigator = document.querySelector(`.${CLASSNAMES.rightNavigator}`);
+      rightNavigator.click();
+      rightNavigator.click();
+    });
+
+    afterEach(() => {
+      tada = null;
+    });
+
+    it('a right navigator should disabled', () => {
       // given
-      const tada = new Tada({ selector: '#tada-class' });
 
       // when
-      const rightNavigator = document.querySelector(`.${CLASSNAMES.leftNavigator}`);
+
+      // then
+      expect(rightNavigator.disabled).to.be.true;
+    });
+
+    it('when click a right navigator should not move', () => {
+      // given
+
+      // when
       rightNavigator.click();
 
       // then
       const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
       const activateIndex = parseInt(expectPagination.getAttribute('data-slide-index'), 10);
-      const currentIndex = 0;
+      const currentIndex = 2;
       expect(activateIndex).to.be.equal(currentIndex);
       expect(tada.controller._state.currentPage).to.be.equal(currentIndex);
+    });
+
+    it('when click a left navigator, should move to prev slide and prev pagination', () => {
+      // given
+
+      // when
+      const leftNavigator = document.querySelector(`.${CLASSNAMES.leftNavigator}`);
+      leftNavigator.click();
+
+      // then
+      const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
+      const activateIndex = parseInt(expectPagination.getAttribute('data-slide-index'), 10);
+      const prevIndex = 1;
+      expect(activateIndex).to.be.equal(prevIndex);
+      expect(tada.controller._state.currentPage).to.be.equal(prevIndex);
     });
   });
 
