@@ -75,7 +75,7 @@ describe('initial test', () => {
   });
 
   describe('tada init >> ', () => {
-    it('when click navigator right should move to next slide and next pagination', () => {
+    it('when click a right navigator, should move to next slide and next pagination', () => {
       // given
       const tada = new Tada({ selector: '#tada-class' });
 
@@ -85,12 +85,13 @@ describe('initial test', () => {
 
       // then
       const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
-      const activateIndex = expectPagination.getAttribute('data-slide-index');
-      expect(activateIndex).to.be.equal('1');
-      expect(tada.controller._state.currentPage).to.be.equal(1);
+      const activateIndex = parseInt(expectPagination.getAttribute('data-slide-index'), 10);
+      const nextIndex = 1;
+      expect(activateIndex).to.be.equal(nextIndex);
+      expect(tada.controller._state.currentPage).to.be.equal(nextIndex);
     });
 
-    it('when click navigator left should not move', () => {
+    it('when click a left navigator should not move', () => {
       // given
       const tada = new Tada({ selector: '#tada-class' });
 
@@ -100,9 +101,10 @@ describe('initial test', () => {
 
       // then
       const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
-      const activateIndex = expectPagination.getAttribute('data-slide-index');
-      expect(activateIndex).to.be.equal('0');
-      expect(tada.controller._state.currentPage).to.be.equal(0);
+      const activateIndex = parseInt(expectPagination.getAttribute('data-slide-index'), 10);
+      const currentIndex = 0;
+      expect(activateIndex).to.be.equal(currentIndex);
+      expect(tada.controller._state.currentPage).to.be.equal(currentIndex);
     });
   });
 

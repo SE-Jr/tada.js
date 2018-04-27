@@ -11,8 +11,8 @@ class Config {
     this._slideCount = this._container.children.length;
     this._selector = _option.selector;
     this._paginationShape = _option.paginationShape;
-    this._showNavigator = _option.showNavigator;
-    this._showPagination = _option.showPagination;
+    this._showNavigator = _option.navigator;
+    this._showPagination = _option.pagination;
     this._infinite = false;
   }
 
