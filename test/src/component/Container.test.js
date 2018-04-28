@@ -2,10 +2,10 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import testHelper from '../test.helper';
-import Container from '../../src/scripts/component/Container';
-import State from '../../src/scripts/State';
-import Config from '../../src/scripts/Config';
-import { CLASSNAMES } from '../../src/scripts/Consts';
+import Container from '../../../src/scripts/component/Container';
+import State from '../../../src/scripts/State';
+import Config from '../../../src/scripts/Config';
+import { CLASSNAMES } from '../../../src/scripts/Consts';
 
 chai.use(sinonChai);
 const expect = chai.expect;

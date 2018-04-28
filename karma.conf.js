@@ -1,8 +1,13 @@
+const path = require('path');
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
+
+    files: [
+      'test/index.js'
+    ],
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -30,11 +35,16 @@ module.exports = function(config) {
         rules: [
           {
             test: /\.js$/,
+            use: { loader: 'istanbul-instrumenter-loader' },
+            include: path.resolve('src'),
+          },
+          {
+            test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
               presets: ['es2015'],
-              plugins: ["transform-class-properties"]
+              plugins: ['transform-class-properties'],
             },
           },
           {
@@ -54,7 +64,12 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+    reporters: ['mocha', 'progress', 'coverage-istanbul'],
+
+    coverageIstanbulReporter: {
+      reports: ['text-summary'],
+      fixWebpackSourcePaths: true
+    },
 
     mochaReporter: {
       colors: {
