@@ -16,7 +16,7 @@ export function canMove(model, config) {
   if (model.currentPage >= config.slideCount - 1) {
     model.currentPage = config.slideCount - 1;
     return {
-      direction: 'right',
+      direction: "right",
       on: false,
     };
   }
@@ -24,7 +24,7 @@ export function canMove(model, config) {
   if (model.currentPage <= 0) {
     model.currentPage = 0;
     return {
-      direction: 'left',
+      direction: "left",
       on: false,
     };
   }

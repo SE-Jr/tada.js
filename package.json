@@ -6,7 +6,7 @@
   "module": "dist/tada.min.js",
   "scripts": {
     "build": "webpack",
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint src/scripts/**/*.js src/index.js --fix",
     "start": "webpack-dev-server --hot --watch-content-base",
     "test": "node_modules/karma/bin/karma start ./karma.conf.js --single-run",
     "test:watch": "node_modules/karma/bin/karma start ./karma.conf.js"

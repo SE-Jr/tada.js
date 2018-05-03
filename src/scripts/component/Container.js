@@ -1,4 +1,4 @@
-import { CLASSNAMES } from '../Consts';
+import { CLASSNAMES } from "../Consts";
 
 export default class Container {
   constructor(config, state) {

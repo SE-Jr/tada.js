@@ -1,6 +1,6 @@
-import EventEmitter from '../EventEmitter';
-import { CLASSNAMES } from '../Consts';
-import { canMove } from '../util/Helper';
+import EventEmitter from "../EventEmitter";
+import { CLASSNAMES } from "../Consts";
+import { canMove } from "../util/Helper";
 
 
 class Navigator {
@@ -23,16 +23,16 @@ class Navigator {
   }
 
   render() {
-    const next = document.createElement('button');
-    const prev = document.createElement('button');
+    const next = document.createElement("button");
+    const prev = document.createElement("button");
 
     next.classList.add(CLASSNAMES.navigator, CLASSNAMES.rightNavigator);
     prev.classList.add(CLASSNAMES.navigator, CLASSNAMES.leftNavigator);
-    next.setAttribute('data-direction', 'right');
-    prev.setAttribute('data-direction', 'left');
+    next.setAttribute("data-direction", "right");
+    prev.setAttribute("data-direction", "left");
     this._tadaWrapper.appendChild(next);
     this._tadaWrapper.appendChild(prev);
-    this.elem = this._tadaWrapper.querySelectorAll('.tada-navigator');
+    this.elem = this._tadaWrapper.querySelectorAll(".tada-navigator");
   }
 }
 
