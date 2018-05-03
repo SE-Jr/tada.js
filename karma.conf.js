@@ -80,6 +80,22 @@ module.exports = function(config) {
       fixWebpackSourcePaths: true
     },
 
+    thresholds: {
+      emitWarning: false, // set to `true` to not fail the test command when thresholds are not met
+      global: { // thresholds for all files
+        statements: 100,
+        lines: 100,
+        branches: 100,
+        functions: 100
+      },
+      each: { // thresholds per file
+        statements: 100,
+        lines: 100,
+        branches: 100,
+        functions: 100,
+      },
+    },
+
     mochaReporter: {
       colors: {
         success: 'green',
