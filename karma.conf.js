@@ -67,7 +67,16 @@ module.exports = function(config) {
     reporters: ['mocha', 'progress', 'coverage-istanbul'],
 
     coverageIstanbulReporter: {
-      reports: ['text-summary'],
+      reports: ['html', 'lcovonly', 'text-summary'],
+      dir: './reports/coverage',
+      'report-config': {
+        html: { // any options here are valid: https://github.com/istanbuljs/istanbul-reports/blob/master/lib/html/index.js#L134-L139
+        },
+        lcovonly: {
+          // options from here are valid: https://github.com/istanbuljs/istanbul-reports/blob/master/lib/lcovonly/index.js#L7-L10
+          file: 'coverage.lcov',
+        }
+      },
       fixWebpackSourcePaths: true
     },
 
