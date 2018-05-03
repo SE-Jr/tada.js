@@ -1,8 +1,13 @@
+const path = require('path');
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
+
+    files: [
+      'test/index.js'
+    ],
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -30,11 +35,16 @@ module.exports = function(config) {
         rules: [
           {
             test: /\.js$/,
+            use: { loader: 'istanbul-instrumenter-loader' },
+            include: path.resolve('src'),
+          },
+          {
+            test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
               presets: ['es2015'],
-              plugins: ["transform-class-properties"]
+              plugins: ['transform-class-properties'],
             },
           },
           {
@@ -54,7 +64,37 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+    reporters: ['mocha', 'progress', 'coverage-istanbul'],
+
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly', 'text-summary'],
+      dir: './reports/coverage',
+      'report-config': {
+        html: { // any options here are valid: https://github.com/istanbuljs/istanbul-reports/blob/master/lib/html/index.js#L134-L139
+        },
+        lcovonly: {
+          // options from here are valid: https://github.com/istanbuljs/istanbul-reports/blob/master/lib/lcovonly/index.js#L7-L10
+          file: 'coverage.lcov',
+        }
+      },
+      fixWebpackSourcePaths: true
+    },
+
+    thresholds: {
+      emitWarning: false, // set to `true` to not fail the test command when thresholds are not met
+      global: { // thresholds for all files
+        statements: 100,
+        lines: 100,
+        branches: 100,
+        functions: 100
+      },
+      each: { // thresholds per file
+        statements: 100,
+        lines: 100,
+        branches: 100,
+        functions: 100,
+      },
+    },
 
     mochaReporter: {
       colors: {

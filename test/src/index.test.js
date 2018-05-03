@@ -1,8 +1,8 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import Tada from '../src/index';
-import { CLASSNAMES } from '../src/scripts/Consts';
+import Tada from '../../src/index';
+import { CLASSNAMES } from '../../src/scripts/Consts';
 import testHelper from './test.helper';
 
 chai.use(sinonChai);
@@ -74,7 +74,7 @@ describe('initial test', () => {
     });
   });
 
-  describe('the current slide is first >> ', () => {
+  describe('if current slide is first slide >> ', () => {
     let tada;
     beforeEach(() => {
       tada = new Tada({ selector: '#tada-class' });
@@ -127,7 +127,7 @@ describe('initial test', () => {
     });
   });
 
-  describe('the current slide is last >> ', () => {
+  describe('if current slide is last slide >> ', () => {
     let tada;
     let rightNavigator;
 
@@ -178,6 +178,55 @@ describe('initial test', () => {
       const prevIndex = 1;
       expect(activateIndex).to.be.equal(prevIndex);
       expect(tada.controller._state.currentPage).to.be.equal(prevIndex);
+    });
+  });
+
+
+  describe('click pagination >>', () => {
+    let tada;
+
+    function clickPagination(page) {
+      const paginationItem = document.querySelectorAll(`.${CLASSNAMES.paginationItem}`)[page];
+      paginationItem.click();
+    }
+
+    function getActivePagination() {
+      const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
+      return parseInt(expectPagination.getAttribute('data-slide-index'), 10);
+    }
+
+    beforeEach(() => {
+      tada = new Tada({ selector: '#tada-class' });
+    });
+
+    afterEach(() => {
+      tada = null;
+    });
+    it('when clicking specific pagination, move to the page', () => {
+      //given
+      const page = 2;
+      //when
+      clickPagination(page);
+      //then
+      const activateIndex = getActivePagination();
+      expect(activateIndex).to.be.equal(page);
+      expect(parseInt(tada.controller._state.currentPage, 10)).to.be.equal(page);
+
+    });
+
+    it('when clicking same pagination, page is not changed', () => {
+      //given
+      const samePage = 1;
+      clickPagination(samePage);
+      //when
+      clickPagination(samePage);
+
+      //then
+      const activateIndex = getActivePagination();
+
+      expect(activateIndex).to.be.equal(samePage);
+      expect(parseInt(tada.controller._state.currentPage, 10)).to.be.equal(samePage);
+
     });
   });
 

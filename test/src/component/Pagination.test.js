@@ -1,9 +1,9 @@
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import testHelper from '../test.helper';
-import State from '../../src/scripts/State';
-import Config from '../../src/scripts/Config';
-import Pagination from '../../src/scripts/component/Pagination';
+import State from '../../../src/scripts/State';
+import Config from '../../../src/scripts/Config';
+import Pagination from '../../../src/scripts/component/Pagination';
 
 chai.use(sinonChai);
 const expect = chai.expect;
