@@ -18,6 +18,7 @@ jobs:
 
     steps:
       - checkout
+      - run: npm install -g codecov
 
       # Download and cache dependencies
       - restore_cache:
@@ -36,3 +37,4 @@ jobs:
 
       # run tests!
       - run: npm run test
+      - run: codecov

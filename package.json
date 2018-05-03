@@ -9,7 +9,8 @@
     "lint": "eslint src/**/*.js",
     "start": "webpack-dev-server --hot --watch-content-base",
     "test": "node_modules/karma/bin/karma start ./karma.conf.js --single-run",
-    "test:watch": "node_modules/karma/bin/karma start ./karma.conf.js"
+    "test:watch": "node_modules/karma/bin/karma start ./karma.conf.js",
+    "report-coverage": "codecov"
   },
   "repository": {
     "type": "git",
