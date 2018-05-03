@@ -1,5 +1,5 @@
-import EventEmitter from '../EventEmitter';
-import { CLASSNAMES } from '../Consts';
+import EventEmitter from "../EventEmitter";
+import { CLASSNAMES } from "../Consts";
 
 class Pagination {
   constructor(config, state) {
@@ -15,9 +15,9 @@ class Pagination {
   }
 
   moveTo(page) {
-    this._tadaWrapper.querySelector(`.${CLASSNAMES.paginationButton}.active`).classList.remove('active');
+    this._tadaWrapper.querySelector(`.${CLASSNAMES.paginationButton}.active`).classList.remove("active");
     const paginationButton = this._tadaWrapper.querySelector(`button[data-slide-index="${page}"]`);
-    paginationButton.classList.add('active');
+    paginationButton.classList.add("active");
   }
 
   render() {
@@ -31,7 +31,7 @@ class Pagination {
   }
 
   _createPaginationWrapper() {
-    const pagination = document.createElement('ul');
+    const pagination = document.createElement("ul");
     pagination.classList.add(CLASSNAMES.pagination, `pagination-${this._config.paginationShape}`);
 
     return pagination;
@@ -40,25 +40,25 @@ class Pagination {
   _createPaginationItem(index) {
     const paginationButton = this._createPaginationButton(index);
     this._setCurrentActivatedButton(index, paginationButton);
-    const paginationItem = document.createElement('li');
+    const paginationItem = document.createElement("li");
     paginationItem.classList.add(CLASSNAMES.paginationItem);
     paginationItem.appendChild(paginationButton);
-    paginationItem.setAttribute('data-slide-index', `${index}`);
+    paginationItem.setAttribute("data-slide-index", `${index}`);
 
     return paginationItem;
   }
 
   _createPaginationButton(index) {
-    const paginationButton = document.createElement('button');
+    const paginationButton = document.createElement("button");
     paginationButton.classList.add(CLASSNAMES.paginationButton);
-    paginationButton.setAttribute('data-slide-index', `${index}`);
+    paginationButton.setAttribute("data-slide-index", `${index}`);
 
     return paginationButton;
   }
 
   _setCurrentActivatedButton(index, button) {
     if (index === 0) {
-      button.classList.add('active');
+      button.classList.add("active");
     }
   }
 }

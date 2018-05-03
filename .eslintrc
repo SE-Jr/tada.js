@@ -9,6 +9,7 @@
     "no-param-reassign": 0,
     "no-underscore-dangle": 0,
     "no-return-assign": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "quotes": ["error", "double"]
   }
 }
