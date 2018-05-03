@@ -1,9 +1,9 @@
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import testHelper from '../test.helper';
-import State from '../../src/scripts/State';
-import Config from '../../src/scripts/Config';
-import Navigator from '../../src/scripts/component/Navigator';
+import State from '../../../src/scripts/State';
+import Config from '../../../src/scripts/Config';
+import Navigator from '../../../src/scripts/component/Navigator';
 
 chai.use(sinonChai);
 const expect = chai.expect;

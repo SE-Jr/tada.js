@@ -1,4 +1,4 @@
-import { DEFAULT_OPTION } from './Consts';
+import { DEFAULT_OPTION } from "./Consts";
 
 class Config {
   constructor(option, wrapper) {

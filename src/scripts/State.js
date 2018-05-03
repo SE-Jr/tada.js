@@ -1,6 +1,6 @@
 class State {
   constructor() {
-    this._id = 'id';
+    this._id = "id";
     this._currentPage = 0;
   }
 

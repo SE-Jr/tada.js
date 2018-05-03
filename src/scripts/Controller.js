@@ -1,8 +1,8 @@
-import Navigator from './component/Navigator';
-import Pagination from './component/Pagination';
-import Container from './component/Container';
-import State from './State';
-import { right, left, updateCurrentPage } from './util/Helper';
+import Navigator from "./component/Navigator";
+import Pagination from "./component/Pagination";
+import Container from "./component/Container";
+import State from "./State";
+import { right, left, updateCurrentPage } from "./util/Helper";
 
 export default class Controller {
   constructor(config) {
@@ -44,14 +44,14 @@ export default class Controller {
   }
 
   _bindNavigatorEvents() {
-    [...this._navigator.elem].forEach(elem => elem.addEventListener('click', (e) => {
+    [...this._navigator.elem].forEach(elem => elem.addEventListener("click", (e) => {
       const { target } = e;
-      const direction = target.getAttribute('data-direction');
-      if (direction === 'right') {
+      const direction = target.getAttribute("data-direction");
+      if (direction === "right") {
         right(this._state);
       }
 
-      if (direction === 'left') {
+      if (direction === "left") {
         left(this._state);
       }
 
@@ -67,10 +67,10 @@ export default class Controller {
   }
 
   _bindPaginationEvents() {
-    this._pagination.elem.addEventListener('click', (e) => {
+    this._pagination.elem.addEventListener("click", (e) => {
       const { target } = e;
-      if (target && (target.nodeName === 'LI' || target.nodeName === 'BUTTON')) {
-        const page = target.getAttribute('data-slide-index');
+      if (target && (target.nodeName === "LI" || target.nodeName === "BUTTON")) {
+        const page = target.getAttribute("data-slide-index");
         updateCurrentPage(this._state, page);
         this._container.moveTo(page);
         this._pagination.moveTo(page);
