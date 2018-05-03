@@ -225,7 +225,7 @@ describe('initial test', () => {
       const activateIndex = getActivePagination();
 
       expect(activateIndex).to.be.equal(samePage);
-      expect(+tada.controller._state.currentPage).to.be.equal(samePage);
+      expect(parseInt(tada.controller._state.currentPage, 10)).to.be.equal(samePage);
 
     });
   });
