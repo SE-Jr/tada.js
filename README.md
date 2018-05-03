@@ -1,4 +1,4 @@
-# :tada: :carousel_horse: tada [![license](https://img.shields.io/github/license/desktop/desktop.svg?style=flat-square)](https://github.com/desktop/desktop/blob/master/LICENSE) [![CircleCI](https://circleci.com/gh/SE-Jr/tada.js/tree/develop.svg?style=svg)](https://circleci.com/gh/SE-Jr/tada.js/tree/develop)
+# :tada: :carousel_horse: tada [![license](https://img.shields.io/github/license/desktop/desktop.svg?style=flat-square)](https://github.com/desktop/desktop/blob/master/LICENSE) [![CircleCI](https://circleci.com/gh/SE-Jr/tada.js/tree/develop.svg?style=svg)](https://circleci.com/gh/SE-Jr/tada.js/tree/develop) [![Coverage Status](https://coveralls.io/repos/github/SE-Jr/tada.js/badge.svg)](https://coveralls.io/github/SE-Jr/tada.js)
 
 Simple Carousel Library [demo](https://se-jr.github.io/tada.js/)
 
