@@ -216,8 +216,8 @@ describe('initial test', () => {
 
     it('when clicking same pagination, page is not changed', () => {
       //given
-      tada.controller._state.currentPage = '1';
       const samePage = 1;
+      clickPagination(samePage);
       //when
       clickPagination(samePage);
 
