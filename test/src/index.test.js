@@ -184,6 +184,17 @@ describe('initial test', () => {
 
   describe('click pagination >>', () => {
     let tada;
+
+    function clickPagination(page) {
+      const paginationItem = document.querySelectorAll(`.${CLASSNAMES.paginationItem}`)[page];
+      paginationItem.click();
+    }
+
+    function getActivePagination() {
+      const expectPagination = document.querySelector(`.${CLASSNAMES.paginationButton}.active`);
+      return parseInt(expectPagination.getAttribute('data-slide-index'), 10);
+    }
+
     beforeEach(() => {
       tada = new Tada({ selector: '#tada-class' });
     });
@@ -193,12 +204,28 @@ describe('initial test', () => {
     });
     it('when clicking specific pagination, move to the page', () => {
       //given
-      const page = 1;
+      const page = 2;
       //when
-      const paginationItem = document.querySelectorAll(`.${CLASSNAMES.paginationItem}`)[page];
-      paginationItem.click();
+      clickPagination(page);
       //then
+      const activateIndex = getActivePagination();
+      expect(activateIndex).to.be.equal(page);
       expect(+tada.controller._state.currentPage).to.be.equal(page);
+
+    });
+
+    it('when clicking same pagination, page is not changed', () => {
+      //given
+      tada.controller._state.currentPage = '1';
+      const samePage = 1;
+      //when
+      clickPagination(samePage);
+
+      //then
+      const activateIndex = getActivePagination();
+
+      expect(activateIndex).to.be.equal(samePage);
+      expect(+tada.controller._state.currentPage).to.be.equal(samePage);
 
     });
   });
