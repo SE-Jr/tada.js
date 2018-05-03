@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - checkout
-      - run: npm install -g codecov
+      - run: sudo npm install -g codecov
 
       # Download and cache dependencies
       - restore_cache:
