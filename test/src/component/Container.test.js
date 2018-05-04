@@ -7,7 +7,7 @@ import Config from "../../../src/scripts/Config";
 import { CLASSNAMES } from "../../../src/scripts/Consts";
 
 chai.use(sinonChai);
-const expect = chai.expect;
+const { expect } = chai;
 
 describe("Container component test >>", () => {
     describe("slide container initialize >> ", () => {
