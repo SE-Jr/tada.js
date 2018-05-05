@@ -6,7 +6,7 @@ import Config from "../../../src/scripts/Config";
 import Navigator from "../../../src/scripts/component/Navigator";
 
 chai.use(sinonChai);
-const expect = chai.expect;
+const { expect } = chai;
 
 describe("Navigator component test >>", () => {
     describe("slide navigator rendering >>", () => {

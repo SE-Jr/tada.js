@@ -6,7 +6,7 @@ import Config from "../../../src/scripts/Config";
 import Pagination from "../../../src/scripts/component/Pagination";
 
 chai.use(sinonChai);
-const expect = chai.expect;
+const { expect } = chai;
 
 describe("Pagination component test >>", () => {
     describe("pagination rendering >>", () => {

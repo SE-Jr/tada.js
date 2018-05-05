@@ -6,7 +6,7 @@ import { CLASSNAMES } from "../../src/scripts/Consts";
 import testHelper from "./test.helper";
 
 chai.use(sinonChai);
-const expect = chai.expect;
+const { expect } = chai;
 
 
 describe("initial test", () => {
