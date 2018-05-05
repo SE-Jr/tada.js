@@ -1,15 +1,20 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb-base",
-  "globals": {
-    "document": true,
-    "window": true
-  },
-  "rules": {
-    "no-param-reassign": 0,
-    "no-underscore-dangle": 0,
-    "no-return-assign": 0,
-    "class-methods-use-this": 0,
-    "quotes": ["error", "double"]
-  }
+    "parser": "babel-eslint",
+    "extends": "airbnb-base",
+        "globals": {
+        "document": true,
+        "window": true,
+        "describe": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "it": true
+    },
+    "rules": {
+        "no-param-reassign": 0,
+        "no-underscore-dangle": 0,
+        "no-return-assign": 0,
+        "class-methods-use-this": 0,
+        "quotes": ["error", "double"],
+        "indent": ["error", 4]
+    }
 }

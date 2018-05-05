@@ -5,89 +5,89 @@ import State from "./State";
 import { right, left, updateCurrentPage } from "./util/Helper";
 
 export default class Controller {
-  constructor(config) {
-    this._config = config;
-    this._state = new State();
+    constructor(config) {
+        this._config = config;
+        this._state = new State();
 
-    this._renderContainer();
-    if (this._config.showNavigator) {
-      this._renderNavigator();
+        this._renderContainer();
+        if (this._config.showNavigator) {
+            this._renderNavigator();
+        }
+        if (this._config.showPagination) {
+            this._renderPagination();
+        }
     }
-    if (this._config.showPagination) {
-      this._renderPagination();
-    }
-  }
 
   _renderContainer = () => {
-    this._container = new Container(this._config, this._state);
-    this._container.render();
+      this._container = new Container(this._config, this._state);
+      this._container.render();
   };
 
   _renderNavigator = () => {
-    this._navigator = new Navigator(this._config, this._state);
-    this._navigator.render();
+      this._navigator = new Navigator(this._config, this._state);
+      this._navigator.render();
   };
 
   _renderPagination = () => {
-    this._pagination = new Pagination(this._config, this._state);
-    this._pagination.render();
+      this._pagination = new Pagination(this._config, this._state);
+      this._pagination.render();
   };
 
   load() {
-    if (this._config.showNavigator) {
-      this._bindNavigatorEvents();
-    }
+      if (this._config.showNavigator) {
+          this._bindNavigatorEvents();
+      }
 
-    if (this._config.showPagination) {
-      this._bindPaginationEvents();
-    }
+      if (this._config.showPagination) {
+          this._bindPaginationEvents();
+      }
   }
 
   _bindNavigatorEvents() {
-    [...this._navigator.elem].forEach(elem => elem.addEventListener("click", (e) => {
-      const { target } = e;
-      const direction = target.getAttribute("data-direction");
-      if (direction === "right") {
-        right(this._state);
-      }
+      [...this._navigator.elem].forEach(elem => elem.addEventListener("click", (e) => {
+          const { target } = e;
+          const direction = target.getAttribute("data-direction");
+          if (direction === "right") {
+              right(this._state);
+          }
 
-      if (direction === "left") {
-        left(this._state);
-      }
+          if (direction === "left") {
+              left(this._state);
+          }
 
-      if (this._config.showNavigator) {
-        this._navigator.toggle();
-      }
-      if (this._config.showPagination) {
-        this._pagination.move(direction);
-      }
+          if (this._config.showNavigator) {
+              this._navigator.toggle();
+          }
+          if (this._config.showPagination) {
+              this._pagination.move(direction);
+          }
 
-      this._container.moveTo();
-    }));
+          this._container.moveTo();
+      }));
   }
 
   _bindPaginationEvents() {
-    this._pagination.elem.addEventListener("click", (e) => {
-      const { target } = e;
-      if (target && (target.nodeName === "LI" || target.nodeName === "BUTTON")) {
-        const page = target.getAttribute("data-slide-index");
-        updateCurrentPage(this._state, page);
-        this._container.moveTo(page);
-        this._pagination.moveTo(page);
-      }
-      if (this._config.showNavigator) {
-        this._navigator.toggle();
-      }
-    });
+      this._pagination.elem.addEventListener("click", (e) => {
+          const { target } = e;
+          if (target && (target.nodeName === "LI" || target.nodeName === "BUTTON")) {
+              const page = target.getAttribute("data-slide-index");
+              updateCurrentPage(this._state, page);
+              this._container.moveTo(page);
+              this._pagination.moveTo(page);
+          }
+          if (this._config.showNavigator) {
+              this._navigator.toggle();
+          }
+      });
   }
 
   on = (label, callback) => {
-    if (this._config.showNavigator) {
-      this._navigator.eventEmitter.addListener(label, callback);
-    }
+      if (this._config.showNavigator) {
+          this._navigator.eventEmitter.addListener(label, callback);
+      }
 
-    if (this._config.showPagination) {
-      this._pagination.eventEmitter.addListener(label, callback);
-    }
+      if (this._config.showPagination) {
+          this._pagination.eventEmitter.addListener(label, callback);
+      }
   }
 }
