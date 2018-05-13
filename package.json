@@ -5,9 +5,9 @@
   "main": "dist/tada.min.js",
   "module": "dist/tada.min.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.prod.js",
     "lint": "eslint src/scripts/**/*.js src/index.js --fix",
-    "start": "webpack-dev-server --hot --watch-content-base",
+    "start": "npm run build && webpack-dev-server --open --config webpack.dev.js",
     "test": "node_modules/karma/bin/karma start ./karma.conf.js --single-run",
     "test:watch": "node_modules/karma/bin/karma start ./karma.conf.js",
     "report-coverage": "codecov"
@@ -55,6 +55,7 @@
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.1.0",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.2"
   }
 }
